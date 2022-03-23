@@ -1,0 +1,63 @@
+{
+    "node": {
+        "G1": {
+            "color": "r"
+        },
+        "R1": {
+            "color": "b"
+        },
+        "R2": {
+            "color": "b"
+        },
+        "R3": {
+            "color": "b"
+        },
+        "R4": {
+            "color": "b"
+        },
+        "R5": {
+            "color": "b"
+        },
+        "R6": {
+            "color": "b"
+        }
+    },
+    "edge": {
+        "R1": {
+            "G1": {
+                "weight": 1,
+                "color": "r"
+            }
+        },
+        "R2": {
+            "G1": {
+                "weight": 1,
+                "color": "r"
+            }
+        },
+        "R3": {
+            "G1": {
+                "weight": 1,
+                "color": "r"
+            }
+        },
+        "R4": {
+            "G1": {
+                "weight": 1,
+                "color": "r"
+            }
+        },
+        "R5": {
+            "G1": {
+                "weight": 1,
+                "color": "r"
+            }
+        },
+        "R6": {
+            "G1": {
+                "weight": 1,
+                "color": "r"
+            }
+        }
+    }
+}

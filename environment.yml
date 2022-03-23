@@ -7,4 +7,5 @@ dependencies:
   - black
   - flake8
   - pre-commit
+  - matplotlib
 prefix: /Users/edvard/opt/anaconda3/envs/graph_network

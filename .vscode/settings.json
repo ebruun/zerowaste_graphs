@@ -2,11 +2,9 @@
     //PYTHON
     //"python.pythonPath": "C:\\Users\\Edvard\\.conda\\envs\\zivid_261_rrc\\python.exe",
     "python.terminal.activateEnvironment": true,
-
     //INTEGRATED TERMINAL
     "terminal.integrated.tabs.enabled": true,
     "terminal.integrated.copyOnSelection": true,
-    
     //LINTING
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
@@ -18,8 +16,10 @@
         //"--max-line-length=120",
         //"--ignore=E402,F841,F401,E302,E305",
     ],
+    "python.linting.lintOnSave": true,
     "python.formatting.provider": "black",
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": null,
     "python.formatting.blackArgs": [
         "--line-length=80",
         "--experimental-string-processing"

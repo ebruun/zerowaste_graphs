@@ -51,40 +51,52 @@ def draw_graph(G, pos_fixed):
     plt.show()
 
 
-if __name__ == "__main__":
+def read_json(f):
 
-    f = "test_in.json"
+    # f = "test_in.json"
     with open(f, "r") as infile:
         a = json.load(infile)
 
-    G = nx.from_dict_of_dicts(a["edge"], create_using=nx.DiGraph)
-    nx.set_node_attributes(G, a["node"])
+    edges = a["edge"]
+    nodes = a["node"]
 
-    f = "test_in2.json"
-    with open(f, "r") as infile:
-        a = json.load(infile)
+    return edges, nodes
 
-    G.add_nodes_from(a["node"].keys())
-    nx.set_node_attributes(G, a["node"])
 
+def add_nodes(G, node_data):
+    G.add_nodes_from(node_data.keys())
+    nx.set_node_attributes(G, node_data)
+
+
+def add_edges(G, edge_data):
     add_list = []
-    for k, v in a["edge"].items():
+    for k, v in edge_data.items():
         for k2, v2 in v.items():
             add_list.append((k, k2, v2))
 
     G.add_edges_from(add_list)
 
-    pos_fixed = {}
-    for k, v in a["node"].items():
-        for k2, v2 in v.items():
-            if k2 == "pos":
-                pos_fixed[k] = eval(v2)
+
+def get_node_pos(G):
 
     pos_fixed = {}
     for k, v in nx.get_node_attributes(G, "pos").items():
         pos_fixed[k] = eval(v)
 
-    print(pos_fixed)
-    print(pos_fixed.keys())
+    return pos_fixed
 
-    draw_graph(G, pos_fixed)
+
+if __name__ == "__main__":
+
+    G = nx.empty_graph(create_using=nx.DiGraph())
+
+    data_in_list = ["test_in.json", "test_in2.json"]
+
+    for f in data_in_list:
+
+        edge_data, node_data = read_json(f)
+
+        add_nodes(G, node_data)
+        add_edges(G, edge_data)
+
+    draw_graph(G, get_node_pos(G))

@@ -1,12 +1,12 @@
 {
     "node": {
         "TP_L": {
-            "color": "r",
-            "pos": "(-10.0,-5.0)"
+            "color": "tab:pink",
+            "pos": "(-10.0,-1)"
         },
         "TP_R": {
-            "color": "r",
-            "pos": "(10.0,-5.0)"
+            "color": "tab:pink",
+            "pos": "(10.0,-1)"
         }
     },
     "edge": {

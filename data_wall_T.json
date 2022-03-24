@@ -1,0 +1,94 @@
+{
+    "node": {
+        "TP_T": {
+            "color": "tab:purple",
+            "pos": "(0,7.5)"
+        },
+        "BP_T": {
+            "color": "tab:purple",
+            "pos": "(0,12.5)"
+        },
+        "S1_T": {
+            "color": "tab:cyan",
+            "pos": "(-2,10)"
+        },
+        "S2_T": {
+            "color": "tab:cyan",
+            "pos": "(-1,10)"
+        },
+        "S3_T": {
+            "color": "tab:cyan",
+            "pos": "(0,10)"
+        },
+        "S4_T": {
+            "color": "tab:cyan",
+            "pos": "(1,10)"
+        },
+        "S5_T": {
+            "color": "tab:cyan",
+            "pos": "(2,10)"
+        }
+    },
+    "edge": {
+        "TP_T": {
+            "TP_L": {
+                "weight": 2,
+                "color": "tab:pink"
+            },
+            "TP_R": {
+                "weight": 2,
+                "color": "tab:pink"
+            },
+            "S1_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S2_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S3_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S4_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S5_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "S1_T": {
+            "BP_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "S2_T": {
+            "BP_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "S3_T": {
+            "BP_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "S4_T": {
+            "BP_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "S5_T": {
+            "BP_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        }
+    }
+}

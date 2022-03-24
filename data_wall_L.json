@@ -1,0 +1,184 @@
+{
+    "node": {
+        "TP_L": {
+            "color": "tab:pink",
+            "pos": "(-7.5,0)"
+        },
+        "BP_L": {
+            "color": "tab:pink",
+            "pos": "(-12.5,0)"
+        },
+        "S1_L": {
+            "color": "tab:orange",
+            "pos": "(-10,4)"
+        },
+        "S2_L": {
+            "color": "tab:orange",
+            "pos": "(-10,3)"
+        },
+        "S3_L": {
+            "color": "tab:orange",
+            "pos": "(-10,2)"
+        },
+        "S4_L": {
+            "color": "tab:orange",
+            "pos": "(-10,1)"
+        },
+        "S5_L": {
+            "color": "tab:orange",
+            "pos": "(-10,0)"
+        },
+        "S6_L": {
+            "color": "tab:orange",
+            "pos": "(-10,-1)"
+        },
+        "S7_L": {
+            "color": "tab:orange",
+            "pos": "(-10,-2)"
+        },
+        "S8_L": {
+            "color": "tab:orange",
+            "pos": "(-10,-3)"
+        },
+        "S9_L": {
+            "color": "tab:orange",
+            "pos": "(-10,-4)"
+        }
+    },
+    "edge": {
+        "R1_L": {
+            "TP_T": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "R2_L": {
+            "TP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "R3_L": {
+            "TP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "R4_L": {
+            "TP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "R5_L": {
+            "TP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "R6_L": {
+            "TP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "R7_L": {
+            "TP_B": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "TP_L": {
+            "S1_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S2_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S3_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S4_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S5_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S6_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S7_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S8_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            },
+            "S9_L": {
+                "weight": 1,
+                "color": "tab:orange"
+            }
+        },
+        "S1_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S2_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S3_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S4_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S5_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S6_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S7_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S8_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "S9_L": {
+            "BP_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        }
+    }
+}

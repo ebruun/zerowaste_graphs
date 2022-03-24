@@ -1,0 +1,94 @@
+{
+    "node": {
+        "TP_B": {
+            "color": "tab:purple",
+            "pos": "(0.0,-7.5)"
+        },
+        "BP_B": {
+            "color": "tab:purple",
+            "pos": "(0.0,-12.5)"
+        },
+        "S1_B": {
+            "color": "tab:cyan",
+            "pos": "(-2,-10)"
+        },
+        "S2_B": {
+            "color": "tab:cyan",
+            "pos": "(-1,-10)"
+        },
+        "S3_B": {
+            "color": "tab:cyan",
+            "pos": "(0,-10)"
+        },
+        "S4_B": {
+            "color": "tab:cyan",
+            "pos": "(1,-10)"
+        },
+        "S5_B": {
+            "color": "tab:cyan",
+            "pos": "(2,-10)"
+        }
+    },
+    "edge": {
+        "TP_B": {
+            "TP_L": {
+                "weight": 2,
+                "color": "tab:pink"
+            },
+            "TP_R": {
+                "weight": 2,
+                "color": "tab:pink"
+            },
+            "S1_B": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S2_B": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S3_B": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S4_B": {
+                "weight": 1,
+                "color": "tab:cyan"
+            },
+            "S5_B": {
+                "weight": 1,
+                "color": "tab:cyan"
+            }
+        },
+        "S1_B": {
+            "BP_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        },
+        "S2_B": {
+            "BP_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        },
+        "S3_B": {
+            "BP_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        },
+        "S4_B": {
+            "BP_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        },
+        "S5_B": {
+            "BP_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        }
+    }
+}

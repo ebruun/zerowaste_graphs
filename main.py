@@ -40,6 +40,7 @@ def draw_graph(G, pos_fixed):
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
+    plt.figure(1, figsize=(12, 10))
     nx.draw(
         G,
         pos=pos,
@@ -47,13 +48,14 @@ def draw_graph(G, pos_fixed):
         edge_color=colors,
         node_color=n_colors,
         width=list(weights),
+        # connectionstyle="arc3,rad=0.2"
     )
+
     plt.show()
 
 
 def read_json(f):
 
-    # f = "test_in.json"
     with open(f, "r") as infile:
         a = json.load(infile)
 
@@ -90,7 +92,13 @@ if __name__ == "__main__":
 
     G = nx.empty_graph(create_using=nx.DiGraph())
 
-    data_in_list = ["test_in.json", "test_in2.json"]
+    data_in_list = [
+        "data_roof.json",
+        "data_wall_L.json",
+        "data_wall_T.json",
+        "data_wall_R.json",
+        "data_wall_B.json",
+    ]
 
     for f in data_in_list:
 

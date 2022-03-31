@@ -1,3 +1,4 @@
+from tkinter import E
 from turtle import width
 import networkx as nx
 from networkx.readwrite import json_graph
@@ -32,26 +33,62 @@ def create_graph2():
         json.dump(a, outfile, indent=4)
 
 
+def move_figure(f, x, y):
+    """Move figure's upper left corner to pixel (x, y)"""
+    backend = mpl.get_backend()
+    if backend == "TkAgg":
+        f.canvas.manager.window.wm_geometry("+%d+%d" % (x, y))
+    elif backend == "WXAgg":
+        f.canvas.manager.window.SetPosition((x, y))
+    else:
+        # This works for QT and GTK
+        # You can also use window.setGeometry
+        f.canvas.manager.window.move(x, y)
+
+
 def draw_graph(G, pos_fixed):
 
-    colors = nx.get_edge_attributes(G, "color").values()
-    weights = nx.get_edge_attributes(G, "weight").values()
     n_colors = nx.get_node_attributes(G, "color").values()
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
-    plt.figure(1, figsize=(12, 10))
-    nx.draw(
+    f = plt.figure(1, figsize=(16, 10))
+    f.tight_layout()
+
+    for e in G.edges(data=True):
+
+        if "style" in e[2]:
+            c = e[2]["style"]
+        else:
+            c = "arc3, rad=0.0"
+
+        nx.draw_networkx_edges(
+            G,
+            pos,
+            edgelist=[(e[0], e[1])],
+            edge_color=e[2]["color"],
+            width=e[2]["weight"],
+            connectionstyle=c,
+        )
+
+    ax = plt.gca()
+    print(ax)
+    # ax.set_aspect('equal')
+
+    nx.draw_networkx_nodes(
         G,
-        pos=pos,
-        with_labels=True,
-        edge_color=colors,
+        pos,
         node_color=n_colors,
-        width=list(weights),
-        # connectionstyle="arc3,rad=0.2"
+        node_size=300,
     )
 
+    nx.draw_networkx_labels(G, pos, font_size=7, font_color="white")
+
+    ax = plt.gca()
+    f = plt.gcf()
+
     plt.show()
+    plt.savefig("test.png", dpi=300)
 
 
 def read_json(f):

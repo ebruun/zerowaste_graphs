@@ -2,112 +2,104 @@
     "node": {
         "G1": {
             "color": "tab:red",
-            "pos": "(0.4,0.4)"
+            "pos": "(0,0)"
         },
         "P_B": {
             "color": "tab:gray",
-            "pos": "(0.0,-5)"
+            "pos": "(0.0,-10)"
         },
         "P_T": {
             "color": "tab:gray",
-            "pos": "(0.0,5)"
+            "pos": "(0.0,10)"
         },
         "R1_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,3.0)"
+            "pos": "(-6.0,6.0)"
         },
         "R2_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,2.0)"
+            "pos": "(-6.0,4.0)"
         },
         "R3_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,1.0)"
+            "pos": "(-6.0,2.0)"
         },
         "R4_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,0.0)"
+            "pos": "(-6.0,0.0)"
         },
         "R5_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,-1.0)"
+            "pos": "(-6.0,-2.0)"
         },
         "R6_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,-2.0)"
+            "pos": "(-6.0,-4.0)"
         },
         "R7_L": {
             "color": "tab:blue",
-            "pos": "(-3.0,-3.0)"
+            "pos": "(-6.0,-6.0)"
         },
         "R1_R": {
             "color": "tab:blue",
-            "pos": "(3.0,3.0)"
+            "pos": "(6.0,6.0)"
         },
         "R2_R": {
             "color": "tab:blue",
-            "pos": "(3.0,2.0)"
+            "pos": "(6.0,4.0)"
         },
         "R3_R": {
             "color": "tab:blue",
-            "pos": "(3.0,1.0)"
+            "pos": "(6.0,2.0)"
         },
         "R4_R": {
             "color": "tab:blue",
-            "pos": "(3.0,0.0)"
+            "pos": "(6.0,0.0)"
         },
         "R5_R": {
             "color": "tab:blue",
-            "pos": "(3.0,-1.0)"
+            "pos": "(6.0,-2.0)"
         },
         "R6_R": {
             "color": "tab:blue",
-            "pos": "(3.0,-2.0)"
+            "pos": "(6.0,-4.0)"
         },
         "R7_R": {
             "color": "tab:blue",
-            "pos": "(3.0,-3.0)"
-        },
-        "J1": {
-            "color": "tab:green",
-            "pos": "(-0.2,3.0)"
+            "pos": "(6.0,-6.0)"
         },
         "J2": {
             "color": "tab:green",
-            "pos": "(-0.2,2.0)"
+            "pos": "(-1,4.5)"
         },
         "J3": {
             "color": "tab:green",
-            "pos": "(-0.2,1.0)"
+            "pos": "(-1,3)"
         },
         "J4": {
             "color": "tab:green",
-            "pos": "(-0.2,0.0)"
+            "pos": "(-1,-3)"
         },
         "J5": {
             "color": "tab:green",
-            "pos": "(-0.2,-1.0)"
+            "pos": "(-1,-4.5)"
         },
         "J6": {
             "color": "tab:green",
-            "pos": "(-0.2,-2.0)"
-        },
-        "J7": {
-            "color": "tab:green",
-            "pos": "(-0.2,-3.0)"
+            "pos": "(-1,-6)"
         }
     },
     "edge": {
         "P_T": {
             "TP_T": {
                 "weight": 1,
-                "color": "tab:cyan"
+                "color": "tab:purple"
             }
         },
         "P_B": {
             "TP_B": {
                 "weight": 1,
-                "color": "tab:cyan"
+                "color": "tab:purple"
             }
         },
         "G1": {
@@ -204,16 +196,6 @@
                 "color": "tab:red"
             }
         },
-        "J1": {
-            "R1_L": {
-                "weight": 1,
-                "color": "tab:green"
-            },
-            "R1_R": {
-                "weight": 1,
-                "color": "tab:green"
-            }
-        },
         "J2": {
             "R2_L": {
                 "weight": 1,
@@ -260,16 +242,6 @@
                 "color": "tab:green"
             },
             "R6_R": {
-                "weight": 1,
-                "color": "tab:green"
-            }
-        },
-        "J7": {
-            "R7_L": {
-                "weight": 1,
-                "color": "tab:green"
-            },
-            "R7_R": {
                 "weight": 1,
                 "color": "tab:green"
             }

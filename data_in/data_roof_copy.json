@@ -1,0 +1,288 @@
+{
+    "node": {
+        "G1": {
+            "color": "tab:red",
+            "pos": "(0,0)"
+        },
+        "P_B": {
+            "color": "tab:gray",
+            "pos": "(0.0,-10)"
+        },
+        "P_T": {
+            "color": "tab:gray",
+            "pos": "(0.0,10)"
+        },
+        "R1_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,9.0)"
+        },
+        "R2_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,6.0)"
+        },
+        "R3_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,3.0)"
+        },
+        "R4_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,0.0)"
+        },
+        "R5_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-3.0)"
+        },
+        "R6_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-6.0)"
+        },
+        "R7_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-9.0)"
+        },
+        "R1_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,9.0)"
+        },
+        "R2_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,6.0)"
+        },
+        "R3_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,3.0)"
+        },
+        "R4_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,0)"
+        },
+        "R5_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,-3.0)"
+        },
+        "R6_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,-6.0)"
+        },
+        "R7_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,-9.0)"
+        },
+        "J2": {
+            "color": "tab:green",
+            "pos": "(-1,4.5)"
+        },
+        "J3": {
+            "color": "tab:green",
+            "pos": "(-1,3)"
+        },
+        "J4": {
+            "color": "tab:green",
+            "pos": "(-1,-3)"
+        },
+        "J5": {
+            "color": "tab:green",
+            "pos": "(-1,-4.5)"
+        },
+        "J6": {
+            "color": "tab:green",
+            "pos": "(-1,-6)"
+        }
+    },
+    "edge": {
+        "P_T": {
+            "TP_T": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        },
+        "P_B": {
+            "P2_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            }
+        },
+        "G1": {
+            "P_T": {
+                "weight": 2,
+                "color": "tab:gray"
+            },
+            "P_B": {
+                "weight": 2,
+                "color": "tab:gray"
+            }
+        },
+        "R1_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "TP_T": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "R2_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "P2_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "R3_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "P3_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "R4_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "P3_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "tab:pink"
+            }
+        },
+        "R5_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "R6_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "P5_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "R7_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "P1_B": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "R1_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "R2_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "R3_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "R4_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "R5_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "R6_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "R7_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "J2": {
+            "R2_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R2_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        },
+        "J3": {
+            "R3_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R3_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        },
+        "J4": {
+            "R4_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R4_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        },
+        "J5": {
+            "R5_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R5_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        },
+        "J6": {
+            "R6_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R6_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        }
+    }
+}

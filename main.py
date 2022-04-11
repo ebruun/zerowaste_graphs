@@ -70,10 +70,14 @@ def draw_graph(G, pos_fixed):
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
-    f = plt.figure(1, figsize=(16, 10))
-    f.tight_layout()
+    f = plt.figure(1, figsize=(11, 8.5))
 
     for e in G.edges(data=True):
+
+        if "fixed" in e[2]:
+            a = 0.01
+        else:
+            a = 15
 
         if "style" in e[2]:
             c = e[2]["style"]
@@ -87,26 +91,24 @@ def draw_graph(G, pos_fixed):
             edge_color=e[2]["color"],
             width=e[2]["weight"],
             connectionstyle=c,
+            arrowsize=a,
         )
-
-    ax = plt.gca()
-    print(ax)
-    # ax.set_aspect('equal')
 
     nx.draw_networkx_nodes(
         G,
         pos,
         node_color=n_colors,
-        node_size=300,
+        node_size=500,
     )
 
-    nx.draw_networkx_labels(G, pos, font_size=7, font_color="white")
+    nx.draw_networkx_labels(G, pos, font_size=6, font_color="white")
 
-    ax = plt.gca()
+    # ax = plt.gca()
     f = plt.gcf()
+    f.tight_layout()
 
-    plt.show()
-    # plt.savefig("full_structure.png", dpi=300)
+    # plt.show()
+    plt.savefig("full_structure.png", dpi=300)
 
 
 def read_json(folder, name):
@@ -147,16 +149,14 @@ def get_node_pos(G):
 
 if __name__ == "__main__":
 
-    _create_file_path("test", "test2")
-
     G = nx.empty_graph(create_using=nx.DiGraph())
 
     data_in_list = [
-        "data_roof.json",
-        "data_wall_L.json",
-        "data_wall_T.json",
-        "data_wall_R.json",
-        "data_wall_B.json",
+        "data_roof_copy.json",
+        "data_wall_L_copy.json",
+        "data_wall_T_copy.json",
+        "data_wall_R_copy.json",
+        "data_wall_B_copy.json",
     ]
 
     for f in data_in_list:

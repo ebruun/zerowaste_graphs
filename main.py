@@ -5,10 +5,28 @@ from networkx.readwrite import json_graph
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import json
+import pathlib
 
 
 # ANALYSIS STRUCTURE (TURN ONE ON)
 from data_in.simple import data_in
+
+
+def _create_file_path(folder, filename):
+    """create output data path.
+
+    Returns:
+        path: Output data path
+
+    """
+    path = pathlib.PurePath(
+        pathlib.Path.cwd(),
+        folder,
+        filename,
+    )
+
+    # print("created path...", path)
+    return path
 
 
 def create_graph2():
@@ -88,12 +106,14 @@ def draw_graph(G, pos_fixed):
     f = plt.gcf()
 
     plt.show()
-    plt.savefig("test.png", dpi=300)
+    # plt.savefig("full_structure.png", dpi=300)
 
 
-def read_json(f):
+def read_json(folder, name):
 
-    with open(f, "r") as infile:
+    p = _create_file_path(folder, name)
+
+    with open(p, "r") as infile:
         a = json.load(infile)
 
     edges = a["edge"]
@@ -127,6 +147,8 @@ def get_node_pos(G):
 
 if __name__ == "__main__":
 
+    _create_file_path("test", "test2")
+
     G = nx.empty_graph(create_using=nx.DiGraph())
 
     data_in_list = [
@@ -139,7 +161,7 @@ if __name__ == "__main__":
 
     for f in data_in_list:
 
-        edge_data, node_data = read_json(f)
+        edge_data, node_data = read_json("data_in", f)
 
         add_nodes(G, node_data)
         add_edges(G, edge_data)

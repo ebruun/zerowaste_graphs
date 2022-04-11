@@ -66,11 +66,24 @@ def move_figure(f, x, y):
 
 def draw_graph(G, pos_fixed):
 
-    n_colors = nx.get_node_attributes(G, "color").values()
+    f = plt.figure(1, figsize=(11, 8.5))
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
-    f = plt.figure(1, figsize=(11, 8.5))
+    for n in G.nodes(data=True):
+
+        if "size" in n[1]:
+            s = n[1]["size"]
+        else:
+            s = 300
+
+        nx.draw_networkx_nodes(
+            G,
+            pos,
+            nodelist=[n[0]],
+            node_color=n[1]["color"],
+            node_size=s,
+        )
 
     for e in G.edges(data=True):
 
@@ -93,13 +106,6 @@ def draw_graph(G, pos_fixed):
             connectionstyle=c,
             arrowsize=a,
         )
-
-    nx.draw_networkx_nodes(
-        G,
-        pos,
-        node_color=n_colors,
-        node_size=500,
-    )
 
     nx.draw_networkx_labels(G, pos, font_size=6, font_color="white")
 
@@ -167,3 +173,6 @@ if __name__ == "__main__":
         add_edges(G, edge_data)
 
     draw_graph(G, get_node_pos(G))
+
+    # aa = nx.bidirectional_shortest_path(G,"P1_B","BP_B")
+    # print(aa)

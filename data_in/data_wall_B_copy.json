@@ -2,15 +2,18 @@
     "node": {
         "P1_B": {
             "color": "tab:purple",
-            "pos": "(-4,-13.5)"
+            "pos": "(-4,-13.5)",
+            "size": 400
         },
         "P2_B": {
             "color": "tab:purple",
-            "pos": "(0.0,-13.5)"
+            "pos": "(0.0,-13.5)",
+            "size": 400
         },
         "P3_B": {
             "color": "tab:purple",
-            "pos": "(4,-13.5)"
+            "pos": "(4,-13.5)",
+            "size": 400
         },
         "BP_B": {
             "color": "tab:purple",
@@ -43,24 +46,32 @@
         "S6_B": {
             "color": "tab:cyan",
             "pos": "(5,-21.5)"
+        },
+        "D1_B": {
+            "color": "tab:gray",
+            "pos": "(-8,-17)"
+        },
+        "D2_B": {
+            "color": "tab:gray",
+            "pos": "(8,-17)"
         }
     },
     "edge": {
         "P1_B": {
             "P6_L": {
-                "weight": 2,
+                "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.2"
             },
             "S1_B": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=0.2"
+                "style": "arc3, rad=-0.2"
             },
             "S2_B": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=0.2"
+                "style": "arc3, rad=-0.2"
             },
             "P2_B": {
                 "weight": 3,
@@ -71,7 +82,7 @@
         },
         "P2_B": {
             "H_B": {
-                "weight": 2,
+                "weight": 1,
                 "color": "tab:olive"
             },
             "P3_B": {
@@ -83,29 +94,31 @@
         },
         "P3_B": {
             "P6_R": {
-                "weight": 2,
+                "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.2"
             },
             "S5_B": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=-0.2"
+                "style": "arc3, rad=0.2"
             },
             "S6_B": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=-0.2"
+                "style": "arc3, rad=0.2"
             }
         },
         "H_B": {
             "S3_B": {
                 "weight": 1,
-                "color": "tab:cyan"
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.1"
             },
             "S4_B": {
                 "weight": 1,
-                "color": "tab:cyan"
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.1"
             }
         },
         "S1_B": {
@@ -125,13 +138,15 @@
         "S3_B": {
             "BP_B": {
                 "weight": 1,
-                "color": "tab:purple"
+                "color": "tab:purple",
+                "style": "arc3, rad=0.1"
             }
         },
         "S4_B": {
             "BP_B": {
                 "weight": 1,
-                "color": "tab:purple"
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.1"
             }
         },
         "S5_B": {
@@ -146,6 +161,40 @@
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=-0.2"
+            }
+        },
+        "D1_B": {
+            "S1_B": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.2"
+            },
+            "S2_B": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.2"
+            },
+            "S9_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "D2_B": {
+            "S5_B": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S6_B": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S10_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
             }
         }
     }

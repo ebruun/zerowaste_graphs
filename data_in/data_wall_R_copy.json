@@ -2,27 +2,33 @@
     "node": {
         "P1_R": {
             "color": "tab:pink",
-            "pos": "(10,10)"
+            "pos": "(10,10)",
+            "size": 400
         },
         "P2_R": {
             "color": "tab:pink",
-            "pos": "(10,6)"
+            "pos": "(10,6)",
+            "size": 400
         },
         "P3_R": {
             "color": "tab:pink",
-            "pos": "(10,2)"
+            "pos": "(10,2)",
+            "size": 400
         },
         "P4_R": {
             "color": "tab:pink",
-            "pos": "(10,-2)"
+            "pos": "(10,-2)",
+            "size": 400
         },
         "P5_R": {
             "color": "tab:pink",
-            "pos": "(10,-6)"
+            "pos": "(10,-6)",
+            "size": 400
         },
         "P6_R": {
             "color": "tab:pink",
-            "pos": "(10,-10)"
+            "pos": "(10,-10)",
+            "size": 400
         },
         "BP_R": {
             "color": "tab:pink",
@@ -87,66 +93,22 @@
         "S13_R": {
             "color": "tab:orange",
             "pos": "(22.5,-2)"
+        },
+        "D1_R": {
+            "color": "tab:gray",
+            "pos": "(12.5,4.5)"
+        },
+        "D2_R": {
+            "color": "tab:gray",
+            "pos": "(12.5,-4.5)"
         }
     },
     "edge": {
-        "R1_R": {
-            "TP_T": {
-                "weight": 1,
-                "color": "tab:purple",
-                "style": "arc3, rad=0.0"
-            }
-        },
-        "R2_R": {
-            "P2_R": {
-                "weight": 1,
-                "color": "tab:pink",
-                "style": "arc3, rad=-0.0"
-            }
-        },
-        "R3_R": {
-            "P3_R": {
-                "weight": 1,
-                "color": "tab:pink",
-                "style": "arc3, rad=-0.0"
-            }
-        },
-        "R4_R": {
-            "P3_R": {
-                "weight": 1,
-                "color": "tab:pink"
-            },
-            "P4_R": {
-                "weight": 1,
-                "color": "tab:pink"
-            }
-        },
-        "R5_R": {
-            "P4_R": {
-                "weight": 1,
-                "color": "tab:pink",
-                "style": "arc3, rad=0.0"
-            }
-        },
-        "R6_R": {
-            "P5_R": {
-                "weight": 1,
-                "color": "tab:pink",
-                "style": "arc3, rad=0.0"
-            }
-        },
-        "R7_R": {
-            "P3_B": {
-                "weight": 1,
-                "color": "tab:purple",
-                "style": "arc3, rad=-0.0"
-            }
-        },
         "P1_R": {
             "S1_R": {
                 "weight": 1,
                 "color": "tab:orange",
-                "style": "arc3, rad=0.0"
+                "style": "arc3, rad=-0.1"
             },
             "S2_R": {
                 "weight": 1,
@@ -164,7 +126,7 @@
             "S3_R": {
                 "weight": 1,
                 "color": "tab:orange",
-                "style": "arc3, rad=0.0"
+                "style": "arc3, rad=-0.1"
             },
             "P3_R": {
                 "weight": 3,
@@ -177,28 +139,29 @@
             "S4_R": {
                 "weight": 1,
                 "color": "tab:orange",
-                "style": "arc3, rad=0.0"
+                "style": "arc3, rad=0.1"
             },
             "H1_R": {
                 "weight": 1,
                 "color": "tab:olive",
-                "style": "arc3, rad=0.0"
+                "style": "arc3, rad=-0.1"
             },
             "P4_R": {
                 "weight": 3,
                 "color": "black",
-                "style": "arc3, rad=0.0",
+                "style": "arc3, rad=-0.0",
                 "fixed": "True"
             }
         },
         "P4_R": {
-            "H1_R": {
-                "weight": 1,
-                "color": "tab:olive"
-            },
             "S7_R": {
                 "weight": 1,
                 "color": "tab:orange",
+                "style": "arc3, rad=-0.1"
+            },
+            "H1_R": {
+                "weight": 1,
+                "color": "tab:olive",
                 "style": "arc3, rad=0.1"
             },
             "P5_R": {
@@ -212,7 +175,7 @@
             "S8_R": {
                 "weight": 1,
                 "color": "tab:orange",
-                "style": "arc3, rad=0.0"
+                "style": "arc3, rad=0.1"
             },
             "P6_R": {
                 "weight": 3,
@@ -230,35 +193,26 @@
             "S10_R": {
                 "weight": 1,
                 "color": "tab:orange",
-                "style": "arc3, rad=0.0"
+                "style": "arc3, rad=0.1"
             }
         },
         "H1_R": {
             "S5_R": {
                 "weight": 1,
-                "color": "tab:orange"
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.1"
             },
             "S6_R": {
                 "weight": 1,
-                "color": "tab:orange"
-            }
-        },
-        "S5_R": {
-            "H2_R": {
-                "weight": 1,
-                "color": "tab:olive"
-            }
-        },
-        "S6_R": {
-            "H2_R": {
-                "weight": 1,
-                "color": "tab:olive"
+                "color": "tab:orange",
+                "style": "arc3, rad=0.1"
             }
         },
         "H2_R": {
             "S11_R": {
                 "weight": 1,
-                "color": "tab:orange"
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.1"
             },
             "S12_R": {
                 "weight": 1,
@@ -266,7 +220,8 @@
             },
             "S13_R": {
                 "weight": 1,
-                "color": "tab:orange"
+                "color": "tab:orange",
+                "style": "arc3, rad=0.1"
             }
         },
         "S1_R": {
@@ -295,6 +250,20 @@
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.3"
+            }
+        },
+        "S5_R": {
+            "H2_R": {
+                "weight": 1,
+                "color": "tab:olive",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "S6_R": {
+            "H2_R": {
+                "weight": 1,
+                "color": "tab:olive",
+                "style": "arc3, rad=0.1"
             }
         },
         "S7_R": {
@@ -328,7 +297,8 @@
         "S11_R": {
             "BP_R": {
                 "weight": 1,
-                "color": "tab:pink"
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
             }
         },
         "S12_R": {
@@ -340,7 +310,52 @@
         "S13_R": {
             "BP_R": {
                 "weight": 1,
-                "color": "tab:pink"
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "D1_R": {
+            "S1_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S3_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S4_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S11_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "D2_R": {
+            "S7_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S8_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S10_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S13_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
             }
         }
     }

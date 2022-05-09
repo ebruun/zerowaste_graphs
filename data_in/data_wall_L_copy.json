@@ -32,7 +32,9 @@
         },
         "BP_L": {
             "color": "tab:pink",
-            "pos": "(-25,0)"
+            "pos": "(-25,0)",
+            "node_shape": "h",
+            "size": 500
         },
         "S1_L": {
             "color": "tab:orange",

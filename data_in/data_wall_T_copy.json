@@ -17,7 +17,9 @@
         },
         "BP_T": {
             "color": "tab:purple",
-            "pos": "(0,22.5)"
+            "pos": "(0,22.5)",
+            "node_shape": "h",
+            "size": 500
         },
         "S1_T": {
             "color": "tab:cyan",

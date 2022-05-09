@@ -1,5 +1,3 @@
-from tkinter import E
-from turtle import width
 import networkx as nx
 from networkx.readwrite import json_graph
 import matplotlib.pyplot as plt
@@ -7,9 +5,7 @@ import matplotlib as mpl
 import json
 import pathlib
 
-
-# ANALYSIS STRUCTURE (TURN ONE ON)
-from data_in.simple import data_in
+from algorithms import phase_1
 
 
 def _create_file_path(folder, filename):
@@ -25,30 +21,21 @@ def _create_file_path(folder, filename):
         filename,
     )
 
-    # print("created path...", path)
+    print("created path...", path)
     return path
 
 
-def create_graph2():
-    G = nx.DiGraph()
+def read_json(folder, name):
 
-    G.add_nodes_from([1, 2, 3, 4])
-    G.add_weighted_edges_from([(1, 2, 0.4), (2, 3, 0.2), (3, 1, 0.3)])
+    p = _create_file_path(folder, name)
 
-    G.add_edge(1, 4, color="r", weight=3)
+    with open(p, "r") as infile:
+        a = json.load(infile)
 
-    labels = ["yo"]
-    nx.set_edge_attributes(G, labels, "labels")
+    edges = a["edge"]
+    nodes = a["node"]
 
-    node_labels = ["sick"]
-    nx.set_node_attributes(G, node_labels, "node_labels")
-
-    a = nx.to_dict_of_dicts(G)
-    print(a)
-
-    f = "test_out.json"
-    with open(f, "w") as outfile:
-        json.dump(a, outfile, indent=4)
+    return edges, nodes
 
 
 def move_figure(f, x, y):
@@ -64,12 +51,13 @@ def move_figure(f, x, y):
         f.canvas.manager.window.move(x, y)
 
 
-def draw_graph(G, pos_fixed):
+def draw_graph(G, pos_fixed, name):
 
     f = plt.figure(1, figsize=(11, 8.5))
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
+    n_size = []  # for drawing arrows correct location
     for n in G.nodes(data=True):
 
         if "size" in n[1]:
@@ -80,19 +68,16 @@ def draw_graph(G, pos_fixed):
         nx.draw_networkx_nodes(
             G,
             pos,
+            node_size=s,
             nodelist=[n[0]],
             node_color=n[1]["color"],
-            node_size=s,
         )
+
+        n_size.append(s)
 
     for e in G.edges(data=True):
 
-        if "fixed" in e[2]:
-            a = 0.01
-        else:
-            a = 15
-
-        if "style" in e[2]:
+        if "style" in e[2]:  # curved arrows
             c = e[2]["style"]
         else:
             c = "arc3, rad=0.0"
@@ -100,34 +85,20 @@ def draw_graph(G, pos_fixed):
         nx.draw_networkx_edges(
             G,
             pos,
+            node_size=n_size,
             edgelist=[(e[0], e[1])],
             edge_color=e[2]["color"],
             width=e[2]["weight"],
             connectionstyle=c,
-            arrowsize=a,
+            arrows=True,
         )
 
     nx.draw_networkx_labels(G, pos, font_size=6, font_color="white")
 
-    # ax = plt.gca()
     f = plt.gcf()
     f.tight_layout()
-
+    plt.savefig(name, dpi=300)
     # plt.show()
-    plt.savefig("full_structure.png", dpi=300)
-
-
-def read_json(folder, name):
-
-    p = _create_file_path(folder, name)
-
-    with open(p, "r") as infile:
-        a = json.load(infile)
-
-    edges = a["edge"]
-    nodes = a["node"]
-
-    return edges, nodes
 
 
 def add_nodes(G, node_data):
@@ -155,7 +126,7 @@ def get_node_pos(G):
 
 if __name__ == "__main__":
 
-    G = nx.empty_graph(create_using=nx.DiGraph())
+    G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
     data_in_list = [
         "data_roof_copy.json",
@@ -172,7 +143,9 @@ if __name__ == "__main__":
         add_nodes(G, node_data)
         add_edges(G, edge_data)
 
-    draw_graph(G, get_node_pos(G))
+    # draw_graph(G, get_node_pos(G), "full_structure.png")
 
-    # aa = nx.bidirectional_shortest_path(G,"P1_B","BP_B")
-    # print(aa)
+    remove_member = "P6_L"
+    K = phase_1(G, remove_member)
+    # draw_graph(K, get_node_pos(K), "partial_{}.png".format(remove_member))
+    draw_graph(K, get_node_pos(K), "partial_.png")

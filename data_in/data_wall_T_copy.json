@@ -2,17 +2,17 @@
     "node": {
         "P1_T": {
             "color": "tab:purple",
-            "pos": "(-4,13.5)",
+            "pos": "(-4,14.5)",
             "size": 400
         },
         "P2_T": {
             "color": "tab:purple",
-            "pos": "(0,13.5)",
+            "pos": "(0,14.5)",
             "size": 400
         },
         "P3_T": {
             "color": "tab:purple",
-            "pos": "(4,13.5)",
+            "pos": "(4,14.5)",
             "size": 400
         },
         "BP_T": {
@@ -46,6 +46,11 @@
     },
     "edge": {
         "P1_T": {
+            "P2_T": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
             "P1_L": {
                 "weight": 1,
                 "color": "tab:pink",
@@ -55,15 +60,19 @@
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
-            },
-            "P2_T": {
-                "weight": 3,
-                "color": "black",
-                "style": "arc3, rad=0.0",
-                "fixed": "True"
             }
         },
         "P2_T": {
+            "P1_T": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P3_T": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
             "S2_T": {
                 "weight": 1,
                 "color": "tab:cyan",
@@ -77,15 +86,14 @@
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.1"
-            },
-            "P3_T": {
-                "weight": 3,
-                "color": "black",
-                "style": "arc3, rad=0.0",
-                "fixed": "True"
             }
         },
         "P3_T": {
+            "P2_T": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
             "P1_R": {
                 "weight": 1,
                 "color": "tab:pink",

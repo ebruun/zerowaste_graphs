@@ -2,17 +2,17 @@
     "node": {
         "P1_B": {
             "color": "tab:purple",
-            "pos": "(-4,-13.5)",
+            "pos": "(-4,-14.5)",
             "size": 400
         },
         "P2_B": {
             "color": "tab:purple",
-            "pos": "(0.0,-13.5)",
+            "pos": "(0.0,-14.5)",
             "size": 400
         },
         "P3_B": {
             "color": "tab:purple",
-            "pos": "(4,-13.5)",
+            "pos": "(4,-14.5)",
             "size": 400
         },
         "BP_B": {
@@ -74,25 +74,33 @@
                 "style": "arc3, rad=-0.2"
             },
             "P2_B": {
-                "weight": 3,
+                "weight": 1,
                 "color": "black",
-                "style": "arc3, rad=0.0",
-                "fixed": "True"
+                "style": "arc3, rad=0.2"
             }
         },
         "P2_B": {
+            "P1_B": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
             "H_B": {
                 "weight": 1,
                 "color": "tab:olive"
             },
             "P3_B": {
-                "weight": 3,
+                "weight": 1,
                 "color": "black",
-                "style": "arc3, rad=0.0",
-                "fixed": "True"
+                "style": "arc3, rad=0.2"
             }
         },
         "P3_B": {
+            "P2_B": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
             "P6_R": {
                 "weight": 1,
                 "color": "tab:pink",

@@ -292,18 +292,13 @@
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
             },
-            "S5_L": {
+            "P3_L": {
                 "weight": 1,
-                "color": "tab:orange",
-                "style": "arc3, rad=-0.2"
+                "color": "tab:pink",
+                "style": "arc3, rad=0.2"
             }
         },
         "D2_L": {
-            "S5_L": {
-                "weight": 1,
-                "color": "tab:orange",
-                "style": "arc3, rad=0.2"
-            },
             "S6_L": {
                 "weight": 1,
                 "color": "tab:orange",
@@ -318,6 +313,11 @@
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.2"
             }
         }
     }

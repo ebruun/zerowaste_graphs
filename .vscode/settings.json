@@ -1,6 +1,6 @@
 {
     //PYTHON
-    //"python.pythonPath": "C:\\Users\\Edvard\\.conda\\envs\\zivid_261_rrc\\python.exe",
+    "python.pythonPath": "C:\\Users\\Edvard\\.conda\\envs\\zerowaste_graph\\python.exe",
     "python.terminal.activateEnvironment": true,
     //INTEGRATED TERMINAL
     "terminal.integrated.tabs.enabled": true,

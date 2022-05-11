@@ -99,7 +99,7 @@ def draw_graph(G, pos_fixed, name):
     f = plt.gcf()
     f.tight_layout()
     plt.savefig(name, dpi=300)
-    # plt.show()
+    plt.show()
 
 
 def add_nodes(G, node_data):
@@ -144,9 +144,9 @@ if __name__ == "__main__":
         add_nodes(G, node_data)
         add_edges(G, edge_data)
 
-    draw_graph(G, get_node_pos(G), "full_structure.png")
+    # draw_graph(G, get_node_pos(G), "full_structure.png")
 
     remove_member = "P1_B"
-    # K = phase_1(G, remove_member)
+    K = phase_1(G, remove_member)
     # draw_graph(K, get_node_pos(K), "partial_{}.png".format(remove_member))
-    # draw_graph(K, get_node_pos(K), "partial_.png")
+    draw_graph(K, get_node_pos(K), "partial_.png")

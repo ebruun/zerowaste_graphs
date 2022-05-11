@@ -61,12 +61,12 @@
             "S2_T": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=-0.2"
+                "style": "arc3, rad=0.0"
             },
             "S3_T": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=-0.2"
+                "style": "arc3, rad=0.2"
             }
         },
         "P2_T": {
@@ -82,17 +82,18 @@
             },
             "S3_T": {
                 "weight": 1,
-                "color": "tab:cyan"
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.2"
             },
             "S4_T": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=0.1"
+                "style": "arc3, rad=0.0"
             },
             "S5_T": {
                 "weight": 1,
                 "color": "tab:cyan",
-                "style": "arc3, rad=0.1"
+                "style": "arc3, rad=0.2"
             }
         },
         "S1_T": {

@@ -57,7 +57,8 @@
         "P1_B": {
             "H_B": {
                 "weight": 1,
-                "color": "tab:olive"
+                "color": "tab:olive",
+                "style": "arc3, rad=0.2"
             },
             "P2_B": {
                 "weight": 1,
@@ -83,7 +84,8 @@
         "P2_B": {
             "H_B": {
                 "weight": 1,
-                "color": "tab:olive"
+                "color": "tab:olive",
+                "style": "arc3, rad=-0.2"
             },
             "P1_B": {
                 "weight": 1,
@@ -120,43 +122,43 @@
         },
         "S1_B": {
             "BP_B": {
-                "weight": 1,
-                "color": "tab:purple",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
         "S2_B": {
             "BP_B": {
-                "weight": 1,
-                "color": "tab:purple",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
         "S3_B": {
             "BP_B": {
-                "weight": 1,
-                "color": "tab:purple",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
         "S4_B": {
             "BP_B": {
-                "weight": 1,
-                "color": "tab:purple",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "S5_B": {
             "BP_B": {
-                "weight": 1,
-                "color": "tab:purple",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "S6_B": {
             "BP_B": {
-                "weight": 1,
-                "color": "tab:purple",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.2"
             }
         },

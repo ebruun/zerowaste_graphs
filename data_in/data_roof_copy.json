@@ -192,12 +192,20 @@
             }
         },
         "P_T": {
+            "P1_T": {
+                "weight": 1,
+                "color": "tab:purple"
+            },
             "P2_T": {
                 "weight": 1,
                 "color": "tab:purple"
             }
         },
         "P_B": {
+            "P1_B": {
+                "weight": 1,
+                "color": "tab:purple"
+            },
             "P2_B": {
                 "weight": 1,
                 "color": "tab:purple"
@@ -215,6 +223,11 @@
             }
         },
         "R2_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
             "G2": {
                 "weight": 1,
                 "color": "tab:red",
@@ -232,6 +245,11 @@
             }
         },
         "R3_L": {
+            "G2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
             "G3": {
                 "weight": 1,
                 "color": "tab:red",
@@ -276,6 +294,11 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
+            "G5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
             "P4_L": {
                 "weight": 1,
                 "color": "tab:pink",
@@ -292,6 +315,11 @@
                 "weight": 1,
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
+            },
+            "G6": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
             },
             "P5_L": {
                 "weight": 1,
@@ -322,17 +350,27 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.0"
             },
-            "P3_T": {
+            "P2_T": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=-0.2"
             }
         },
         "R2_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
             "G2": {
                 "weight": 1,
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
+            },
+            "P1_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
             },
             "P2_R": {
                 "weight": 1,
@@ -341,10 +379,20 @@
             }
         },
         "R3_R": {
+            "G2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
             "G3": {
                 "weight": 1,
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
+            },
+            "P2_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
             },
             "P3_R": {
                 "weight": 1,
@@ -380,10 +428,20 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
+            "G5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
             "P4_R": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
+            },
+            "P5_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
             }
         },
         "R6_R": {
@@ -392,10 +450,20 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
+            "G6": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
             "P5_R": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.0"
+            },
+            "P6_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
             }
         },
         "R7_R": {
@@ -403,7 +471,7 @@
                 "weight": 1,
                 "color": "tab:red"
             },
-            "P3_B": {
+            "P2_B": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=0.2"

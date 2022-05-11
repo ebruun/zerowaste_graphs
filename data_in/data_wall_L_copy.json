@@ -31,7 +31,7 @@
             "size": 400
         },
         "BP_L": {
-            "color": "tab:pink",
+            "color": "black",
             "pos": "(-25,0)",
             "node_shape": "h",
             "size": 500
@@ -216,63 +216,63 @@
         },
         "S1_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.5"
             }
         },
         "S2_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.4"
             }
         },
         "S3_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.3"
             }
         },
         "S4_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
         "S5_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink"
+                "weight": 0.5,
+                "color": "black"
             }
         },
         "S6_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.2"
             }
         },
         "S7_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.3"
             }
         },
         "S8_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.4"
             }
         },
         "S9_L": {
             "BP_L": {
-                "weight": 1,
-                "color": "tab:pink",
+                "weight": 0.5,
+                "color": "black",
                 "style": "arc3, rad=-0.5"
             }
         },

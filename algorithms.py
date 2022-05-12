@@ -18,18 +18,18 @@ def check_if_fixed_exists(G, n1, n2):
 
 
 def count_fixed_sides(G, n):
-    print("\nCheck on how many sides node is fixed")
+    # print("\nCheck on how many sides node is fixed")
 
     e_list = _get_e_out(G, n)
 
     fixed_e_count = 0
+    e_fixed = []
     for e in e_list:
         if G.has_edge(e[1], e[0]):
             fixed_e_count += 1
+            e_fixed.append(e)
 
-    print("HOW MANY FIXED: ", fixed_e_count)
-
-    return fixed_e_count
+    return fixed_e_count, e_fixed
 
 
 def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
@@ -44,12 +44,12 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
     elif len(G.out_edges(n)) == 0:
         print("--end node")
         G.nodes[n]["color"] = "black"
-    elif count_fixed_sides(G, n) == 2:
+    elif count_fixed_sides(G, n)[0] == 2:
         print("--FIXED NODE, fixed on TWO sides")
         G.nodes[n]["color"] = "black"
         G.nodes[n]["size"] = 500
         two_side_fixed.append(n)
-    elif count_fixed_sides(G, n) == 1:
+    elif count_fixed_sides(G, n)[0] == 1:
         print("--FIXED NODE, fixed on ONE sides")
 
         if G.has_edge(n, remove_node) and not check_if_fixed_exists(G, n, remove_node):
@@ -104,10 +104,45 @@ def remove_two_side_out(K, nodes, remove_node):
     return K_copy
 
 
+def check_cut(G, K):
+
+    print("\nCHECK WHAT EDGES NEED TO BE CUT")
+
+    for n in K.nodes():
+        print("\n--checking node {}".format(n))
+        e_total_K = len(_get_e_out(K, n)) + len(_get_e_in(K, n))
+        e_total_G = len(_get_e_out(G, n)) + len(_get_e_in(G, n))
+
+        if e_total_K == e_total_G:
+            print("-- --fully removed")
+
+            e_count, e_fixed = count_fixed_sides(K, n)
+
+            if e_count:
+
+                for e in e_fixed:
+                    print("-- --fixed connection to cut {}".format(e))
+                    K.edges[e[0], e[1], 0]["edge_style"] = "dashed"
+                    K.edges[e[0], e[1], 0]["weight"] = 1.5
+                    K.edges[e[0], e[1], 0]["color"] = "tab:red"
+
+                    K.edges[e[1], e[0], 0]["edge_style"] = "dashed"
+                    K.edges[e[1], e[0], 0]["weight"] = 1.5
+                    K.edges[e[1], e[0], 0]["color"] = "tab:red"
+
+            else:
+                print("-- --no connection to cut")
+
+        else:
+            print("-- --partially removed")
+
+
 def check_connected(G, K, remove_node, nodes):
     """
     check if a member with a single fixed has at least two other support connections after the removal of the member.
     If it is fixed and not being cut then it just needs 1 additional connection.
+
+    If it has enough edges it is considered fixed support in this disassembly step
     """
     print("\nCHECKING SUBGRAPH {} in SUBGRAPH K".format(nodes))
 
@@ -176,7 +211,9 @@ def phase_1(G, remove_node):
     nx.set_edge_attributes(K, "black", "color")
 
     # K = remove_two_side_out(K,two_side_fixed, remove_node)
+
     K = check_connected(G, K, remove_node, one_side_fixed)
+    check_cut(G, K)
 
     return K
 

@@ -71,12 +71,7 @@ def draw_graph(G, pos_fixed, name):
             n_shape = "o"
 
         nx.draw_networkx_nodes(
-            G,
-            pos=pos,
-            node_size=s,
-            nodelist=[n[0]],
-            node_color=n[1]["color"],
-            node_shape=n_shape
+            G, pos=pos, node_size=s, nodelist=[n[0]], node_color=n[1]["color"], node_shape=n_shape
         )
 
         n_size.append(s)
@@ -88,6 +83,11 @@ def draw_graph(G, pos_fixed, name):
         else:
             c = "arc3, rad=0.0"
 
+        if "edge_style" in e[2]:  # curved arrows
+            s = e[2]["edge_style"]
+        else:
+            s = "solid"
+
         nx.draw_networkx_edges(
             G,
             pos,
@@ -96,6 +96,7 @@ def draw_graph(G, pos_fixed, name):
             edge_color=e[2]["color"],
             width=e[2]["weight"],
             connectionstyle=c,
+            style=s,
             arrows=True,
         )
 
@@ -104,7 +105,8 @@ def draw_graph(G, pos_fixed, name):
     f = plt.gcf()
     f.tight_layout()
     plt.savefig(name, dpi=300)
-    plt.show()
+    plt.close()
+    # plt.show()
 
 
 def add_nodes(G, node_data):
@@ -151,7 +153,11 @@ if __name__ == "__main__":
 
     # draw_graph(G, get_node_pos(G), "full_structure.png")
 
-    remove_member = "P6_L"
-    K = phase_1(G, remove_member)
-    # draw_graph(K, get_node_pos(K), "partial_{}.png".format(remove_member))
-    draw_graph(K, get_node_pos(K), "partial_.png")
+    remove_members = ["P1_L", "P2_L", "P3_L"]
+    remove_members = G.nodes()
+
+    for m in remove_members:
+        G_copy = G.copy()
+        K = phase_1(G_copy, m)
+        draw_graph(K, get_node_pos(K), "plots_out/partial_{}.png".format(m))
+        # draw_graph(K, get_node_pos(K), "partial_.png")

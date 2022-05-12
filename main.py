@@ -71,7 +71,12 @@ def draw_graph(G, pos_fixed, name):
             n_shape = "o"
 
         nx.draw_networkx_nodes(
-            G, pos, node_size=s, nodelist=[n[0]], node_color=n[1]["color"], node_shape=n_shape
+            G,
+            pos=pos,
+            node_size=s,
+            nodelist=[n[0]],
+            node_color=n[1]["color"],
+            node_shape=n_shape
         )
 
         n_size.append(s)
@@ -146,7 +151,7 @@ if __name__ == "__main__":
 
     # draw_graph(G, get_node_pos(G), "full_structure.png")
 
-    remove_member = "P1_B"
+    remove_member = "P6_L"
     K = phase_1(G, remove_member)
     # draw_graph(K, get_node_pos(K), "partial_{}.png".format(remove_member))
     draw_graph(K, get_node_pos(K), "partial_.png")

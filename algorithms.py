@@ -10,8 +10,8 @@ def _get_e_in(G, n):
     return list(G.in_edges(n))
 
 
-def check_if_fixed_exists(G,n1,n2):
-    if G.has_edge(n1,n2) and G.has_edge(n2,n1):
+def check_if_fixed_exists(G, n1, n2):
+    if G.has_edge(n1, n2) and G.has_edge(n2, n1):
         return True
     else:
         return False
@@ -52,8 +52,8 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
     elif count_fixed_sides(G, n) == 1:
         print("--FIXED NODE, fixed on ONE sides")
 
-        if G.has_edge(n,remove_node) and not check_if_fixed_exists(G,n,remove_node):
-            add = True # make a normal node if it's resting on to remove
+        if G.has_edge(n, remove_node) and not check_if_fixed_exists(G, n, remove_node):
+            add = True  # make a normal node if it's resting on to remove
             G.nodes[n]["color"] = "tab:grey"
             G.nodes[n]["size"] = 300
         else:
@@ -82,7 +82,7 @@ def find_adjacent_nodes(G, n, n_queue, n_saved):
     return n_queue, n_saved
 
 
-def remove_two_side_out(K,nodes,remove_node):
+def remove_two_side_out(K, nodes, remove_node):
 
     """remove redundant out edges from fixed nodes to other nodes in the graph,
     unless they connect directly to the element to be removed
@@ -93,18 +93,18 @@ def remove_two_side_out(K,nodes,remove_node):
     K_copy = K.copy()
 
     for n in nodes:
-        e_K = _get_e_out(K,n)
+        e_K = _get_e_out(K, n)
 
         for e in e_K:
 
-            if not check_if_fixed_exists(K,e[1],e[0]) and remove_node not in e:
+            if not check_if_fixed_exists(K, e[1], e[0]) and remove_node not in e:
                 print("single edge {}".format(e))
-                K_copy.remove_edge(e[0],e[1])
-        
+                K_copy.remove_edge(e[0], e[1])
+
     return K_copy
 
 
-def check_connected(G,K,remove_node,nodes):
+def check_connected(G, K, remove_node, nodes):
     """
     check if a member with a single fixed has at least two other support connections after the removal of the member.
     If it is fixed and not being cut then it just needs 1 additional connection.
@@ -113,25 +113,25 @@ def check_connected(G,K,remove_node,nodes):
 
     for n in nodes:
         print("\n--check node {}".format(n))
-        e_G = _get_e_out(G,n) # starting
-        e_K = _get_e_out(K,n) # how many members removed
+        e_G = _get_e_out(G, n)  # starting
+        e_K = _get_e_out(K, n)  # how many members removed
 
         num_supports = len(e_G) - len(e_K)
 
         # if fixed edge is not being cut, add back
         for e in e_K:
-            if check_if_fixed_exists(G,e[0],e[1]):
+            if check_if_fixed_exists(G, e[0], e[1]):
                 if remove_node in e:
                     pass
                 else:
                     num_supports += 1
 
         if num_supports < 2:
-            print ("--{} DANGER".format(n))
+            print("--{} DANGER".format(n))
             K.nodes[n]["color"] = "orange"
             K.nodes[n]["size"] = 500
         else:
-            print ("--{}, w/ {} SUPPORTS".format(n,num_supports))
+            print("--{}, w/ {} SUPPORTS".format(n, num_supports))
             K.nodes[n]["color"] = "black"
             K.nodes[n]["size"] = 500
 
@@ -163,7 +163,7 @@ def phase_1(G, remove_node):
         n = nodes_queue.pop(0)
         print("\n\nCHECKING NODE {}".format(n))
 
-        if add_node_to_queue(G, n, two_side_fixed, one_side_fixed,remove_node):
+        if add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
             nodes_queue, nodes_saved = find_adjacent_nodes(G, n, nodes_queue, nodes_saved)
 
         nodes_saved.append(n)
@@ -175,9 +175,8 @@ def phase_1(G, remove_node):
     K = G.subgraph(nodes_saved)
     nx.set_edge_attributes(K, "black", "color")
 
-
     # K = remove_two_side_out(K,two_side_fixed, remove_node)
-    K = check_connected(G,K, remove_node, one_side_fixed)
+    K = check_connected(G, K, remove_node, one_side_fixed)
 
     return K
 

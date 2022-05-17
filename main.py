@@ -140,11 +140,11 @@ def build_full_graph(folder, filename, draw=False, show=False):
     G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
     data_in_list = [
-        "data_roof.json",
-        "data_wall_L.json",
-        "data_wall_T.json",
-        "data_wall_R.json",
-        "data_wall_B.json",
+        "data_R.json",
+        "data_W.json",
+        "data_N.json",
+        "data_E.json",
+        "data_S.json",
     ]
 
     for f in data_in_list:

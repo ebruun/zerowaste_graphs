@@ -1,39 +1,39 @@
 {
     "node": {
-        "WP1": {
-            "color": "tab:pink",
-            "pos": "(-10,10)",
-            "size": 400
-        },
-        "WP2": {
-            "color": "tab:pink",
-            "pos": "(-10,6)",
-            "size": 400
-        },
-        "WP3": {
-            "color": "tab:pink",
-            "pos": "(-10,2)",
-            "size": 400
-        },
-        "WP4": {
-            "color": "tab:pink",
-            "pos": "(-10,-2)",
-            "size": 400
-        },
-        "WP5": {
-            "color": "tab:pink",
-            "pos": "(-10,-6)",
-            "size": 400
-        },
-        "WP6": {
-            "color": "tab:pink",
-            "pos": "(-10,-10)",
-            "size": 400
-        },
         "WF": {
             "color": "black",
             "pos": "(-25,0)",
             "node_shape": "h",
+            "size": 600
+        },
+        "WP1_1": {
+            "color": "tab:pink",
+            "pos": "(-10,10)",
+            "size": 500
+        },
+        "WP1_2": {
+            "color": "tab:pink",
+            "pos": "(-10,6)",
+            "size": 500
+        },
+        "WP1_3": {
+            "color": "tab:pink",
+            "pos": "(-10,2)",
+            "size": 500
+        },
+        "WP1_4": {
+            "color": "tab:pink",
+            "pos": "(-10,-2)",
+            "size": 500
+        },
+        "WP1_5": {
+            "color": "tab:pink",
+            "pos": "(-10,-6)",
+            "size": 500
+        },
+        "WP1_6": {
+            "color": "tab:pink",
+            "pos": "(-10,-10)",
             "size": 500
         },
         "WS1": {
@@ -93,8 +93,8 @@
         }
     },
     "edge": {
-        "WP1": {
-            "WP2": {
+        "WP1_1": {
+            "WP1_2": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -115,13 +115,13 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "WP2": {
-            "WP1": {
+        "WP1_2": {
+            "WP1_1": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "WP3": {
+            "WP1_3": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -137,13 +137,13 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "WP3": {
-            "WP2": {
+        "WP1_3": {
+            "WP1_2": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "WP4": {
+            "WP1_4": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -159,13 +159,13 @@
                 "style": "arc3, rad=0.0"
             }
         },
-        "WP4": {
-            "WP3": {
+        "WP1_4": {
+            "WP1_3": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "WP5": {
+            "WP1_5": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -181,13 +181,13 @@
                 "style": "arc3, rad=0.0"
             }
         },
-        "WP5": {
-            "WP4": {
+        "WP1_5": {
+            "WP1_4": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "WP6": {
+            "WP1_6": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -203,8 +203,8 @@
                 "style": "arc3, rad=0.2"
             }
         },
-        "WP6": {
-            "WP5": {
+        "WP1_6": {
+            "WP1_5": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -303,7 +303,7 @@
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
             },
-            "WP3": {
+            "WP1_3": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.2"
@@ -325,7 +325,7 @@
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
             },
-            "WP4": {
+            "WP1_4": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.2"

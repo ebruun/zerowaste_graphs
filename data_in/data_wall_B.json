@@ -1,5 +1,11 @@
 {
     "node": {
+        "SF": {
+            "color": "black",
+            "pos": "(0.0,-25)",
+            "node_shape": "h",
+            "size": 600
+        },
         "P1_B": {
             "color": "tab:purple",
             "pos": "(-6,-14.5)",
@@ -20,47 +26,50 @@
             "pos": "(6,-14.5)",
             "size": 400
         },
-        "BP_B": {
-            "color": "black",
-            "pos": "(0.0,-25)",
-            "node_shape": "h",
-            "size": 500
-        },
-        "H_B": {
+        "SH1": {
             "color": "tab:olive",
-            "pos": "(0,-17.5)"
+            "pos": "(0,-17.5)",
+            "size": 400
         },
         "S1_B": {
             "color": "tab:cyan",
-            "pos": "(-5,-21.5)"
+            "pos": "(-5,-21.5)",
+            "size": 400
         },
         "S2_B": {
             "color": "tab:cyan",
-            "pos": "(-3,-21.5)"
+            "pos": "(-3,-21.5)",
+            "size": 400
         },
         "S3_B": {
             "color": "tab:cyan",
-            "pos": "(-1,-21.5)"
+            "pos": "(-1,-21.5)",
+            "size": 400
         },
         "S4_B": {
             "color": "tab:cyan",
-            "pos": "(1,-21.5)"
+            "pos": "(1,-21.5)",
+            "size": 400
         },
         "S5_B": {
             "color": "tab:cyan",
-            "pos": "(3,-21.5)"
+            "pos": "(3,-21.5)",
+            "size": 400
         },
         "S6_B": {
             "color": "tab:cyan",
-            "pos": "(5,-21.5)"
+            "pos": "(5,-21.5)",
+            "size": 400
         },
-        "D1_B": {
+        "SD1": {
             "color": "tab:gray",
-            "pos": "(-8,-17)"
+            "pos": "(-8,-17)",
+            "size": 400
         },
-        "D2_B": {
+        "SD2": {
             "color": "tab:gray",
-            "pos": "(8,-17)"
+            "pos": "(8,-17)",
+            "size": 400
         }
     },
     "edge": {
@@ -80,7 +89,7 @@
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
             },
-            "WP6": {
+            "WP1_6": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.2"
@@ -97,7 +106,7 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "H_B": {
+            "SH1": {
                 "weight": 1,
                 "color": "tab:olive",
                 "style": "arc3, rad=0.2"
@@ -119,7 +128,7 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "H_B": {
+            "SH1": {
                 "weight": 1,
                 "color": "tab:olive",
                 "style": "arc3, rad=-0.2"
@@ -152,7 +161,7 @@
                 "style": "arc3, rad=0.2"
             }
         },
-        "H_B": {
+        "SH1": {
             "S3_B": {
                 "weight": 1,
                 "color": "tab:cyan",
@@ -165,48 +174,48 @@
             }
         },
         "S1_B": {
-            "BP_B": {
+            "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
         "S2_B": {
-            "BP_B": {
+            "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
         "S3_B": {
-            "BP_B": {
+            "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
         "S4_B": {
-            "BP_B": {
+            "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "S5_B": {
-            "BP_B": {
+            "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "S6_B": {
-            "BP_B": {
+            "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.2"
             }
         },
-        "D1_B": {
+        "SD1": {
             "S1_B": {
                 "weight": 1,
                 "color": "tab:cyan",
@@ -223,7 +232,7 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "D2_B": {
+        "SD2": {
             "S5_B": {
                 "weight": 1,
                 "color": "tab:cyan",

@@ -30,55 +30,66 @@
             "pos": "(-10,-10)",
             "size": 400
         },
-        "WS": {
+        "WF": {
             "color": "black",
             "pos": "(-25,0)",
             "node_shape": "h",
             "size": 500
         },
-        "S1_L": {
+        "WS1": {
             "color": "tab:orange",
-            "pos": "(-17.5,8)"
+            "pos": "(-17.5,8)",
+            "size": 400
         },
-        "S2_L": {
+        "WS2": {
             "color": "tab:orange",
-            "pos": "(-17.5,6)"
+            "pos": "(-17.5,6)",
+            "size": 400
         },
-        "S3_L": {
+        "WS3": {
             "color": "tab:orange",
-            "pos": "(-17.5,4)"
+            "pos": "(-17.5,4)",
+            "size": 400
         },
-        "S4_L": {
+        "WS4": {
             "color": "tab:orange",
-            "pos": "(-17.5,2)"
+            "pos": "(-17.5,2)",
+            "size": 400
         },
-        "S5_L": {
+        "WS5": {
             "color": "tab:orange",
-            "pos": "(-17.5,0)"
+            "pos": "(-17.5,0)",
+            "size": 400
         },
-        "S6_L": {
+        "WS6": {
             "color": "tab:orange",
-            "pos": "(-17.5,-2)"
+            "pos": "(-17.5,-2)",
+            "size": 400
         },
-        "S7_L": {
+        "WS7": {
             "color": "tab:orange",
-            "pos": "(-17.5,-4)"
+            "pos": "(-17.5,-4)",
+            "size": 400
         },
-        "S8_L": {
+        "WS8": {
             "color": "tab:orange",
-            "pos": "(-17.5,-6)"
+            "pos": "(-17.5,-6)",
+            "size": 400
         },
-        "S9_L": {
+        "WS9": {
             "color": "tab:orange",
-            "pos": "(-17.5,-8)"
+            "pos": "(-17.5,-8)",
+            "size": 400
         },
-        "D1_L": {
+        "WD1": {
             "color": "tab:gray",
-            "pos": "(-12.5,11.5)"
+            "pos": "(-12.5,11.5)",
+            "size": 400
         },
-        "D2_L": {
+        "WD2": {
             "color": "tab:gray",
-            "pos": "(-12.5,-11.5)"
+            "pos": "(-12.5,-11.5)",
+            "size": 400
         }
     },
     "edge": {
@@ -88,17 +99,17 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S1_L": {
+            "WS1": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.3"
             },
-            "S2_L": {
+            "WS2": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
             },
-            "S3_L": {
+            "WS3": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
@@ -115,12 +126,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S3_L": {
+            "WS3": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
             },
-            "S4_L": {
+            "WS4": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
@@ -137,12 +148,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S4_L": {
+            "WS4": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.0"
             },
-            "S5_L": {
+            "WS5": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.0"
@@ -159,12 +170,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S5_L": {
+            "WS5": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.0"
             },
-            "S6_L": {
+            "WS6": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.0"
@@ -181,12 +192,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S6_L": {
+            "WS6": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
             },
-            "S7_L": {
+            "WS7": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
@@ -198,96 +209,96 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S7_L": {
+            "WS7": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
             },
-            "S8_L": {
+            "WS8": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
             },
-            "S9_L": {
+            "WS9": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.3"
             }
         },
-        "S1_L": {
-            "WS": {
+        "WS1": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.5"
             }
         },
-        "S2_L": {
-            "WS": {
+        "WS2": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.4"
             }
         },
-        "S3_L": {
-            "WS": {
+        "WS3": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.3"
             }
         },
-        "S4_L": {
-            "WS": {
+        "WS4": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
-        "S5_L": {
-            "WS": {
+        "WS5": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black"
             }
         },
-        "S6_L": {
-            "WS": {
+        "WS6": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.2"
             }
         },
-        "S7_L": {
-            "WS": {
+        "WS7": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.3"
             }
         },
-        "S8_L": {
-            "WS": {
+        "WS8": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.4"
             }
         },
-        "S9_L": {
-            "WS": {
+        "WS9": {
+            "WF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.5"
             }
         },
-        "D1_L": {
-            "S1_L": {
+        "WD1": {
+            "WS1": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
             },
-            "S3_L": {
+            "WS3": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
             },
-            "S4_L": {
+            "WS4": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=-0.2"
@@ -298,18 +309,18 @@
                 "style": "arc3, rad=0.2"
             }
         },
-        "D2_L": {
-            "S6_L": {
+        "WD2": {
+            "WS6": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
             },
-            "S7_L": {
+            "WS7": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"
             },
-            "S9_L": {
+            "WS9": {
                 "weight": 1,
                 "color": "tab:orange",
                 "style": "arc3, rad=0.2"

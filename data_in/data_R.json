@@ -31,12 +31,12 @@
             "size": 450
         },
         "RP2": {
-            "color": "tab:red",
+            "color": "tab:brown",
             "pos": "(0.0,-11)",
             "size": 400
         },
         "RP1": {
-            "color": "tab:red",
+            "color": "tab:brown",
             "pos": "(0.0,11)",
             "size": 400
         },
@@ -140,7 +140,7 @@
         "RG1_1": {
             "RP1": {
                 "weight": 1,
-                "color": "tab:red"
+                "color": "tab:brown"
             },
             "RG1_2": {
                 "weight": 1,
@@ -204,7 +204,7 @@
             },
             "RP2": {
                 "weight": 1,
-                "color": "tab:red"
+                "color": "tab:brown"
             }
         },
         "RP1": {

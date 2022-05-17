@@ -65,18 +65,19 @@ def add_edges(G, edge_data):
     G.add_edges_from(add_list)
 
 
-def get_node_pos(G):
+def get_node_pos(G, scale=1):
 
     pos_fixed = {}
     for k, v in nx.get_node_attributes(G, "pos").items():
-        pos_fixed[k] = eval(v)
+        pos_fixed[k] = tuple(t * scale for t in eval(v))
 
     return pos_fixed
 
 
-def draw_graph(G, pos_fixed, filename, plt_show=False):
+def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
 
-    f = plt.figure(1, figsize=(11, 8.5))
+    # f = plt.figure(1, figsize=(11, 8.5))
+    f = plt.figure(1)
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
@@ -94,10 +95,15 @@ def draw_graph(G, pos_fixed, filename, plt_show=False):
             n_shape = "o"
 
         nx.draw_networkx_nodes(
-            G, pos=pos, node_size=s, nodelist=[n[0]], node_color=n[1]["color"], node_shape=n_shape
+            G=G,
+            pos=pos,
+            node_size=s * scale,
+            nodelist=[n[0]],
+            node_color=n[1]["color"],
+            node_shape=n_shape,
         )
 
-        n_size.append(s)
+        n_size.append(s * scale)  # for correct arrow location
 
     for e in G.edges(data=True):
 
@@ -123,7 +129,13 @@ def draw_graph(G, pos_fixed, filename, plt_show=False):
             arrows=True,
         )
 
-    nx.draw_networkx_labels(G, pos, font_size=6, font_color="white", font_weight="bold")
+    nx.draw_networkx_labels(
+        G=G,
+        pos=pos,
+        font_size=6 * (scale * 0.7),
+        font_color="white",
+        font_weight="bold",
+    )
 
     f = plt.gcf()
     f.tight_layout()
@@ -159,6 +171,7 @@ def build_full_graph(folder, filename, draw=False, show=False):
             G=G,
             pos_fixed=get_node_pos(G),
             filename="graphs_out/{}".format(filename),
+            scale=1,
             plt_show=show,
         )
 
@@ -175,19 +188,20 @@ def build_member_subgraph(G, remove_members, draw=False, show=False):
         if draw and K.number_of_nodes() > 1:
             draw_graph(
                 G=K,
-                pos_fixed=get_node_pos(K),
+                pos_fixed=get_node_pos(K, scale=1),
                 filename="graphs_out/{}.png".format(m),
+                scale=1.5,
                 plt_show=show,
             )
 
-        return K
+    return K
 
 
 if __name__ == "__main__":
 
     G = build_full_graph(folder="data_in", filename="_full_structure.png", draw=True, show=False)
 
-    remove_members = ["P1_B"]
-    # remove_members = G.nodes()
+    # remove_members = ["WP1_6"]
+    remove_members = G.nodes()
 
-    # K = build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=True)
+    K = build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=False)

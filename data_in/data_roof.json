@@ -220,12 +220,12 @@
             }
         },
         "RP2": {
-            "P2_B": {
+            "SP1_2": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=0.2"
             },
-            "P3_B": {
+            "SP1_3": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=-0.2"
@@ -359,7 +359,7 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
-            "P1_B": {
+            "SP1_1": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=-0.2"
@@ -493,7 +493,7 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P4_B": {
+            "SP1_4": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=0.2"

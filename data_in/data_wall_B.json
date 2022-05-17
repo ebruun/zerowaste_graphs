@@ -6,25 +6,25 @@
             "node_shape": "h",
             "size": 600
         },
-        "P1_B": {
+        "SP1_1": {
             "color": "tab:purple",
             "pos": "(-6,-14.5)",
-            "size": 400
+            "size": 500
         },
-        "P2_B": {
+        "SP1_2": {
             "color": "tab:purple",
             "pos": "(-2,-14.5)",
-            "size": 400
+            "size": 500
         },
-        "P3_B": {
+        "SP1_3": {
             "color": "tab:purple",
             "pos": "(2,-14.5)",
-            "size": 400
+            "size": 500
         },
-        "P4_B": {
+        "SP1_4": {
             "color": "tab:purple",
             "pos": "(6,-14.5)",
-            "size": 400
+            "size": 500
         },
         "SH1": {
             "color": "tab:olive",
@@ -73,8 +73,8 @@
         }
     },
     "edge": {
-        "P1_B": {
-            "P2_B": {
+        "SP1_1": {
+            "SP1_2": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -95,13 +95,13 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "P2_B": {
-            "P1_B": {
+        "SP1_2": {
+            "SP1_1": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "P3_B": {
+            "SP1_3": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -117,13 +117,13 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "P3_B": {
-            "P2_B": {
+        "SP1_3": {
+            "SP1_2": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "P4_B": {
+            "SP1_4": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"
@@ -139,8 +139,8 @@
                 "style": "arc3, rad=0.2"
             }
         },
-        "P4_B": {
-            "P3_B": {
+        "SP1_4": {
+            "SP1_3": {
                 "weight": 1,
                 "color": "black",
                 "style": "arc3, rad=0.2"

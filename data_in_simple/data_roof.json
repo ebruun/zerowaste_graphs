@@ -1,0 +1,543 @@
+{
+    "node": {
+        "G1": {
+            "color": "tab:red",
+            "pos": "(0,7.5)",
+            "size": 300
+        },
+        "G2": {
+            "color": "tab:red",
+            "pos": "(0,4.5)",
+            "size": 300
+        },
+        "G3": {
+            "color": "tab:red",
+            "pos": "(0,1.5)",
+            "size": 300
+        },
+        "G4": {
+            "color": "tab:red",
+            "pos": "(0,-1.5)",
+            "size": 300
+        },
+        "G5": {
+            "color": "tab:red",
+            "pos": "(0,-4.5)",
+            "size": 300
+        },
+        "G6": {
+            "color": "tab:red",
+            "pos": "(0,-7.5)",
+            "size": 300
+        },
+        "P_B": {
+            "color": "tab:red",
+            "pos": "(0.0,-11)"
+        },
+        "P_T": {
+            "color": "tab:red",
+            "pos": "(0.0,11)"
+        },
+        "R1_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,9.0)"
+        },
+        "R2_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,6.0)"
+        },
+        "R3_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,3.0)"
+        },
+        "R4_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,0.0)"
+        },
+        "R5_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-3.0)"
+        },
+        "R6_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-6.0)"
+        },
+        "R7_L": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-9.0)"
+        },
+        "R1_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,9.0)"
+        },
+        "R2_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,6.0)"
+        },
+        "R3_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,3.0)"
+        },
+        "R4_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,0)"
+        },
+        "R5_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,-3.0)"
+        },
+        "R6_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,-6.0)"
+        },
+        "R7_R": {
+            "color": "tab:blue",
+            "pos": "(6.0,-9.0)"
+        },
+        "J2": {
+            "color": "tab:green",
+            "pos": "(-1.5,6)",
+            "size": 200
+        },
+        "J3": {
+            "color": "tab:green",
+            "pos": "(-1.5,3)",
+            "size": 200
+        },
+        "J4": {
+            "color": "tab:green",
+            "pos": "(-1.5,0)",
+            "size": 200
+        },
+        "J5": {
+            "color": "tab:green",
+            "pos": "(-1.5,-3)",
+            "size": 200
+        },
+        "J6": {
+            "color": "tab:green",
+            "pos": "(-1.5,-6.0)",
+            "size": 200
+        }
+    },
+    "edge": {
+        "G1": {
+            "P_T": {
+                "weight": 1,
+                "color": "tab:red"
+            },
+            "G2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "G2": {
+            "G1": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "G3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "G3": {
+            "G4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "G2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "G4": {
+            "G3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "G5": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "G5": {
+            "G4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "G6": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "G6": {
+            "G5": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P_B": {
+                "weight": 1,
+                "color": "tab:red"
+            }
+        },
+        "P_T": {
+            "P1_T": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.2"
+            },
+            "P2_T": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "P_B": {
+            "P1_B": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.2"
+            },
+            "P2_B": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "R1_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P1_T": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "R2_L": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "G2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P1_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "P2_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "R3_L": {
+            "G2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "G3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P2_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "P3_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "R4_L": {
+            "G3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "G4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P3_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "R5_L": {
+            "G4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "G5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "P5_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "R6_L": {
+            "G5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "G6": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P5_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.0"
+            },
+            "P6_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "R7_L": {
+            "G6": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P1_B": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "R1_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P2_T": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "R2_R": {
+            "G1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "G2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P1_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "P2_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "R3_R": {
+            "G2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "G3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P2_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "P3_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "R4_R": {
+            "G3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "G4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P3_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "P4_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "R5_R": {
+            "G4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "G5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P4_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "P5_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "R6_R": {
+            "G5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "G6": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "P5_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.0"
+            },
+            "P6_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "R7_R": {
+            "G6": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "P2_B": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "J2": {
+            "R2_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R2_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        },
+        "J3": {
+            "R3_L": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=0.0"
+            },
+            "R3_R": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "J4": {
+            "R4_L": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=0.0"
+            },
+            "R4_R": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "J5": {
+            "R5_L": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=-0.0"
+            },
+            "R5_R": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "J6": {
+            "R6_L": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "R6_R": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        }
+    }
+}

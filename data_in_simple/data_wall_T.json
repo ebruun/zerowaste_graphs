@@ -1,0 +1,171 @@
+{
+    "node": {
+        "P1_T": {
+            "color": "tab:purple",
+            "pos": "(-2,14.5)",
+            "size": 400
+        },
+        "P2_T": {
+            "color": "tab:purple",
+            "pos": "(2,14.5)",
+            "size": 400
+        },
+        "BP_T": {
+            "color": "black",
+            "pos": "(0,22.5)",
+            "node_shape": "h",
+            "size": 500
+        },
+        "S1_T": {
+            "color": "tab:cyan",
+            "pos": "(-4,17.5)"
+        },
+        "S2_T": {
+            "color": "tab:cyan",
+            "pos": "(-2,17.5)"
+        },
+        "S3_T": {
+            "color": "tab:cyan",
+            "pos": "(0,17.5)"
+        },
+        "S4_T": {
+            "color": "tab:cyan",
+            "pos": "(2,17.5)"
+        },
+        "S5_T": {
+            "color": "tab:cyan",
+            "pos": "(4,17.5)"
+        },
+        "D1_T": {
+            "color": "tab:gray",
+            "pos": "(5,20.5)"
+        }
+    },
+    "edge": {
+        "P1_T": {
+            "P2_T": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P1_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.2"
+            },
+            "S1_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.2"
+            },
+            "S2_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.0"
+            },
+            "S3_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "P2_T": {
+            "P1_T": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P1_R": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.2"
+            },
+            "S3_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.2"
+            },
+            "S4_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.0"
+            },
+            "S5_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "S1_T": {
+            "BP_T": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "S2_T": {
+            "BP_T": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "S3_T": {
+            "BP_T": {
+                "weight": 0.5,
+                "color": "black"
+            }
+        },
+        "S4_T": {
+            "BP_T": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "S5_T": {
+            "BP_T": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "D1_T": {
+            "S1_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S2_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S3_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S4_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S5_T": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            },
+            "S1_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.3"
+            },
+            "S1_R": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        }
+    }
+}

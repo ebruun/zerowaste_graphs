@@ -1,0 +1,324 @@
+{
+    "node": {
+        "P1_L": {
+            "color": "tab:pink",
+            "pos": "(-10,10)",
+            "size": 400
+        },
+        "P2_L": {
+            "color": "tab:pink",
+            "pos": "(-10,6)",
+            "size": 400
+        },
+        "P3_L": {
+            "color": "tab:pink",
+            "pos": "(-10,2)",
+            "size": 400
+        },
+        "P4_L": {
+            "color": "tab:pink",
+            "pos": "(-10,-2)",
+            "size": 400
+        },
+        "P5_L": {
+            "color": "tab:pink",
+            "pos": "(-10,-6)",
+            "size": 400
+        },
+        "P6_L": {
+            "color": "tab:pink",
+            "pos": "(-10,-10)",
+            "size": 400
+        },
+        "BP_L": {
+            "color": "black",
+            "pos": "(-25,0)",
+            "node_shape": "h",
+            "size": 500
+        },
+        "S1_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,8)"
+        },
+        "S2_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,6)"
+        },
+        "S3_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,4)"
+        },
+        "S4_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,2)"
+        },
+        "S5_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,0)"
+        },
+        "S6_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,-2)"
+        },
+        "S7_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,-4)"
+        },
+        "S8_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,-6)"
+        },
+        "S9_L": {
+            "color": "tab:orange",
+            "pos": "(-17.5,-8)"
+        },
+        "D1_L": {
+            "color": "tab:gray",
+            "pos": "(-12.5,11.5)"
+        },
+        "D2_L": {
+            "color": "tab:gray",
+            "pos": "(-12.5,-11.5)"
+        }
+    },
+    "edge": {
+        "P1_L": {
+            "P2_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "S1_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.3"
+            },
+            "S2_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S3_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "P2_L": {
+            "P1_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P3_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "S3_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S4_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "P3_L": {
+            "P2_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "S4_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            },
+            "S5_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "P4_L": {
+            "P3_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P5_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "S5_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            },
+            "S6_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "P5_L": {
+            "P4_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "P6_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "S6_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S7_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "P6_L": {
+            "P5_L": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "S7_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S8_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S9_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.3"
+            }
+        },
+        "S1_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.5"
+            }
+        },
+        "S2_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.4"
+            }
+        },
+        "S3_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.3"
+            }
+        },
+        "S4_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "S5_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black"
+            }
+        },
+        "S6_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "S7_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.3"
+            }
+        },
+        "S8_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.4"
+            }
+        },
+        "S9_L": {
+            "BP_L": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.5"
+            }
+        },
+        "D1_L": {
+            "S1_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S3_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "S4_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "P3_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "D2_L": {
+            "S6_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S7_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "S9_L": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            },
+            "P4_L": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.2"
+            }
+        }
+    }
+}

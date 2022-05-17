@@ -81,7 +81,7 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "P1_R": {
+            "EP1_1": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.2"

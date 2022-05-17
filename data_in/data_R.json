@@ -388,12 +388,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
-            "P1_R": {
+            "EP1_1": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
             },
-            "P2_R": {
+            "EP1_2": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.0"
@@ -410,12 +410,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
-            "P2_R": {
+            "EP1_2": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
             },
-            "P3_R": {
+            "EP1_3": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
@@ -432,12 +432,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
-            "P3_R": {
+            "EP1_3": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
             },
-            "P4_R": {
+            "EP1_4": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
@@ -454,12 +454,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
-            "P4_R": {
+            "EP1_4": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
             },
-            "P5_R": {
+            "EP1_5": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
@@ -476,12 +476,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=-0.1"
             },
-            "P5_R": {
+            "EP1_5": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.0"
             },
-            "P6_R": {
+            "EP1_6": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"

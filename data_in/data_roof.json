@@ -204,12 +204,12 @@
             }
         },
         "P_B": {
-            "P1_B": {
+            "P2_B": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=0.2"
             },
-            "P2_B": {
+            "P3_B": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=-0.2"
@@ -477,7 +477,7 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P2_B": {
+            "P4_B": {
                 "weight": 1,
                 "color": "tab:purple",
                 "style": "arc3, rad=0.2"

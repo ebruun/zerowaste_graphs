@@ -5,7 +5,7 @@ import matplotlib as mpl
 import json
 import pathlib
 
-from algorithms import phase_1
+from algorithms import single_member_remove
 
 
 def _create_file_path(folder, filename):
@@ -137,11 +137,11 @@ if __name__ == "__main__":
     G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
     data_in_list = [
-        "data_roof_copy.json",
-        "data_wall_L_copy.json",
-        "data_wall_T_copy.json",
-        "data_wall_R_copy.json",
-        "data_wall_B_copy.json",
+        "data_roof.json",
+        "data_wall_L.json",
+        "data_wall_T.json",
+        "data_wall_R.json",
+        "data_wall_B.json",
     ]
 
     for f in data_in_list:
@@ -153,10 +153,12 @@ if __name__ == "__main__":
 
     # draw_graph(G, get_node_pos(G), "full_structure.png")
 
-    remove_members = ["P1_L", "P2_L", "P3_L"]
-    # remove_members = G.nodes()
+    remove_members = ["J6"]
+    remove_members = G.nodes()
 
     for m in remove_members:
         G_copy = G.copy()
-        K = phase_1(G_copy, m)
-        draw_graph(K, get_node_pos(K), "plots_out/partial_{}.png".format(m))
+        K = single_member_remove(G_copy, m)
+
+        if K.number_of_nodes() > 1:
+            draw_graph(K, get_node_pos(K), "plots_out/partial_{}.png".format(m))

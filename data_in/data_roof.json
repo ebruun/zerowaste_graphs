@@ -30,12 +30,12 @@
             "pos": "(0,-7.5)",
             "size": 450
         },
-        "P_B": {
+        "RP2": {
             "color": "tab:red",
             "pos": "(0.0,-11)",
             "size": 400
         },
-        "P_T": {
+        "RP1": {
             "color": "tab:red",
             "pos": "(0.0,11)",
             "size": 400
@@ -75,63 +75,70 @@
             "pos": "(-6.0,-9.0)",
             "size": 400
         },
-        "R1_R": {
+        "RR1R": {
             "color": "tab:blue",
-            "pos": "(6.0,9.0)"
+            "pos": "(6.0,9.0)",
+            "size": 400
         },
-        "R2_R": {
+        "RR2R": {
             "color": "tab:blue",
-            "pos": "(6.0,6.0)"
+            "pos": "(6.0,6.0)",
+            "size": 400
         },
-        "R3_R": {
+        "RR3R": {
             "color": "tab:blue",
-            "pos": "(6.0,3.0)"
+            "pos": "(6.0,3.0)",
+            "size": 400
         },
-        "R4_R": {
+        "RR4R": {
             "color": "tab:blue",
-            "pos": "(6.0,0)"
+            "pos": "(6.0,0)",
+            "size": 400
         },
-        "R5_R": {
+        "RR5R": {
             "color": "tab:blue",
-            "pos": "(6.0,-3.0)"
+            "pos": "(6.0,-3.0)",
+            "size": 400
         },
-        "R6_R": {
+        "RR6R": {
             "color": "tab:blue",
-            "pos": "(6.0,-6.0)"
+            "pos": "(6.0,-6.0)",
+            "size": 400
         },
-        "R7_R": {
+        "RR7R": {
             "color": "tab:blue",
-            "pos": "(6.0,-9.0)"
+            "pos": "(6.0,-9.0)",
+            "size": 400
         },
         "RJ2": {
             "color": "tab:green",
             "pos": "(-1.5,6)",
-            "size": 200
+            "size": 250
         },
         "RJ3": {
             "color": "tab:green",
             "pos": "(-1.5,3)",
-            "size": 200
+            "size": 250
         },
         "RJ4": {
             "color": "tab:green",
             "pos": "(-1.5,0)",
-            "size": 200
+            "size": 250
         },
         "RJ5": {
             "color": "tab:green",
             "pos": "(-1.5,-3)",
-            "size": 200
+            "size": 250
         },
         "RJ6": {
             "color": "tab:green",
             "pos": "(-1.5,-6.0)",
-            "size": 200
+            "size": 250
         }
     },
     "edge": {
         "RG_1": {
-            "P_T": {
+            "RP1": {
                 "weight": 1,
                 "color": "tab:red"
             },
@@ -195,12 +202,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "P_B": {
+            "RP2": {
                 "weight": 1,
                 "color": "tab:red"
             }
         },
-        "P_T": {
+        "RP1": {
             "P1_T": {
                 "weight": 1,
                 "color": "tab:purple",
@@ -212,7 +219,7 @@
                 "style": "arc3, rad=0.2"
             }
         },
-        "P_B": {
+        "RP2": {
             "P2_B": {
                 "weight": 1,
                 "color": "tab:purple",
@@ -358,7 +365,7 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "R1_R": {
+        "RR1R": {
             "RG_1": {
                 "weight": 1,
                 "color": "tab:red",
@@ -370,7 +377,7 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "R2_R": {
+        "RR2R": {
             "RG_1": {
                 "weight": 1,
                 "color": "tab:red",
@@ -392,7 +399,7 @@
                 "style": "arc3, rad=-0.0"
             }
         },
-        "R3_R": {
+        "RR3R": {
             "RG_2": {
                 "weight": 1,
                 "color": "tab:red",
@@ -414,7 +421,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "R4_R": {
+        "RR4R": {
             "RG_3": {
                 "weight": 1,
                 "color": "tab:red",
@@ -436,7 +443,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "R5_R": {
+        "RR5R": {
             "RG_4": {
                 "weight": 1,
                 "color": "tab:red",
@@ -458,7 +465,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "R6_R": {
+        "RR6R": {
             "RG_5": {
                 "weight": 1,
                 "color": "tab:red",
@@ -480,7 +487,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "R7_R": {
+        "RR7R": {
             "RG_6": {
                 "weight": 1,
                 "color": "tab:red",
@@ -497,7 +504,7 @@
                 "weight": 1,
                 "color": "tab:green"
             },
-            "R2_R": {
+            "RR2R": {
                 "weight": 1,
                 "color": "tab:green"
             }
@@ -508,7 +515,7 @@
                 "color": "tab:green",
                 "style": "arc3, rad=0.0"
             },
-            "R3_R": {
+            "RR3R": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=-0.0"
@@ -520,7 +527,7 @@
                 "color": "tab:green",
                 "style": "arc3, rad=0.0"
             },
-            "R4_R": {
+            "RR4R": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=-0.0"
@@ -532,7 +539,7 @@
                 "color": "tab:green",
                 "style": "arc3, rad=-0.0"
             },
-            "R5_R": {
+            "RR5R": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=0.0"
@@ -543,7 +550,7 @@
                 "weight": 1,
                 "color": "tab:green"
             },
-            "R6_R": {
+            "RR6R": {
                 "weight": 1,
                 "color": "tab:green"
             }

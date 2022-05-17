@@ -51,7 +51,30 @@ def move_figure(f, x, y):
         f.canvas.manager.window.move(x, y)
 
 
-def draw_graph(G, pos_fixed, name):
+def add_nodes(G, node_data):
+    G.add_nodes_from(node_data.keys())
+    nx.set_node_attributes(G, node_data)
+
+
+def add_edges(G, edge_data):
+    add_list = []
+    for k, v in edge_data.items():
+        for k2, v2 in v.items():
+            add_list.append((k, k2, v2))
+
+    G.add_edges_from(add_list)
+
+
+def get_node_pos(G):
+
+    pos_fixed = {}
+    for k, v in nx.get_node_attributes(G, "pos").items():
+        pos_fixed[k] = eval(v)
+
+    return pos_fixed
+
+
+def draw_graph(G, pos_fixed, filename, plt_show=False):
 
     f = plt.figure(1, figsize=(11, 8.5))
 
@@ -104,35 +127,15 @@ def draw_graph(G, pos_fixed, name):
 
     f = plt.gcf()
     f.tight_layout()
-    plt.savefig(name, dpi=300)
+    plt.savefig(filename, dpi=600)
+
+    if plt_show:
+        plt.show()
+
     plt.close()
-    # plt.show()
 
 
-def add_nodes(G, node_data):
-    G.add_nodes_from(node_data.keys())
-    nx.set_node_attributes(G, node_data)
-
-
-def add_edges(G, edge_data):
-    add_list = []
-    for k, v in edge_data.items():
-        for k2, v2 in v.items():
-            add_list.append((k, k2, v2))
-
-    G.add_edges_from(add_list)
-
-
-def get_node_pos(G):
-
-    pos_fixed = {}
-    for k, v in nx.get_node_attributes(G, "pos").items():
-        pos_fixed[k] = eval(v)
-
-    return pos_fixed
-
-
-if __name__ == "__main__":
+def build_full_graph(folder, filename, draw=False, show=False):
 
     G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
@@ -146,19 +149,40 @@ if __name__ == "__main__":
 
     for f in data_in_list:
 
-        edge_data, node_data = read_json("data_in", f)
+        edge_data, node_data = read_json(folder, f)
 
         add_nodes(G, node_data)
         add_edges(G, edge_data)
 
-    # draw_graph(G, get_node_pos(G), "full_structure.png")
+    if draw:
+        draw_graph(
+            G=G, pos_fixed=get_node_pos(G), filename="graphs_out/{}".format(filename), plt_show=show
+        )
 
-    remove_members = ["J6"]
-    remove_members = G.nodes()
+    return G
+
+
+def build_member_subgraph(G, remove_members, draw=False, show=False):
 
     for m in remove_members:
         G_copy = G.copy()
         K = single_member_remove(G_copy, m)
 
-        if K.number_of_nodes() > 1:
-            draw_graph(K, get_node_pos(K), "plots_out/partial_{}.png".format(m))
+        # Only do it if not START/END node
+        if draw and K.number_of_nodes() > 1:
+            draw_graph(
+                G=K,
+                pos_fixed=get_node_pos(K),
+                filename="graphs_out/{}.png".format(m),
+                plt_show=show,
+            )
+
+
+if __name__ == "__main__":
+
+    G = build_full_graph(folder="data_in", filename="_full_structure.png", draw=True, show=False)
+
+    remove_members = ["P1_B"]
+    # remove_members = G.nodes()
+
+    build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=True)

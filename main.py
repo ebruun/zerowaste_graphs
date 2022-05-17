@@ -123,7 +123,7 @@ def draw_graph(G, pos_fixed, filename, plt_show=False):
             arrows=True,
         )
 
-    nx.draw_networkx_labels(G, pos, font_size=6, font_color="white")
+    nx.draw_networkx_labels(G, pos, font_size=6, font_color="white", font_weight="bold")
 
     f = plt.gcf()
     f.tight_layout()
@@ -156,7 +156,10 @@ def build_full_graph(folder, filename, draw=False, show=False):
 
     if draw:
         draw_graph(
-            G=G, pos_fixed=get_node_pos(G), filename="graphs_out/{}".format(filename), plt_show=show
+            G=G,
+            pos_fixed=get_node_pos(G),
+            filename="graphs_out/{}".format(filename),
+            plt_show=show,
         )
 
     return G
@@ -177,6 +180,8 @@ def build_member_subgraph(G, remove_members, draw=False, show=False):
                 plt_show=show,
             )
 
+        return K
+
 
 if __name__ == "__main__":
 
@@ -185,4 +190,4 @@ if __name__ == "__main__":
     remove_members = ["P1_B"]
     # remove_members = G.nodes()
 
-    build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=True)
+    # K = build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=True)

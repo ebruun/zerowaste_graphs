@@ -48,7 +48,7 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "P1_L": {
+            "WP1": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.2"

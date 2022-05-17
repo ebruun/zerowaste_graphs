@@ -254,12 +254,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P1_L": {
+            "WP1": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
             },
-            "P2_L": {
+            "WP2": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.0"
@@ -276,12 +276,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P2_L": {
+            "WP2": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
             },
-            "P3_L": {
+            "WP3": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
@@ -298,12 +298,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P3_L": {
+            "WP3": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
             },
-            "P4_L": {
+            "WP4": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
@@ -320,12 +320,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P4_L": {
+            "WP4": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.1"
             },
-            "P5_L": {
+            "WP5": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"
@@ -342,12 +342,12 @@
                 "color": "tab:red",
                 "style": "arc3, rad=0.1"
             },
-            "P5_L": {
+            "WP5": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=-0.0"
             },
-            "P6_L": {
+            "WP6": {
                 "weight": 1,
                 "color": "tab:pink",
                 "style": "arc3, rad=0.1"

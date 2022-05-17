@@ -76,8 +76,8 @@ def get_node_pos(G, scale=1):
 
 def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
 
-    # f = plt.figure(1, figsize=(11, 8.5))
-    f = plt.figure(1)
+    f = plt.figure(1, figsize=(11, 8.5))
+    # f = plt.figure(1)
 
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
@@ -132,7 +132,7 @@ def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
     nx.draw_networkx_labels(
         G=G,
         pos=pos,
-        font_size=6 * (scale * 0.7),
+        font_size=6 * (scale),
         font_color="white",
         font_weight="bold",
     )
@@ -190,7 +190,7 @@ def build_member_subgraph(G, remove_members, draw=False, show=False):
                 G=K,
                 pos_fixed=get_node_pos(K, scale=1),
                 filename="graphs_out/{}.png".format(m),
-                scale=1.5,
+                scale=1.0,
                 plt_show=show,
             )
 
@@ -202,6 +202,6 @@ if __name__ == "__main__":
     G = build_full_graph(folder="data_in", filename="_full_structure.png", draw=True, show=False)
 
     # remove_members = ["WP1_6"]
-    remove_members = G.nodes()
+    # remove_members = G.nodes()
 
-    K = build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=False)
+    # K = build_member_subgraph(G=G, remove_members=remove_members, draw=True, show=False)

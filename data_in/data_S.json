@@ -31,32 +31,32 @@
             "pos": "(0,-17.5)",
             "size": 400
         },
-        "S1": {
+        "SS1": {
             "color": "tab:cyan",
             "pos": "(-5,-21.5)",
             "size": 400
         },
-        "S2": {
+        "SS2": {
             "color": "tab:cyan",
             "pos": "(-3,-21.5)",
             "size": 400
         },
-        "S3": {
+        "SS3": {
             "color": "tab:cyan",
             "pos": "(-1,-21.5)",
             "size": 400
         },
-        "S4": {
+        "SS4": {
             "color": "tab:cyan",
             "pos": "(1,-21.5)",
             "size": 400
         },
-        "S5": {
+        "SS5": {
             "color": "tab:cyan",
             "pos": "(3,-21.5)",
             "size": 400
         },
-        "S6": {
+        "SS6": {
             "color": "tab:cyan",
             "pos": "(5,-21.5)",
             "size": 400
@@ -79,12 +79,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S1": {
+            "SS1": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
             },
-            "S2": {
+            "SS2": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
@@ -111,7 +111,7 @@
                 "color": "tab:olive",
                 "style": "arc3, rad=0.2"
             },
-            "S2": {
+            "SS2": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
@@ -133,7 +133,7 @@
                 "color": "tab:olive",
                 "style": "arc3, rad=-0.2"
             },
-            "S5": {
+            "SS5": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.2"
@@ -145,12 +145,12 @@
                 "color": "black",
                 "style": "arc3, rad=0.2"
             },
-            "S5": {
+            "SS5": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.2"
             },
-            "S6": {
+            "SS6": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.2"
@@ -162,53 +162,53 @@
             }
         },
         "SH1": {
-            "S3": {
+            "SS3": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.1"
             },
-            "S4": {
+            "SS4": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.1"
             }
         },
-        "S1": {
+        "SS1": {
             "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
-        "S2": {
+        "SS2": {
             "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
-        "S3": {
+        "SS3": {
             "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
-        "S4": {
+        "SS4": {
             "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
-        "S5": {
+        "SS5": {
             "SF": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
-        "S6": {
+        "SS6": {
             "SF": {
                 "weight": 0.5,
                 "color": "black",
@@ -216,12 +216,12 @@
             }
         },
         "SD1": {
-            "S1": {
+            "SS1": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
             },
-            "S2": {
+            "SS2": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=-0.2"
@@ -233,12 +233,12 @@
             }
         },
         "SD2": {
-            "S5": {
+            "SS5": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.2"
             },
-            "S6": {
+            "SS6": {
                 "weight": 1,
                 "color": "tab:cyan",
                 "style": "arc3, rad=0.2"

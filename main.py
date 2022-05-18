@@ -11,9 +11,8 @@ if __name__ == "__main__":
         show=False,
     )
 
-    # remove_members = G.nodes()
-
-    remove_members = ["SP1_1"]
+    remove_members = G.nodes()
+    # remove_members = ["SP1_1"]
     K1 = build_member_subgraph(
         G=G,
         remove_members=remove_members,

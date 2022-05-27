@@ -21,9 +21,11 @@ def add_edges(G, edge_data):
 
 def get_node_pos(G, scale=1):
 
+    scale = [scale, scale * 2]
+
     pos_fixed = {}
     for k, v in nx.get_node_attributes(G, "pos").items():
-        pos_fixed[k] = tuple(t * scale for t in eval(v))
+        pos_fixed[k] = tuple(dim * s for dim, s in zip(eval(v), scale))
 
     return pos_fixed
 

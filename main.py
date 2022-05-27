@@ -47,34 +47,34 @@ if __name__ == "__main__":
 
     # remove_members = G.nodes()
     # remove_members = ["RP2"]
-    m1 = ["SS1"]
+    m1 = ["WP1_3"]
     K1, n1 = build_member_subgraph(
         G=G,
         remove_members=m1,
-        scale=1.2,
-        draw=False,
+        scale=1.6,
+        draw=True,
         show=False,
     )
 
     # calculate_sequence(K1)
 
-    m2 = ["WS9"]
-    K2, n2 = build_member_subgraph(
-        G=G,
-        remove_members=m2,
-        scale=1.2,
-        draw=True,
-        show=False,
-    )
+    # m2 = ["WS9"]
+    # K2, n2 = build_member_subgraph(
+    #     G=G,
+    #     remove_members=m2,
+    #     scale=1.2,
+    #     draw=True,
+    #     show=False,
+    # )
 
-    build_joined_subgraph(
-        G=G,
-        K1=K1,
-        K2=K2,
-        remove_members=m1 + m2,
-        nodes_check_support=n1 + n2,
-        name=m1[0] + "_" + m2[0],
-        scale=1.2,
-        draw=True,
-        show=False,
-    )
+    # build_joined_subgraph(
+    #     G=G,
+    #     K1=K1,
+    #     K2=K2,
+    #     remove_members=m1 + m2,
+    #     nodes_check_support=n1 + n2,
+    #     name=m1[0] + "_" + m2[0],
+    #     scale=1.2,
+    #     draw=True,
+    #     show=False,
+    # )

@@ -112,28 +112,6 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
     return add
 
 
-# def remove_two_side_out(K, nodes, remove_node):
-
-#     """remove redundant out edges from fixed nodes to other nodes in the graph,
-#     unless they connect directly to the element to be removed
-#     """
-
-#     print("\nREMOVING SINGLE OUT EDGES FROM FIXED NODES {} in SUBGRAPH K".format(nodes))
-
-#     K_copy = K.copy()
-
-#     for n in nodes:
-#         e_K = _get_e_out(K, n)
-
-#         for e in e_K:
-
-#             if not check_if_fixed_exists(K, e[1], e[0]) and remove_node not in e:
-#                 print("single edge {}".format(e))
-#                 K_copy.remove_edge(e[0], e[1])
-
-#     return K_copy
-
-
 def check_cut(G, K):
     """
     See if the subgraph K fully contains the edges attached to a member
@@ -155,9 +133,9 @@ def check_cut(G, K):
         if e_total_K == e_total_G:
             print("-- --fully removed")
 
-            e_count, e_fixed = count_fixed_sides(K, n)
+            num_e_fixed, e_fixed = count_fixed_sides(K, n)
 
-            if e_count:  # if there are any fixed edges
+            if num_e_fixed:  # if there are any fixed edges
 
                 for e in e_fixed:
                     print("-- --fixed connection to cut {}".format(e))
@@ -181,9 +159,10 @@ def check_cut(G, K):
     print("\nnodes that need to be cut: {}".format(nodes_cut))
     print("nodes that are fully removed: {}".format(nodes_fully_removed))
 
-    for n in nodes_fully_removed:
-        K.nodes[n]["color"] = "tab:grey"
-        K.nodes[n]["size"] = 500
+    # SOMETHING RELATED TO JOINED SUBGRAPH THING
+    # for n in nodes_fully_removed:
+    #     K.nodes[n]["color"] = "tab:grey"
+    #     K.nodes[n]["size"] = 500
 
     return nodes_cut, nodes_fully_removed
 
@@ -240,6 +219,7 @@ def single_member_remove(G, remove_node):
     two_side_fixed = []
     one_side_fixed = []
 
+    # 1. see what nodes to add
     while nodes_queue:
         n = nodes_queue.pop(0)
         print("\n\nCHECKING NODE {}".format(n))
@@ -260,10 +240,11 @@ def single_member_remove(G, remove_node):
     print("-- NODES one side fixed now: {}".format(one_side_fixed))
     print("-- NODES two side fixed: {}".format(two_side_fixed))
 
+    # 2. check what needs to be cut
     nodes_cut, nodes_fully_removed = check_cut(G, K)
 
     nodes_check_support = one_side_fixed + two_side_fixed + nodes_cut
-    nodes_check_support = list(set(nodes_check_support))
+    nodes_check_support = list(set(nodes_check_support))  # remove duplicates
 
     nodes_fully_removed.append(remove_node)
     nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
@@ -271,6 +252,7 @@ def single_member_remove(G, remove_node):
     print("-- NODES fully removed: {}".format(nodes_fully_removed))
     print("-- NODES to check support on: {}".format(nodes_check_support))
 
+    # 3. check that properly supported
     K = check_connected(G, K, nodes_fully_removed, nodes_check_support)
 
     return K, nodes_check_support

@@ -76,13 +76,14 @@ def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
     nx.draw_networkx_labels(
         G=G,
         pos=pos,
-        font_size=6 * (scale * 0.9),
+        font_size=6 * (scale * 0.8),
         font_color="white",
         font_weight="bold",
     )
 
     f = plt.gcf()
     f.tight_layout()
+    plt.axis("off")  # no border around fig
     plt.savefig(filename, dpi=600)
 
     if plt_show:

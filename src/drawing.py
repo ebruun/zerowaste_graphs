@@ -16,6 +16,41 @@ def move_figure(f, x, y):
         f.canvas.manager.window.move(x, y)
 
 
+def edge_settings(G, edges, type):
+
+    for e in edges:
+        if type == "cut":
+            G.edges[e[0], e[1], 0]["edge_style"] = "dashed"
+            G.edges[e[0], e[1], 0]["weight"] = 1.5
+            G.edges[e[0], e[1], 0]["color"] = "tab:red"
+
+            G.edges[e[1], e[0], 0]["edge_style"] = "dashed"
+            G.edges[e[1], e[0], 0]["weight"] = 1.5
+            G.edges[e[1], e[0], 0]["color"] = "tab:red"
+
+
+def node_settings(G, nodes, type):
+
+    for n in nodes:
+
+        if type == "remove":
+            G.nodes[n]["color"] = "tab:red"
+            G.nodes[n]["size"] = 600
+            G.nodes[n]["node_shape"] = "8"
+        elif type == "start":
+            G.nodes[n]["color"] = "tab:green"
+            G.nodes[n]["size"] = 300
+        elif type == "end":
+            G.nodes[n]["color"] = "black"
+            G.nodes[n]["size"] = 500
+        elif type == "danger":
+            G.nodes[n]["color"] = "orange"
+            G.nodes[n]["size"] = 500
+        elif type == "normal":
+            G.nodes[n]["color"] = "tab:grey"
+            G.nodes[n]["size"] = 300
+
+
 def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
 
     if scale == 1:

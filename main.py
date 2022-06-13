@@ -1,9 +1,7 @@
-import networkx as nx
 from src.build import (
     build_full_graph,
     build_member_subgraph,
     build_joined_subgraph,
-    build_joined_subgraph2,
 )
 
 
@@ -50,7 +48,8 @@ if __name__ == "__main__":
         show=False,
     )
 
-    remove_members = ["SP1_2", "SP1_3", "SP1_4", "EP1_6"]
+    remove_members = ["SP1_2", "SP1_3", "SP1_4"]
+    # remove_members = [ "SP1_3"]
     subgraphs = []
     nodes_check_support = []
 
@@ -71,24 +70,11 @@ if __name__ == "__main__":
     print(subgraphs)
     print(nodes_check_support)
 
-    # build_joined_subgraph(
-    #     G=G,
-    #     K1=K1,
-    #     K2=K2,
-    #     remove_members=m1 + m2,
-    #     nodes_check_support=n1 + n2,
-    #     name=m1[0] + "_" + m2[0],
-    #     scale=1.2,
-    #     draw=True,
-    #     show=False,
-    # )
-
-    build_joined_subgraph2(
+    build_joined_subgraph(
         G=G,
         Ks=subgraphs,
         rms=remove_members,
         nodes_check_support=nodes_check_support,
-        name="_test",
         scale=1.2,
         draw=True,
         show=False,

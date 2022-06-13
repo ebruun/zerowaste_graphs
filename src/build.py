@@ -53,7 +53,7 @@ def build_full_graph(folder, filename, scale=1, draw=False, show=False):
         draw_graph(
             G=G,
             pos_fixed=get_node_pos(G, scale),
-            filename="graphs_out/{}".format(filename),
+            filename="P2_graphs_out/{}".format(filename),
             scale=scale,
             plt_show=show,
         )
@@ -72,7 +72,7 @@ def build_member_subgraph(G, remove_members, scale, draw=False, show=False):
             draw_graph(
                 G=K,
                 pos_fixed=get_node_pos(K, scale),
-                filename="graphs_out/{}.png".format(m),
+                filename="P2_graphs_out/{}.png".format(m),
                 scale=scale,
                 plt_show=show,
             )
@@ -127,7 +127,7 @@ def build_joined_subgraph(
         draw_graph(
             G=K_combo,
             pos_fixed=get_node_pos(K_combo),
-            filename="graphs_out/_{}".format(name),
+            filename="P2_graphs_out/_{}".format(name),
             scale=scale,
             plt_show=show,
         )

@@ -38,7 +38,7 @@ def calculate_sequence(K):
 if __name__ == "__main__":
 
     G = build_full_graph(
-        folder="data_in",
+        folder="P2_data_in",
         filename="_full_structure.png",
         scale=1,
         draw=False,
@@ -47,25 +47,25 @@ if __name__ == "__main__":
 
     # remove_members = G.nodes()
     # remove_members = ["RP2"]
-    m1 = ["WP1_3"]
-    K1, n1 = build_member_subgraph(
-        G=G,
-        remove_members=m1,
-        scale=1.6,
-        draw=True,
-        show=False,
-    )
-
-    # calculate_sequence(K1)
-
-    # m2 = ["WS9"]
-    # K2, n2 = build_member_subgraph(
+    # m1 = ["SP1_2"]
+    # K1, n1 = build_member_subgraph(
     #     G=G,
-    #     remove_members=m2,
-    #     scale=1.2,
+    #     remove_members=m1,
+    #     scale=1.6,
     #     draw=True,
     #     show=False,
     # )
+
+    # calculate_sequence(K1)
+
+    m2 = ["SP1_3"]
+    K2, n2 = build_member_subgraph(
+        G=G,
+        remove_members=m2,
+        scale=1.2,
+        draw=True,
+        show=False,
+    )
 
     # build_joined_subgraph(
     #     G=G,

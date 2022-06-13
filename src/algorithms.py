@@ -150,6 +150,9 @@ def check_cut(G, K):
                     nodes_cut.append(e[1])
                     nodes_fully_removed.append(e[0])
 
+                    # K.nodes[e[0]]["color"] = "tab:grey"
+                    # K.nodes[e[0]]["size"] = 300
+
             else:
                 print("-- --no connection to cut")
 
@@ -204,6 +207,11 @@ def check_connected(G, K, nodes_fully_removed, one_side_fixed):
             K.nodes[n]["color"] = "black"
             K.nodes[n]["size"] = 500
 
+        if n in nodes_fully_removed:
+            print("-- SAFE, FULLY REMOVE")
+            K.nodes[n]["color"] = "grey"
+            K.nodes[n]["size"] = 500
+
     return K
 
 
@@ -243,11 +251,15 @@ def single_member_remove(G, remove_node):
     # 2. check what needs to be cut
     nodes_cut, nodes_fully_removed = check_cut(G, K)
 
+    nodes_fully_removed.append(remove_node)
+    nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
+
     nodes_check_support = one_side_fixed + two_side_fixed + nodes_cut
     nodes_check_support = list(set(nodes_check_support))  # remove duplicates
 
-    nodes_fully_removed.append(remove_node)
-    nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
+    # dont check the node specified for removal
+    if remove_node in nodes_check_support:
+        nodes_check_support.remove(remove_node)
 
     print("-- NODES fully removed: {}".format(nodes_fully_removed))
     print("-- NODES to check support on: {}".format(nodes_check_support))

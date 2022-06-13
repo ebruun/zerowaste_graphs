@@ -1,5 +1,10 @@
 import networkx as nx
-from src.build import build_full_graph, build_member_subgraph, build_joined_subgraph
+from src.build import (
+    build_full_graph,
+    build_member_subgraph,
+    build_joined_subgraph,
+    build_joined_subgraph2,
+)
 
 
 def check_list():
@@ -45,27 +50,26 @@ if __name__ == "__main__":
         show=False,
     )
 
-    # remove_members = G.nodes()
-    # remove_members = ["RP2"]
-    # m1 = ["SP1_2"]
-    # K1, n1 = build_member_subgraph(
-    #     G=G,
-    #     remove_members=m1,
-    #     scale=1.6,
-    #     draw=True,
-    #     show=False,
-    # )
+    remove_members = ["SP1_2", "SP1_3", "SP1_4", "EP1_6"]
+    subgraphs = []
+    nodes_check_support = []
 
-    # calculate_sequence(K1)
+    for remove_member in remove_members:
+        K, n = build_member_subgraph(
+            G=G,
+            rm=remove_member,
+            scale=1.2,
+            draw=True,
+            show=False,
+        )
 
-    m2 = ["SP1_3"]
-    K2, n2 = build_member_subgraph(
-        G=G,
-        remove_members=m2,
-        scale=1.2,
-        draw=True,
-        show=False,
-    )
+        subgraphs.append(K)
+        nodes_check_support.extend(n)
+
+    nodes_check_support = list(set(nodes_check_support))
+
+    print(subgraphs)
+    print(nodes_check_support)
 
     # build_joined_subgraph(
     #     G=G,
@@ -78,3 +82,14 @@ if __name__ == "__main__":
     #     draw=True,
     #     show=False,
     # )
+
+    build_joined_subgraph2(
+        G=G,
+        Ks=subgraphs,
+        rms=remove_members,
+        nodes_check_support=nodes_check_support,
+        name="_test",
+        scale=1.2,
+        draw=True,
+        show=False,
+    )

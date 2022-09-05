@@ -96,6 +96,8 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
             print("-- -- ADD: normal node, since resting on member to remove")
             add = True  # make a normal node if it's resting on to remove
             node_settings(G, [n], "normal")
+            # node_settings(G, [n], "end")
+            pass
         else:
             print("-- -- NO ADD: not direct resting on member to remove")
             one_side_fixed.append(n)

@@ -48,8 +48,8 @@ if __name__ == "__main__":
         show=False,
     )
 
-    remove_members = ["SP1_2", "SP1_3", "SP1_4"]
-    # remove_members = [ "SP1_3"]
+    remove_members = ["SP1_2", "SP1_3", "SP1_4", "ES10"]
+    # remove_members = [ "ES10"]
     subgraphs = []
     nodes_check_support = []
 

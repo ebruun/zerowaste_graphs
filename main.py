@@ -59,7 +59,7 @@ if __name__ == "__main__":
             rm=remove_member,
             scale=1.2,
             draw=True,
-            show=False,
+            show=True,
         )
 
         subgraphs.append(K)

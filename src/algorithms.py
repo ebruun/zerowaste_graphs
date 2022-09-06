@@ -1,4 +1,6 @@
+import imp
 import networkx as nx
+from src.drawing import node_settings, edge_settings
 
 
 def _get_e_out(G, n):
@@ -58,9 +60,7 @@ def initialize(G, remove_node):
     nodes_queue = []
 
     print("\nINITIALIZING WITH NODE {}".format(remove_node))
-    G.nodes[remove_node]["color"] = "tab:red"
-    G.nodes[remove_node]["size"] = 600
-    G.nodes[remove_node]["node_shape"] = "8"
+    node_settings(G, [remove_node], "remove")
 
     if len(G.in_edges(remove_node)) == 0:
         print("--NO ADD: start node")
@@ -81,34 +81,33 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
 
     if len(G.in_edges(n)) == 0:
         print("--NO ADD: start node")
-        G.nodes[n]["color"] = "tab:green"
-        G.nodes[n]["size"] = 300
+        node_settings(G, [n], "start")
     elif len(G.out_edges(n)) == 0:
         print("--NO ADD: end node")
-        G.nodes[n]["color"] = "black"
+        node_settings(G, [n], "end")
     elif count_fixed_sides(G, n)[0] == 2:
         print("--NO ADD: fixed on TWO sides")
-        G.nodes[n]["color"] = "black"
-        G.nodes[n]["size"] = 500
         two_side_fixed.append(n)
+        node_settings(G, [n], "end")
     elif count_fixed_sides(G, n)[0] == 1:
         print("--FIXED NODE, fixed on ONE side")
 
         if G.has_edge(n, remove_node) and not check_if_fixed_exists(G, n, remove_node):
             print("-- -- ADD: normal node, since resting on member to remove")
-            G.nodes[n]["color"] = "tab:grey"
-            G.nodes[n]["size"] = 300
             add = True  # make a normal node if it's resting on to remove
+            node_settings(G, [n], "normal")
+            # node_settings(G, [n], "end")
+            pass
         else:
             print("-- -- NO ADD: not direct resting on member to remove")
-            G.nodes[n]["color"] = "orange"
-            G.nodes[n]["size"] = 500
             one_side_fixed.append(n)
+            node_settings(G, [n], "danger")
+
     else:
         print("--ADD: normal node")
-        G.nodes[n]["color"] = "tab:grey"
-        G.nodes[n]["size"] = 300
         add = True
+        node_settings(G, [n], "normal")
+
     return add
 
 
@@ -139,16 +138,12 @@ def check_cut(G, K):
 
                 for e in e_fixed:
                     print("-- --fixed connection to cut {}".format(e))
-                    K.edges[e[0], e[1], 0]["edge_style"] = "dashed"
-                    K.edges[e[0], e[1], 0]["weight"] = 1.5
-                    K.edges[e[0], e[1], 0]["color"] = "tab:red"
-
-                    K.edges[e[1], e[0], 0]["edge_style"] = "dashed"
-                    K.edges[e[1], e[0], 0]["weight"] = 1.5
-                    K.edges[e[1], e[0], 0]["color"] = "tab:red"
 
                     nodes_cut.append(e[1])
                     nodes_fully_removed.append(e[0])
+
+                    edge_settings(K, [e], "cut")
+                    # node_settings(K,[e[0]],"normal")
 
             else:
                 print("-- --no connection to cut")
@@ -159,15 +154,10 @@ def check_cut(G, K):
     print("\nnodes that need to be cut: {}".format(nodes_cut))
     print("nodes that are fully removed: {}".format(nodes_fully_removed))
 
-    # SOMETHING RELATED TO JOINED SUBGRAPH THING
-    # for n in nodes_fully_removed:
-    #     K.nodes[n]["color"] = "tab:grey"
-    #     K.nodes[n]["size"] = 500
-
     return nodes_cut, nodes_fully_removed
 
 
-def check_connected(G, K, nodes_fully_removed, one_side_fixed):
+def check_connected(G, K, nodes_fully_removed, nodes_check_support):
     """
     check if a member with a single fixed has at least TWO other support connections after the removal of the member.
     If it is fixed and not being cut then it just needs 1 additional connection.
@@ -175,9 +165,13 @@ def check_connected(G, K, nodes_fully_removed, one_side_fixed):
     If it has enough edges it is considered fixed support in this disassembly step
     """
 
-    print("\n3. CHECKING NODES {} in SUBGRAPH K IF THEY HAVE ENOUGH SUPPORT".format(one_side_fixed))
+    print(
+        "\n3. CHECKING NODES {} in SUBGRAPH K IF THEY HAVE ENOUGH SUPPORT".format(
+            nodes_check_support
+        )
+    )
 
-    for n in one_side_fixed:
+    for n in nodes_check_support:
         print("\nCHECK NODE {}".format(n))
 
         e_G = _get_e_out(G, n)  # starting members supported by
@@ -197,34 +191,33 @@ def check_connected(G, K, nodes_fully_removed, one_side_fixed):
 
         if num_supports < 2:
             print("-- DANGER, only {} SUPPORTS".format(num_supports))
-            K.nodes[n]["color"] = "orange"
-            K.nodes[n]["size"] = 500
+            node_settings(K, [n], "danger")
         else:
             print("-- SAFE, w/ {} SUPPORTS".format(num_supports))
-            K.nodes[n]["color"] = "black"
-            K.nodes[n]["size"] = 500
+            node_settings(K, [n], "end")
+
+        if n in nodes_fully_removed:
+            print("-- SAFE, FULLY REMOVE")
+            node_settings(K, [n], "normal")
 
     return K
 
 
-def single_member_remove(G, remove_node):
+def single_member_remove(G, rm):
 
-    print("\n1. SUBGRAPH CALC FOR MEMBER: {}".format(remove_node))
-
-    nodes_saved, nodes_queue = initialize(G, remove_node)
+    nodes_saved, nodes_queue = initialize(G, rm)
+    two_side_fixed = []
+    one_side_fixed = []
 
     print("current n_queue: ", nodes_queue)
     print("current n_saved: ", nodes_saved)
-
-    two_side_fixed = []
-    one_side_fixed = []
 
     # 1. see what nodes to add
     while nodes_queue:
         n = nodes_queue.pop(0)
         print("\n\nCHECKING NODE {}".format(n))
 
-        if add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
+        if add_node_to_queue(G, n, two_side_fixed, one_side_fixed, rm):
             nodes_queue, nodes_saved = find_adjacent_nodes(G, n, nodes_queue, nodes_saved)
 
         nodes_saved.append(n)
@@ -243,11 +236,15 @@ def single_member_remove(G, remove_node):
     # 2. check what needs to be cut
     nodes_cut, nodes_fully_removed = check_cut(G, K)
 
+    nodes_fully_removed.append(rm)
+    nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
+
     nodes_check_support = one_side_fixed + two_side_fixed + nodes_cut
     nodes_check_support = list(set(nodes_check_support))  # remove duplicates
 
-    nodes_fully_removed.append(remove_node)
-    nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
+    # dont check the node specified for removal
+    if rm in nodes_check_support:
+        nodes_check_support.remove(rm)
 
     print("-- NODES fully removed: {}".format(nodes_fully_removed))
     print("-- NODES to check support on: {}".format(nodes_check_support))
@@ -256,6 +253,37 @@ def single_member_remove(G, remove_node):
     K = check_connected(G, K, nodes_fully_removed, nodes_check_support)
 
     return K, nodes_check_support
+
+
+def multi_member_remove(G, K, rms, nodes_check_support):
+
+    print("\n1. SUBGRAPH CALC FOR MEMBERs: {}".format(rms))
+
+    node_settings(K, rms, "remove")  # color all removal members
+
+    #### MODIFY K ######
+    print("-- NODES check support: {}".format(nodes_check_support))
+
+    # 2. check what needs to be cut
+    nodes_cut, nodes_fully_removed = check_cut(G, K)
+
+    nodes_fully_removed.extend(rms)
+    nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
+
+    nodes_check_support.extend(nodes_cut)
+    nodes_check_support = list(set(nodes_check_support))
+
+    # dont check the node specified for removal
+    for rm in rms:
+        if rm in nodes_check_support:
+            nodes_check_support.remove(rm)
+
+    print("-- NODES fully removed: {}".format(nodes_fully_removed))
+    print("-- NODES to check support on: {}".format(nodes_check_support))
+
+    _ = check_connected(G, K, nodes_fully_removed, nodes_check_support)
+
+    return K
 
 
 if __name__ == "__main__":

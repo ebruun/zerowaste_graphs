@@ -1,4 +1,4 @@
-name: graph_network
+name: zerowaste_graph
 channels:
   - conda-forge
   - defaults
@@ -8,7 +8,7 @@ dependencies:
   - black=19.10b0
   - blas=1.0
   - brotli=1.0.9
-  - ca-certificates=2022.3.18
+  - ca-certificates=2022.4.26
   - certifi=2021.10.8
   - cffi=1.15.0
   - cfgv=3.3.1
@@ -21,10 +21,10 @@ dependencies:
   - fonttools=4.25.0
   - freetype=2.10.4
   - icu=58.2
-  - identify=2.4.12
-  - importlib-metadata=4.8.2
+  - identify=2.5.0
+  - importlib-metadata=4.11.3
   - intel-openmp=2021.4.0
-  - jpeg=9d
+  - jpeg=9e
   - kiwisolver=1.3.2
   - libpng=1.6.37
   - libtiff=4.2.0
@@ -43,12 +43,12 @@ dependencies:
   - nodeenv=1.6.0
   - numpy=1.21.5
   - numpy-base=1.21.5
-  - openssl=1.1.1n
+  - openssl=1.1.1o
   - packaging=21.3
   - pathspec=0.7.0
   - pillow=9.0.1
   - pip=21.2.2
-  - pre-commit=2.17.0
+  - pre-commit=2.19.0
   - pycodestyle=2.8.0
   - pycparser=2.21
   - pyflakes=2.4.0
@@ -60,10 +60,10 @@ dependencies:
   - pyyaml=6.0
   - qt=5.9.7
   - regex=2022.3.15
-  - setuptools=58.0.4
+  - setuptools=61.2.0
   - sip=4.19.13
   - six=1.16.0
-  - sqlite=3.38.0
+  - sqlite=3.38.3
   - tk=8.6.11
   - toml=0.10.2
   - tornado=6.1
@@ -78,7 +78,7 @@ dependencies:
   - xz=5.2.5
   - yaml=0.2.5
   - zipp=3.7.0
-  - zlib=1.2.11
+  - zlib=1.2.12
   - zstd=1.4.9
-prefix: C:\Users\Edvard\.conda\envs\graph_network
+prefix: C:\Users\Edvard\.conda\envs\zerowaste_graph
 

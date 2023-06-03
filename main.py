@@ -10,7 +10,6 @@ def check_list():
 
 
 def calculate_sequence(K):
-
     print("\nCALCULATING DISASSEMBLY SEQUENCE")
 
     nodes = list(K.nodes)
@@ -21,7 +20,6 @@ def calculate_sequence(K):
     remove = []
     # check for any start/end nodes
     for n in nodes:
-
         c = K.nodes[n]["color"]
 
         if c == "tab:green":
@@ -39,7 +37,6 @@ def calculate_sequence(K):
 
 
 if __name__ == "__main__":
-
     G = build_full_graph(
         folder="P2_data_in",
         filename="_full_structure.png",

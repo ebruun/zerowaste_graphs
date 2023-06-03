@@ -17,11 +17,14 @@
         //"--ignore=E402,F841,F401,E302,E305",
     ],
     "python.linting.lintOnSave": true,
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "none",
     "editor.formatOnSave": true,
     "editor.defaultFormatter": null,
     "python.formatting.blackArgs": [
         "--line-length=80",
         "--experimental-string-processing"
     ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
 }

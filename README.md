@@ -1,15 +1,12 @@
 # Graphs
 
-doesn't export pip packages, but cleaner env file
+## Making clean environment.yml file
 
-this has no version number:
+export only explictly downloaded packages:
 
-`conda env export --from-history --name zerowaste_graph > environment.yml`
+`conda env export --from-history --name zerowaste_graphs > environment.yml`
 
-this has no build number:
-
-`conda env export --no-builds --name zerowaste_graph > environment.yml`
-
-create new:
-
+create new from environment.yml file:
 `conda env create`
+
+check to see if this works for windows...

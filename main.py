@@ -37,43 +37,48 @@ def calculate_sequence(K):
 
 
 if __name__ == "__main__":
+    phase_number = 1
+
     G = build_full_graph(
-        folder_in="P1_data_in",
-        folder_out="P1_graphs_out",
+        folder_in="P{}_data_in".format(phase_number),
+        folder_out="P{}_graphs_out".format(phase_number),
         filename="_full_structure.png",
         scale=1,
-        draw=True,
-        show=True,
+        draw=False,
+        show=False,
     )
 
     # remove_members = ["SP1_2", "SP1_3", "SP1_4", "ES10"]
-    # remove_members = [ "SS1"]
-    # subgraphs = []
-    # nodes_check_support = []
+    remove_members = ["SS1", "WS9"]
 
-    # for remove_member in remove_members:
-    #     K, n = build_member_subgraph(
-    #         G=G,
-    #         rm=remove_member,
-    #         scale=1.2,
-    #         draw=True,
-    #         show=True,
-    #     )
+    subgraphs = []
+    nodes_check_support = []
 
-    #     subgraphs.append(K)
-    #     nodes_check_support.extend(n)
+    for remove_member in remove_members:
+        K, n = build_member_subgraph(
+            G=G,
+            folder_out="P{}_graphs_out".format(phase_number),
+            rm=remove_member,
+            scale=1.2,
+            draw=True,
+            show=True,
+        )
 
-    # nodes_check_support = list(set(nodes_check_support))
+        subgraphs.append(K)
+        nodes_check_support.extend(n)
 
-    # print(subgraphs)
-    # print(nodes_check_support)
+    nodes_check_support = list(set(nodes_check_support))
+
+    print(subgraphs)
+    print(nodes_check_support)
 
     # build_joined_subgraph(
     #     G=G,
+    #     folder_out="P{}_graphs_out".format(phase_number),
     #     Ks=subgraphs,
     #     rms=remove_members,
     #     nodes_check_support=nodes_check_support,
     #     scale=1.2,
     #     draw=True,
-    #     show=False,
+    #     show=True,
     # )

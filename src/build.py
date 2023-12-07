@@ -83,7 +83,7 @@ def _add_in_extra_edge(G, K_combo, Ks):
                         K_combo.edges[n1, n2, 0]["color"] = "black"
 
 
-def build_member_subgraph(G, rm, scale, draw=False, show=False):
+def build_member_subgraph(G, folder_out, rm, scale, draw=False, show=False):
     G_copy = G.copy()
 
     print("\n1. SUBGRAPH CALC FOR MEMBER: {}".format(rm))
@@ -94,7 +94,7 @@ def build_member_subgraph(G, rm, scale, draw=False, show=False):
         draw_graph(
             G=K,
             pos_fixed=get_node_pos(K, scale),
-            filename="P2_graphs_out/{}.png".format(rm),
+            filename="{}/{}.png".format(folder_out, rm),
             scale=scale,
             plt_show=show,
         )
@@ -102,7 +102,9 @@ def build_member_subgraph(G, rm, scale, draw=False, show=False):
     return K, n
 
 
-def build_joined_subgraph(G, Ks, rms, nodes_check_support, scale, draw=False, show=False):
+def build_joined_subgraph(
+    G, folder_out, Ks, rms, nodes_check_support, scale, draw=False, show=False
+):
     all_subgraphs = copy.deepcopy(Ks)
     K_joined = all_subgraphs.pop(0)
 
@@ -114,12 +116,12 @@ def build_joined_subgraph(G, Ks, rms, nodes_check_support, scale, draw=False, sh
     print("\n1. SUBGRAPH CALC FOR MULTI MEMBERS: {}".format(rms))
     K = multi_member_remove(G, K_joined, rms, nodes_check_support)
 
-    name = "__".join(rms)
+    name = "_".join(rms)
     if draw:
         draw_graph(
             G=K_joined,
             pos_fixed=get_node_pos(K),
-            filename="P2_graphs_out/_{}".format(name),
+            filename="{}/_{}".format(folder_out, name),
             scale=scale,
             plt_show=show,
         )

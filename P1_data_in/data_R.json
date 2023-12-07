@@ -40,72 +40,72 @@
             "pos": "(0.0,11)",
             "size": 400
         },
-        "RR1L": {
+        "WR1": {
             "color": "tab:blue",
             "pos": "(-6.0,9.0)",
             "size": 400
         },
-        "RR2L": {
+        "WR2": {
             "color": "tab:blue",
             "pos": "(-6.0,6.0)",
             "size": 400
         },
-        "RR3L": {
+        "WR3": {
             "color": "tab:blue",
             "pos": "(-6.0,3.0)",
             "size": 400
         },
-        "RR4L": {
+        "WR4": {
             "color": "tab:blue",
             "pos": "(-6.0,0.0)",
             "size": 400
         },
-        "RR5L": {
+        "WR5": {
             "color": "tab:blue",
             "pos": "(-6.0,-3.0)",
             "size": 400
         },
-        "RR6L": {
+        "WR6": {
             "color": "tab:blue",
             "pos": "(-6.0,-6.0)",
             "size": 400
         },
-        "RR7L": {
+        "WR7": {
             "color": "tab:blue",
             "pos": "(-6.0,-9.0)",
             "size": 400
         },
-        "RR1R": {
+        "ER1": {
             "color": "tab:blue",
             "pos": "(6.0,9.0)",
             "size": 400
         },
-        "RR2R": {
+        "ER2": {
             "color": "tab:blue",
             "pos": "(6.0,6.0)",
             "size": 400
         },
-        "RR3R": {
+        "ER3": {
             "color": "tab:blue",
             "pos": "(6.0,3.0)",
             "size": 400
         },
-        "RR4R": {
+        "ER4": {
             "color": "tab:blue",
             "pos": "(6.0,0)",
             "size": 400
         },
-        "RR5R": {
+        "ER5": {
             "color": "tab:blue",
             "pos": "(6.0,-3.0)",
             "size": 400
         },
-        "RR6R": {
+        "ER6": {
             "color": "tab:blue",
             "pos": "(6.0,-6.0)",
             "size": 400
         },
-        "RR7R": {
+        "ER7": {
             "color": "tab:blue",
             "pos": "(6.0,-9.0)",
             "size": 400
@@ -231,7 +231,7 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "RR1L": {
+        "WR1": {
             "RG1_1": {
                 "weight": 1,
                 "color": "tab:red",
@@ -243,7 +243,7 @@
                 "style": "arc3, rad=0.2"
             }
         },
-        "RR2L": {
+        "WR2": {
             "RG1_1": {
                 "weight": 1,
                 "color": "tab:red",
@@ -265,7 +265,7 @@
                 "style": "arc3, rad=0.0"
             }
         },
-        "RR3L": {
+        "WR3": {
             "RG1_2": {
                 "weight": 1,
                 "color": "tab:red",
@@ -287,7 +287,7 @@
                 "style": "arc3, rad=0.1"
             }
         },
-        "RR4L": {
+        "WR4": {
             "RG1_3": {
                 "weight": 1,
                 "color": "tab:red",
@@ -309,7 +309,7 @@
                 "style": "arc3, rad=0.1"
             }
         },
-        "RR5L": {
+        "WR5": {
             "RG1_4": {
                 "weight": 1,
                 "color": "tab:red",
@@ -331,7 +331,7 @@
                 "style": "arc3, rad=0.1"
             }
         },
-        "RR6L": {
+        "WR6": {
             "RG1_5": {
                 "weight": 1,
                 "color": "tab:red",
@@ -353,7 +353,7 @@
                 "style": "arc3, rad=0.1"
             }
         },
-        "RR7L": {
+        "WR7": {
             "RG1_6": {
                 "weight": 1,
                 "color": "tab:red",
@@ -365,7 +365,7 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "RR1R": {
+        "ER1": {
             "RG1_1": {
                 "weight": 1,
                 "color": "tab:red",
@@ -377,7 +377,7 @@
                 "style": "arc3, rad=-0.2"
             }
         },
-        "RR2R": {
+        "ER2": {
             "RG1_1": {
                 "weight": 1,
                 "color": "tab:red",
@@ -399,7 +399,7 @@
                 "style": "arc3, rad=-0.0"
             }
         },
-        "RR3R": {
+        "ER3": {
             "RG1_2": {
                 "weight": 1,
                 "color": "tab:red",
@@ -421,7 +421,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "RR4R": {
+        "ER4": {
             "RG1_3": {
                 "weight": 1,
                 "color": "tab:red",
@@ -443,7 +443,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "RR5R": {
+        "ER5": {
             "RG1_4": {
                 "weight": 1,
                 "color": "tab:red",
@@ -465,7 +465,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "RR6R": {
+        "ER6": {
             "RG1_5": {
                 "weight": 1,
                 "color": "tab:red",
@@ -487,7 +487,7 @@
                 "style": "arc3, rad=-0.1"
             }
         },
-        "RR7R": {
+        "ER7": {
             "RG1_6": {
                 "weight": 1,
                 "color": "tab:red",
@@ -500,57 +500,57 @@
             }
         },
         "RJ2": {
-            "RR2L": {
+            "WR2": {
                 "weight": 1,
                 "color": "tab:green"
             },
-            "RR2R": {
+            "ER2": {
                 "weight": 1,
                 "color": "tab:green"
             }
         },
         "RJ3": {
-            "RR3L": {
+            "WR3": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=0.0"
             },
-            "RR3R": {
+            "ER3": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=-0.0"
             }
         },
         "RJ4": {
-            "RR4L": {
+            "WR4": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=0.0"
             },
-            "RR4R": {
+            "ER4": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=-0.0"
             }
         },
         "RJ5": {
-            "RR5L": {
+            "WR5": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=-0.0"
             },
-            "RR5R": {
+            "ER5": {
                 "weight": 1,
                 "color": "tab:green",
                 "style": "arc3, rad=0.0"
             }
         },
         "RJ6": {
-            "RR6L": {
+            "WR6": {
                 "weight": 1,
                 "color": "tab:green"
             },
-            "RR6R": {
+            "ER6": {
                 "weight": 1,
                 "color": "tab:green"
             }

@@ -1,6 +1,6 @@
 {
     "node": {
-        "NF": {
+        "NF1": {
             "color": "black",
             "pos": "(0,22.5)",
             "node_shape": "h",
@@ -103,34 +103,34 @@
             }
         },
         "NS1": {
-            "NF": {
+            "NF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.2"
             }
         },
         "NS2": {
-            "NF": {
+            "NF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "NS3": {
-            "NF": {
+            "NF1": {
                 "weight": 0.5,
                 "color": "black"
             }
         },
         "NS4": {
-            "NF": {
+            "NF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
         "NS5": {
-            "NF": {
+            "NF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.2"

@@ -1,6 +1,6 @@
 {
     "node": {
-        "SF": {
+        "SF1": {
             "color": "black",
             "pos": "(0.0,-25)",
             "node_shape": "h",
@@ -122,28 +122,28 @@
             }
         },
         "SS3": {
-            "SF": {
+            "SF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.1"
             }
         },
         "SS4": {
-            "SF": {
+            "SF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "SS5": {
-            "SF": {
+            "SF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.1"
             }
         },
         "SS6": {
-            "SF": {
+            "SF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.2"

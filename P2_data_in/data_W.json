@@ -1,6 +1,6 @@
 {
     "node": {
-        "WF": {
+        "WF1": {
             "color": "black",
             "pos": "(-25,0)",
             "node_shape": "h",
@@ -169,41 +169,41 @@
             }
         },
         "WS1": {
-            "WF": {
+            "WF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.5"
             }
         },
         "WS2": {
-            "WF": {
+            "WF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.4"
             }
         },
         "WS3": {
-            "WF": {
+            "WF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.3"
             }
         },
         "WS4": {
-            "WF": {
+            "WF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
         "WS5": {
-            "WF": {
+            "WF1": {
                 "weight": 0.5,
                 "color": "black"
             }
         },
         "WS6": {
-            "WF": {
+            "WF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.2"

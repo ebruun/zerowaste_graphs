@@ -21,7 +21,6 @@ def add_edges(G, edge_data):
 
 
 def get_node_pos(G, scale=1):
-
     scale = [scale, scale * 2]
 
     pos_fixed = {}
@@ -31,8 +30,7 @@ def get_node_pos(G, scale=1):
     return pos_fixed
 
 
-def build_full_graph(folder, filename, scale=1, draw=False, show=False):
-
+def build_full_graph(folder_in, filename, folder_out, scale=1, draw=False, show=False):
     G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
     data_in_list = [
@@ -44,8 +42,7 @@ def build_full_graph(folder, filename, scale=1, draw=False, show=False):
     ]
 
     for f in data_in_list:
-
-        edge_data, node_data = read_json(folder, f)
+        edge_data, node_data = read_json(folder_in, f)
 
         add_nodes(G, node_data)
         add_edges(G, edge_data)
@@ -54,7 +51,7 @@ def build_full_graph(folder, filename, scale=1, draw=False, show=False):
         draw_graph(
             G=G,
             pos_fixed=get_node_pos(G, scale),
-            filename="P2_graphs_out/{}".format(filename),
+            filename="{}/{}".format(folder_out, filename),
             scale=scale,
             plt_show=show,
         )
@@ -73,11 +70,9 @@ def _add_in_extra_edge(G, K_combo, Ks):
     # first subgraph
     for K in Ks:
         for n1 in K.nodes():
-
             # second subgraph
             for M in Ks:
                 for n2 in M.nodes():
-
                     # if in original but not in combo
                     if G.has_edge(n1, n2) and not K_combo.has_edge(n1, n2):
                         print("missing")
@@ -89,7 +84,6 @@ def _add_in_extra_edge(G, K_combo, Ks):
 
 
 def build_member_subgraph(G, rm, scale, draw=False, show=False):
-
     G_copy = G.copy()
 
     print("\n1. SUBGRAPH CALC FOR MEMBER: {}".format(rm))
@@ -109,7 +103,6 @@ def build_member_subgraph(G, rm, scale, draw=False, show=False):
 
 
 def build_joined_subgraph(G, Ks, rms, nodes_check_support, scale, draw=False, show=False):
-
     all_subgraphs = copy.deepcopy(Ks)
     K_joined = all_subgraphs.pop(0)
 

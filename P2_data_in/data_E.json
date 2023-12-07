@@ -1,6 +1,6 @@
 {
     "node": {
-        "EF": {
+        "EF1": {
             "color": "black",
             "pos": "(27.5,0)",
             "node_shape": "h",
@@ -284,28 +284,28 @@
             }
         },
         "ES1": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.45"
             }
         },
         "ES2": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.35"
             }
         },
         "ES3": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.25"
             }
         },
         "ES4": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.2"
@@ -326,48 +326,48 @@
             }
         },
         "ES7": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.2"
             }
         },
         "ES8": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.25"
             }
         },
         "ES9": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.35"
             }
         },
         "ES10": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.45"
             }
         },
         "ES11": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=-0.05"
             }
         },
         "ES12": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black"
             }
         },
         "ES13": {
-            "EF": {
+            "EF1": {
                 "weight": 0.5,
                 "color": "black",
                 "style": "arc3, rad=0.05"

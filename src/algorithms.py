@@ -46,10 +46,10 @@ def _find_adjacent_nodes(G, n, n_queue, n_saved):
 
 
 def _check_node_type(G, n_check, rm_memb):
-    print("Check what type of member this is")
+    print("\nCHECKING NODE TYPE OF: {}".format(n_check))
 
     if n_check == rm_memb:
-        print("--REMOVE MEMBER")
+        print("--REMOVE NODE")
         node_type = "remove"
     elif G.in_degree(n_check) == 0:
         print("--START NODE, in_degree=0")
@@ -87,7 +87,7 @@ def _check_cut(G, K):
     n_fixed_fully_removed = set()
 
     for n in K.nodes():
-        print("\nchecking node {}".format(n))
+        print("checking node {}".format(n))
 
         fully_removed = (K.in_degree(n) + K.out_degree(n)) == (G.in_degree(n) + G.out_degree(n))
 
@@ -164,8 +164,6 @@ def calc_subg(G, rm_memb):
     # A. Loop through nodes queue, and see if their adjacents should be added
     while nodes_queue:
         n_check = nodes_queue.pop(0)
-        print("\n\nCHECKING NODE {}".format(n_check))
-
         node_type = _check_node_type(G, n_check, rm_memb)
 
         if node_type in ["remove", "normal", "normal_1side_fixed"]:
@@ -195,7 +193,7 @@ def check_fixed_nodes_cut(G, K):
     Return the nodes that have a fixed connection cut, partial or fully removed
     """
 
-    print("\n2B. CHECK WHAT FIXED EDGES NEED TO BE CUT")
+    print("\n\n2B. CHECK WHAT FIXED EDGES NEED TO BE CUT")
 
     fxd_n_cut = set()
     fxd_n_cut_rmv = set()
@@ -218,26 +216,26 @@ def check_fixed_nodes_cut(G, K):
 
                 for fixed_edge in fixed_edges:
                     fxd_n_cut_rmv.add(fixed_edge[1])  # fully remove the current node
-                    fxd_n_cut_rmv.add(fixed_edge[0])  # other node is just cut, have to check it
+                    fxd_n_cut.add(fixed_edge[0])  # other node is just cut, have to check it
                     edge_draw_settings(K, [fixed_edge], "cut")
 
     print("\nfixed nodes that are cut but not removed: {}".format(fxd_n_cut))
     print("fixed nodes that are cut and fully removed: {}".format(fxd_n_cut_rmv))
 
-    return list(fxd_n_cut), list(fxd_n_cut_rmv)
+    # return list(fxd_n_cut), list(fxd_n_cut_rmv)
+    return list(fxd_n_cut_rmv)
 
 
-def check_support(G, K, rm_memb, fxd_n_cut, fxd_n_cut_rmv):
+def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
     """
     STEP C:
     """
-    print("\n2C. CHECK SUPPORT")
+    print("\n\n2C. CHECK FIXED SUPPORTS")
 
     n_1side_fxd = []
     n_2side_fxd = []
 
     for n_check in K.nodes():
-        print("\n\nCHECKING NODE {}".format(n_check))
         node_type = _check_node_type(G, n_check, rm_memb)
 
         if node_type in ["end_2sides_fixed"]:
@@ -245,23 +243,31 @@ def check_support(G, K, rm_memb, fxd_n_cut, fxd_n_cut_rmv):
         elif node_type in ["danger_1side_fixed"]:
             n_1side_fxd.append(n_check)
 
-    print("-- NODES one side fixed now: {}".format(n_1side_fxd))
+    # print("\n-- starting fxd_n_cut_rmv: {}".format(fxd_n_cut_rmv))
+    # print("-- starting fxd_n_cut: {}".format(fxd_n_cut))
+
+    print("-- NODES one side fixed: {}".format(n_1side_fxd))
     print("-- NODES two side fixed: {}".format(n_2side_fxd))
 
-    fxd_n_cut_rmv.append(rm_memb)
-    fxd_n_cut_rmv = list(set(fxd_n_cut_rmv))  # remove duplicates
+    # I think adding this is redundant, rm_memb always in here
+    # fxd_n_cut_rmv.append(rm_memb)
+    # fxd_n_cut_rmv = list(set(fxd_n_cut_rmv))  # remove duplicates
 
-    fxd_n_check = n_1side_fxd + n_2side_fxd + fxd_n_cut
-    fxd_n_check = list(set(fxd_n_check))  # remove duplicates
+    # I think adding this is redundant, rm_memb always in here
+    # fxd_n_check = n_1side_fxd + n_2side_fxd + fxd_n_cut
 
+    fxd_n_check = n_1side_fxd + n_2side_fxd
+    # fxd_n_check = list(set(fxd_n_check))  # remove duplicates
+
+    # I think adding this is redundant, rm_memb always in here
     # dont check the node specified for removal
-    if rm_memb in fxd_n_check:
-        fxd_n_check.remove(rm_memb)
+    # if rm_memb in fxd_n_check:
+    #     fxd_n_check.remove(rm_memb)
 
-    print("-- NODES fully removed: {}".format(fxd_n_cut_rmv))
-    print("-- NODES to check support on: {}".format(fxd_n_check))
+    print("-- fxd_n_cut_rmv: {}".format(fxd_n_cut_rmv))
+    print("-- fxd_n_check: {}".format(fxd_n_check))
 
-    # 3. check that properly supported
+    # check that properly supported
     K = check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)
 
     return fxd_n_check

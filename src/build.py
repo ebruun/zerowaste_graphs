@@ -1,7 +1,13 @@
 import copy
 import networkx as nx
 
-from src.algorithms import check_support, check_fixed_nodes_cut, calc_multimemb_remove, calc_subg
+from src.algorithms import (
+    check_fixed_nodes_support,
+    check_fixed_nodes_cut,
+    calc_multimemb_remove,
+    calc_subg,
+)
+
 from src.io import read_json
 
 
@@ -74,8 +80,8 @@ def bld_subg_single_remove(G, rm_membs):
     for rm_memb in rm_membs:
         print("\nSTEP 2A. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm_memb))
         K = calc_subg(G.copy(), rm_memb)
-        fxd_n_cut, fxd_n_cut_rmv = check_fixed_nodes_cut(G, K)
-        n2check = check_support(G, K, rm_memb, fxd_n_cut, fxd_n_cut_rmv)
+        fxd_n_cut_rmv = check_fixed_nodes_cut(G, K)
+        n2check = check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv)
 
         K_save.append(K)
         n2check_save.extend(n2check)

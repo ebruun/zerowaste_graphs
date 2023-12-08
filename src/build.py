@@ -1,7 +1,7 @@
 import copy
 import networkx as nx
 
-from src.algorithms import calc_memb_remove, calc_multimemb_remove
+from src.algorithms import check_support, check_fixed_nodes_cut, calc_multimemb_remove, calc_subg
 from src.io import read_json
 
 
@@ -72,8 +72,10 @@ def bld_subg_single_remove(G, rm_membs):
     n2check_save = []
 
     for rm_memb in rm_membs:
-        print("\n1. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm_memb))
-        K, n2check = calc_memb_remove(G.copy(), rm_memb)
+        print("\nSTEP 1. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm_memb))
+        K = calc_subg(G.copy(), rm_memb)
+        K, fixed_members_cut, fixed_nodes_fully_removed = check_fixed_nodes_cut(G, K)
+        K, n2check = check_support(G, K, rm_memb, fixed_members_cut, fixed_nodes_fully_removed)
 
         K_save.append(K)
         n2check_save.extend(n2check)
@@ -84,7 +86,7 @@ def bld_subg_single_remove(G, rm_membs):
 
 
 def bld_subg_multi(G, Ks, rms, nodes_check_support):
-    print("\n1. BUILD SUBGRAPH FOR MULTIPLE MEMBERS REMOVAL: {}".format(rms))
+    print("\nSTEP 1. BUILD SUBGRAPH FOR MULTIPLE MEMBERS REMOVAL: {}".format(rms))
 
     Ks_copy = copy.deepcopy(Ks)
     K_joined = Ks_copy.pop(0)  # initialize one sub-graph to join rest too

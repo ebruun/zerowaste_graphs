@@ -50,12 +50,18 @@ def node_draw_settings(G, nodes, type):
         elif type == "end":
             G.nodes[n]["color"] = "black"
             G.nodes[n]["size"] = 500
-        elif type == "danger":
+        elif type == "end_2sides_fixed":
+            G.nodes[n]["color"] = "black"
+            G.nodes[n]["size"] = 1500
+        elif type == "danger_1side_fixed":
             G.nodes[n]["color"] = "orange"
             G.nodes[n]["size"] = 500
         elif type == "normal":
             G.nodes[n]["color"] = "tab:grey"
             G.nodes[n]["size"] = 400
+        elif type == "normal_1side_fixed":
+            G.nodes[n]["color"] = "tab:grey"
+            G.nodes[n]["size"] = 1000
 
 
 def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False):

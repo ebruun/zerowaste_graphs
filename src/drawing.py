@@ -26,7 +26,7 @@ def move_figure(f, x, y):
         f.canvas.manager.window.move(x, y)
 
 
-def edge_settings(G, edges, type):
+def edge_draw_settings(G, edges, type):
     for e in edges:
         if type == "cut":
             G.edges[e[0], e[1], 0]["edge_style"] = "dashed"
@@ -38,7 +38,7 @@ def edge_settings(G, edges, type):
             G.edges[e[1], e[0], 0]["color"] = "tab:red"
 
 
-def node_settings(G, nodes, type):
+def node_draw_settings(G, nodes, type):
     for n in nodes:
         if type == "remove":
             G.nodes[n]["color"] = "tab:red"

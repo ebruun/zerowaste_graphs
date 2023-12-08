@@ -1,6 +1,6 @@
 from src.build import (
     bld_g_full,
-    bld_subg_single,
+    bld_subg_single_remove,
     bld_subg_multi,
 )
 
@@ -50,15 +50,15 @@ if __name__ == "__main__":
         G=G,
         filepath="{}/{}".format(f_out, "_full_structure.png"),
         scale=1,
-        plt_show=True,
-        plt_save=True,
+        plt_show=False,
+        plt_save=False,
     )
 
     # Task #2: Single Member Removal Sub-graphs
     # rm_membs = ["SP1_2", "SP1_3", "SP1_4", "ES10"]
-    rm_membs = ["SS1", "WS9"]
+    rm_membs = ["WS9"]
 
-    Ks, n2check = bld_subg_single(G, rm_membs)
+    Ks, n2check = bld_subg_single_remove(G, rm_membs)
 
     for rm_memb, K in zip(rm_membs, Ks):
         draw_graph(

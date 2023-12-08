@@ -1,8 +1,7 @@
 import copy
 import networkx as nx
 
-from src.algorithms import check_connected, check_cut, single_member_remove, multi_member_remove
-from src.drawing import draw_graph
+from src.algorithms import calc_memb_remove, calc_multimemb_remove
 from src.io import read_json
 
 
@@ -68,13 +67,13 @@ def bld_g_full(folder_in):
     return G
 
 
-def bld_subg_single(G, remove_members):
+def bld_subg_single_remove(G, rm_membs):
     K_save = []
     n2check_save = []
 
-    for rm in remove_members:
-        print("\n1. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm))
-        K, n2check = single_member_remove(G.copy(), rm)
+    for rm_memb in rm_membs:
+        print("\n1. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm_memb))
+        K, n2check = calc_memb_remove(G.copy(), rm_memb)
 
         K_save.append(K)
         n2check_save.extend(n2check)
@@ -95,6 +94,6 @@ def bld_subg_multi(G, Ks, rms, nodes_check_support):
 
     _add_in_extra_edge(G, K_joined, Ks)  # some edges might be missing between subgraphs
 
-    K_joined = multi_member_remove(G, K_joined, rms, nodes_check_support)
+    K_joined = calc_multimemb_remove(G, K_joined, rms, nodes_check_support)
 
     return K_joined

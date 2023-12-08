@@ -1,8 +1,10 @@
 from src.build import (
-    build_full_graph,
-    build_member_subgraph,
-    build_joined_subgraph,
+    bld_g_full,
+    bld_subg_single,
+    bld_subg_multi,
 )
+
+from src.drawing import draw_graph
 
 
 def check_list():
@@ -38,47 +40,50 @@ def calculate_sequence(K):
 
 if __name__ == "__main__":
     phase_number = 1
+    f_in = "P{}_data_in".format(phase_number)
+    f_out = "P{}_graphs_out".format(phase_number)
 
-    G = build_full_graph(
-        folder_in="P{}_data_in".format(phase_number),
-        folder_out="P{}_graphs_out".format(phase_number),
-        filename="_full_structure.png",
+    # Task #1: Building Overall Support Hierarchy
+    G = bld_g_full(f_in)
+
+    draw_graph(
+        G=G,
+        filepath="{}/{}".format(f_out, "_full_structure.png"),
         scale=1,
-        draw=False,
-        show=False,
+        plt_show=True,
+        plt_save=True,
     )
 
-    # remove_members = ["SP1_2", "SP1_3", "SP1_4", "ES10"]
-    remove_members = ["SS1", "WS9"]
+    # Task #2: Single Member Removal Sub-graphs
+    # rm_membs = ["SP1_2", "SP1_3", "SP1_4", "ES10"]
+    rm_membs = ["SS1", "WS9"]
 
-    subgraphs = []
-    nodes_check_support = []
+    Ks, n2check = bld_subg_single(G, rm_membs)
 
-    for remove_member in remove_members:
-        K, n = build_member_subgraph(
-            G=G,
-            folder_out="P{}_graphs_out".format(phase_number),
-            rm=remove_member,
-            scale=1.2,
-            draw=True,
-            show=True,
+    for rm_memb, K in zip(rm_membs, Ks):
+        draw_graph(
+            G=K, filepath="{}/{}".format(f_out, rm_memb), scale=1.2, plt_show=True, plt_save=True
         )
 
-        subgraphs.append(K)
-        nodes_check_support.extend(n)
+    # Task #3: Joined Subgraphs
+    if len(rm_membs) > 1:
+        K_joined = bld_subg_multi(G, Ks, rm_membs, n2check)
 
-    nodes_check_support = list(set(nodes_check_support))
+        name = "_".join(rm_membs)
+        draw_graph(
+            G=K_joined,
+            filepath="{}/_{}".format(f_out, name),
+            scale=1.2,
+            plt_show=True,
+            plt_save=True,
+        )
 
-    print(subgraphs)
-    print(nodes_check_support)
+    # K_reduced = unroll_sequence(K)
 
-    # build_joined_subgraph(
-    #     G=G,
-    #     folder_out="P{}_graphs_out".format(phase_number),
-    #     Ks=subgraphs,
-    #     rms=remove_members,
-    #     nodes_check_support=nodes_check_support,
-    #     scale=1.2,
-    #     draw=True,
-    #     show=True,
+    # draw_graph(
+    #     G=K_reduced,
+    #     pos_fixed=get_node_pos(K_reduced),
+    #     filename="{}/_{}".format("P{}_graphs_out".format(phase_number), "test"),
+    #     scale=1,
+    #     plt_show=True,
     # )

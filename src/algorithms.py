@@ -1,5 +1,6 @@
 import imp
 import networkx as nx
+import copy
 from src.drawing import node_settings, edge_settings
 
 
@@ -11,7 +12,7 @@ def _get_e_in(G, n):
     return list(G.in_edges(n))
 
 
-def check_if_fixed_exists(G, n1, n2):
+def _check_if_fixed_exists(G, n1, n2):
     if G.has_edge(n1, n2) and G.has_edge(n2, n1):
         return True
     else:
@@ -22,16 +23,18 @@ def count_fixed_sides(G, n):
     """
     Check on how many sides node is fixed
 
-    return COUNT and FIXED_EDGES
+    return COUNT and FIXED_EDGES as tuple
     """
-    e_list = _get_e_out(G, n)
 
     fixed_e_count = 0
     e_fixed = []
-    for e in e_list:
-        if G.has_edge(e[1], e[0]):
+
+    neighbors = list(G.neighbors(n))
+
+    for neighbor in neighbors:
+        if _check_if_fixed_exists(G, n, neighbor):
             fixed_e_count += 1
-            e_fixed.append(e)
+            e_fixed.append((n, neighbor))  # save as tuple ('n1','n2')
 
     return fixed_e_count, e_fixed
 
@@ -51,7 +54,6 @@ def find_adjacent_nodes(G, n, n_queue, n_saved):
 
 
 def initialize(G, remove_node):
-
     """
     initialize the algorithm with the node to be removed
     """
@@ -62,9 +64,9 @@ def initialize(G, remove_node):
     print("\nINITIALIZING WITH NODE {}".format(remove_node))
     node_settings(G, [remove_node], "remove")
 
-    if len(G.in_edges(remove_node)) == 0:
+    if G.in_degree(remove_node) == 0:
         print("--NO ADD: start node")
-    elif len(G.out_edges(remove_node)) == 0:
+    elif G.out_degree(remove_node) == 0:
         print("--NO ADD: end node")
     else:
         nodes_queue, nodes_saved = find_adjacent_nodes(G, remove_node, nodes_queue, nodes_saved)
@@ -79,10 +81,10 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
 
     add = False
 
-    if len(G.in_edges(n)) == 0:
+    if G.in_degree(n) == 0:
         print("--NO ADD: start node")
         node_settings(G, [n], "start")
-    elif len(G.out_edges(n)) == 0:
+    elif G.out_degree(n) == 0:
         print("--NO ADD: end node")
         node_settings(G, [n], "end")
     elif count_fixed_sides(G, n)[0] == 2:
@@ -92,21 +94,19 @@ def add_node_to_queue(G, n, two_side_fixed, one_side_fixed, remove_node):
     elif count_fixed_sides(G, n)[0] == 1:
         print("--FIXED NODE, fixed on ONE side")
 
-        if G.has_edge(n, remove_node) and not check_if_fixed_exists(G, n, remove_node):
+        if G.has_edge(n, remove_node) and not _check_if_fixed_exists(G, n, remove_node):
             print("-- -- ADD: normal node, since resting on member to remove")
-            add = True  # make a normal node if it's resting on to remove
             node_settings(G, [n], "normal")
-            # node_settings(G, [n], "end")
-            pass
+            add = True  # make a normal node if it's resting on to remove
         else:
             print("-- -- NO ADD: not direct resting on member to remove")
-            one_side_fixed.append(n)
             node_settings(G, [n], "danger")
+            one_side_fixed.append(n)
 
     else:
         print("--ADD: normal node")
-        add = True
         node_settings(G, [n], "normal")
+        add = True
 
     return add
 
@@ -135,7 +135,6 @@ def check_cut(G, K):
             num_e_fixed, e_fixed = count_fixed_sides(K, n)
 
             if num_e_fixed:  # if there are any fixed edges
-
                 for e in e_fixed:
                     print("-- --fixed connection to cut {}".format(e))
 
@@ -182,7 +181,7 @@ def check_connected(G, K, nodes_fully_removed, nodes_check_support):
 
         # if fixed edge is not being cut, add back
         for e in e_K:
-            if check_if_fixed_exists(G, e[0], e[1]):
+            if _check_if_fixed_exists(G, e[0], e[1]):
                 if e[0] in nodes_fully_removed or e[1] in nodes_fully_removed:
                     print("-- fixed is cut, do not add back in")
                 else:
@@ -204,7 +203,6 @@ def check_connected(G, K, nodes_fully_removed, nodes_check_support):
 
 
 def single_member_remove(G, rm):
-
     nodes_saved, nodes_queue = initialize(G, rm)
     two_side_fixed = []
     one_side_fixed = []
@@ -256,7 +254,6 @@ def single_member_remove(G, rm):
 
 
 def multi_member_remove(G, K, rms, nodes_check_support):
-
     print("\n1. SUBGRAPH CALC FOR MEMBERs: {}".format(rms))
 
     node_settings(K, rms, "remove")  # color all removal members
@@ -271,7 +268,7 @@ def multi_member_remove(G, K, rms, nodes_check_support):
     nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
 
     nodes_check_support.extend(nodes_cut)
-    nodes_check_support = list(set(nodes_check_support))
+    nodes_check_support = list(set(nodes_check_support))  # remove duplicates
 
     # dont check the node specified for removal
     for rm in rms:
@@ -281,7 +278,7 @@ def multi_member_remove(G, K, rms, nodes_check_support):
     print("-- NODES fully removed: {}".format(nodes_fully_removed))
     print("-- NODES to check support on: {}".format(nodes_check_support))
 
-    _ = check_connected(G, K, nodes_fully_removed, nodes_check_support)
+    K = check_connected(G, K, nodes_fully_removed, nodes_check_support)
 
     return K
 

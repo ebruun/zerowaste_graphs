@@ -3,6 +3,16 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 
 
+def _get_node_pos(G, scale=1):
+    scale = [scale, scale * 2]
+
+    pos_fixed = {}
+    for k, v in nx.get_node_attributes(G, "pos").items():
+        pos_fixed[k] = tuple(dim * s for dim, s in zip(eval(v), scale))
+
+    return pos_fixed
+
+
 def move_figure(f, x, y):
     """Move figure's upper left corner to pixel (x, y)"""
     backend = mpl.get_backend()
@@ -17,7 +27,6 @@ def move_figure(f, x, y):
 
 
 def edge_settings(G, edges, type):
-
     for e in edges:
         if type == "cut":
             G.edges[e[0], e[1], 0]["edge_style"] = "dashed"
@@ -30,16 +39,14 @@ def edge_settings(G, edges, type):
 
 
 def node_settings(G, nodes, type):
-
     for n in nodes:
-
         if type == "remove":
             G.nodes[n]["color"] = "tab:red"
             G.nodes[n]["size"] = 600
             G.nodes[n]["node_shape"] = "8"
         elif type == "start":
             G.nodes[n]["color"] = "tab:green"
-            G.nodes[n]["size"] = 300
+            G.nodes[n]["size"] = 400
         elif type == "end":
             G.nodes[n]["color"] = "black"
             G.nodes[n]["size"] = 500
@@ -48,10 +55,11 @@ def node_settings(G, nodes, type):
             G.nodes[n]["size"] = 500
         elif type == "normal":
             G.nodes[n]["color"] = "tab:grey"
-            G.nodes[n]["size"] = 300
+            G.nodes[n]["size"] = 400
 
 
-def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
+def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False):
+    pos_fixed = _get_node_pos(G, scale)  # get location to draw
 
     if scale == 1:
         f = plt.figure(1, figsize=(11, 8.5))
@@ -62,11 +70,10 @@ def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
 
     n_size = []  # for drawing arrows correct location
     for n in G.nodes(data=True):
-
         if "size" in n[1]:
             s = n[1]["size"]
         else:
-            s = 300
+            s = 500
 
         if "node_shape" in n[1]:
             n_shape = n[1]["node_shape"]
@@ -85,7 +92,6 @@ def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
         n_size.append(s * scale)  # for correct arrow location
 
     for e in G.edges(data=True):
-
         if "style" in e[2]:  # curved arrows
             c = e[2]["style"]
         else:
@@ -119,7 +125,9 @@ def draw_graph(G, pos_fixed, filename, scale=1, plt_show=False):
     f = plt.gcf()
     f.tight_layout()
     plt.axis("off")  # no border around fig
-    plt.savefig(filename, dpi=600)
+
+    if plt_save:
+        plt.savefig(filepath, dpi=600)
 
     if plt_show:
         plt.show()

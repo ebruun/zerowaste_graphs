@@ -6,57 +6,18 @@ from src.drawing import draw_graph
 from src.io import read_json
 
 
-def add_nodes(G, node_data):
+def _add_nodes(G, node_data):
     G.add_nodes_from(node_data.keys())
     nx.set_node_attributes(G, node_data)
 
 
-def add_edges(G, edge_data):
+def _add_edges(G, edge_data):
     add_list = []
     for k, v in edge_data.items():
         for k2, v2 in v.items():
             add_list.append((k, k2, v2))
 
     G.add_edges_from(add_list)
-
-
-def get_node_pos(G, scale=1):
-    scale = [scale, scale * 2]
-
-    pos_fixed = {}
-    for k, v in nx.get_node_attributes(G, "pos").items():
-        pos_fixed[k] = tuple(dim * s for dim, s in zip(eval(v), scale))
-
-    return pos_fixed
-
-
-def build_full_graph(folder_in, filename, folder_out, scale=1, draw=False, show=False):
-    G = nx.empty_graph(create_using=nx.MultiDiGraph())
-
-    data_in_list = [
-        "data_R.json",
-        "data_W.json",
-        "data_N.json",
-        "data_E.json",
-        "data_S.json",
-    ]
-
-    for f in data_in_list:
-        edge_data, node_data = read_json(folder_in, f)
-
-        add_nodes(G, node_data)
-        add_edges(G, edge_data)
-
-    if draw:
-        draw_graph(
-            G=G,
-            pos_fixed=get_node_pos(G, scale),
-            filename="{}/{}".format(folder_out, filename),
-            scale=scale,
-            plt_show=show,
-        )
-
-    return G
 
 
 def _add_in_extra_edge(G, K_combo, Ks):
@@ -83,45 +44,57 @@ def _add_in_extra_edge(G, K_combo, Ks):
                         K_combo.edges[n1, n2, 0]["color"] = "black"
 
 
-def build_member_subgraph(G, folder_out, rm, scale, draw=False, show=False):
-    G_copy = G.copy()
-
-    print("\n1. SUBGRAPH CALC FOR MEMBER: {}".format(rm))
-    K, n = single_member_remove(G_copy, rm)
-
-    # Only draw it if not START/END node (since pointless)
-    if draw and K.number_of_nodes() > 1:
-        draw_graph(
-            G=K,
-            pos_fixed=get_node_pos(K, scale),
-            filename="{}/{}.png".format(folder_out, rm),
-            scale=scale,
-            plt_show=show,
-        )
-
-    return K, n
+######################################################################
 
 
-def build_joined_subgraph(
-    G, folder_out, Ks, rms, nodes_check_support, scale, draw=False, show=False
-):
-    all_subgraphs = copy.deepcopy(Ks)
-    K_joined = all_subgraphs.pop(0)
+def bld_g_full(folder_in):
+    print("\n1. BUILD FULL SUPPORT HIERARCHY GRAPH")
+    G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
-    for K in all_subgraphs:
+    data_in_list = [
+        "data_R.json",
+        "data_W.json",
+        "data_N.json",
+        "data_E.json",
+        "data_S.json",
+    ]
+
+    for f in data_in_list:
+        edge_data, node_data = read_json(folder_in, f)
+
+        _add_nodes(G, node_data)
+        _add_edges(G, edge_data)
+
+    return G
+
+
+def bld_subg_single(G, remove_members):
+    K_save = []
+    n2check_save = []
+
+    for rm in remove_members:
+        print("\n1. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm))
+        K, n2check = single_member_remove(G.copy(), rm)
+
+        K_save.append(K)
+        n2check_save.extend(n2check)
+
+    n2check_save = list(set(n2check_save))  # remove duplicates
+
+    return K_save, n2check_save
+
+
+def bld_subg_multi(G, Ks, rms, nodes_check_support):
+    print("\n1. BUILD SUBGRAPH FOR MULTIPLE MEMBERS REMOVAL: {}".format(rms))
+
+    Ks_copy = copy.deepcopy(Ks)
+    K_joined = Ks_copy.pop(0)  # initialize one sub-graph to join rest too
+
+    for K in Ks_copy:
         K_joined = nx.compose(K, K_joined)
 
-    _add_in_extra_edge(G, K_joined, Ks)
+    _add_in_extra_edge(G, K_joined, Ks)  # some edges might be missing between subgraphs
 
-    print("\n1. SUBGRAPH CALC FOR MULTI MEMBERS: {}".format(rms))
-    K = multi_member_remove(G, K_joined, rms, nodes_check_support)
+    K_joined = multi_member_remove(G, K_joined, rms, nodes_check_support)
 
-    name = "_".join(rms)
-    if draw:
-        draw_graph(
-            G=K_joined,
-            pos_fixed=get_node_pos(K),
-            filename="{}/_{}".format(folder_out, name),
-            scale=scale,
-            plt_show=show,
-        )
+    return K_joined

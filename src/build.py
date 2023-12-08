@@ -72,10 +72,10 @@ def bld_subg_single_remove(G, rm_membs):
     n2check_save = []
 
     for rm_memb in rm_membs:
-        print("\nSTEP 1. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm_memb))
+        print("\nSTEP 2A. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}".format(rm_memb))
         K = calc_subg(G.copy(), rm_memb)
-        K, fixed_members_cut, fixed_nodes_fully_removed = check_fixed_nodes_cut(G, K)
-        K, n2check = check_support(G, K, rm_memb, fixed_members_cut, fixed_nodes_fully_removed)
+        fxd_n_cut, fxd_n_cut_rmv = check_fixed_nodes_cut(G, K)
+        n2check = check_support(G, K, rm_memb, fxd_n_cut, fxd_n_cut_rmv)
 
         K_save.append(K)
         n2check_save.extend(n2check)

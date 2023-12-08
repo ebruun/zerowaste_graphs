@@ -4,14 +4,6 @@ import copy
 from src.drawing import node_draw_settings, edge_draw_settings
 
 
-def _get_e_out(G, n):
-    return list(G.out_edges(n))
-
-
-def _get_e_in(G, n):
-    return list(G.in_edges(n))
-
-
 def _check_if_fixed_exists(G, n1, n2):
     if G.has_edge(n1, n2) and G.has_edge(n2, n1):
         return True
@@ -19,7 +11,7 @@ def _check_if_fixed_exists(G, n1, n2):
         return False
 
 
-def count_fixed_sides(G, n):
+def _count_fixed_sides(G, n):
     """
     Check on how many sides node is fixed
 
@@ -39,9 +31,9 @@ def count_fixed_sides(G, n):
     return fixed_e_count, e_fixed
 
 
-def find_adjacent_nodes(G, n, n_queue, n_saved):
-    e_in_normal = _get_e_in(G, n)
-    e_out_normal = _get_e_out(G, n)
+def _find_adjacent_nodes(G, n, n_queue, n_saved):
+    e_in_normal = list(G.in_edges(n))
+    e_out_normal = list(G.out_edges(n))
 
     new_n = []
     new_n.extend([e[0] for e in e_in_normal])
@@ -65,10 +57,10 @@ def _check_node_type(G, n_check, rm_memb):
     elif G.out_degree(n_check) == 0:
         print("--END NODE, out_degree=0")
         node_type = "end"
-    elif count_fixed_sides(G, n_check)[0] == 2:
+    elif _count_fixed_sides(G, n_check)[0] == 2:
         print("--END NODE, fixed on TWO sides")
         node_type = "end_2sides_fixed"
-    elif count_fixed_sides(G, n_check)[0] == 1:
+    elif _count_fixed_sides(G, n_check)[0] == 1:
         if G.has_edge(n_check, rm_memb) and not _check_if_fixed_exists(G, n_check, rm_memb):
             print("-- NORMAL NODE, fixed on ONE side and on member to remove")
             node_type = "normal_1side_fixed"
@@ -121,7 +113,7 @@ def _check_cut(G, K):
     return list(n_fixed_cut), list(n_fixed_fully_removed)
 
 
-def check_connected(G, K, nodes_fully_removed, nodes_check_support):
+def check_connected(G, K, fxd_n_cut_rmv, fxd_n_cut):
     """
     check if a member with a single fixed has at least TWO other support connections after the removal of the member.
     If it is fixed and not being cut then it just needs 1 additional connection.
@@ -129,17 +121,13 @@ def check_connected(G, K, nodes_fully_removed, nodes_check_support):
     If it has enough edges it is considered fixed support in this disassembly step
     """
 
-    print(
-        "\n3. CHECKING NODES {} in SUBGRAPH K IF THEY HAVE ENOUGH SUPPORT".format(
-            nodes_check_support
-        )
-    )
+    print("\n2. CHECKING NODES {} in SUBGRAPH K IF THEY HAVE ENOUGH SUPPORT".format(fxd_n_cut))
 
-    for n in nodes_check_support:
-        print("\nCHECK NODE {}".format(n))
+    for n in fxd_n_cut:
+        print("\nCHECK FIXED NODE {}".format(n))
 
-        e_G = _get_e_out(G, n)  # starting members supported by
-        e_K = _get_e_out(K, n)  # supporting members to remove
+        e_G = list(G.out_edges(n))  # starting members supported by
+        e_K = list(K.out_edges(n))  # supporting members to remove
 
         num_supports = len(e_G) - len(e_K)
         print("-- {} supports left. These members being removed: {}".format(num_supports, e_K))
@@ -147,7 +135,7 @@ def check_connected(G, K, nodes_fully_removed, nodes_check_support):
         # if fixed edge is not being cut, add back
         for e in e_K:
             if _check_if_fixed_exists(G, e[0], e[1]):
-                if e[0] in nodes_fully_removed or e[1] in nodes_fully_removed:
+                if e[0] in fxd_n_cut_rmv or e[1] in fxd_n_cut_rmv:
                     print("-- fixed is cut, do not add back in")
                 else:
                     print("-- fixed is not cut, add support back in")
@@ -160,7 +148,7 @@ def check_connected(G, K, nodes_fully_removed, nodes_check_support):
             print("-- SAFE, w/ {} SUPPORTS".format(num_supports))
             node_draw_settings(K, [n], "end")
 
-        if n in nodes_fully_removed:
+        if n in fxd_n_cut_rmv:
             print("-- SAFE, FULLY REMOVE")
             node_draw_settings(K, [n], "normal")
 
@@ -168,7 +156,7 @@ def check_connected(G, K, nodes_fully_removed, nodes_check_support):
 
 
 def calc_subg(G, rm_memb):
-    "calculate a sub-graph based on the member set for removal"
+    "STEP A: calculate a sub-graph based on the member set for removal"
 
     nodes_queue = [rm_memb]  # queue to check
     nodes_checked = []  # saved list of checked nodes
@@ -181,7 +169,9 @@ def calc_subg(G, rm_memb):
         node_type = _check_node_type(G, n_check, rm_memb)
 
         if node_type in ["remove", "normal", "normal_1side_fixed"]:
-            nodes_queue, nodes_checked = find_adjacent_nodes(G, n_check, nodes_queue, nodes_checked)
+            nodes_queue, nodes_checked = _find_adjacent_nodes(
+                G, n_check, nodes_queue, nodes_checked
+            )
 
         nodes_checked.append(n_check)
         node_draw_settings(G, [n_check], node_type)
@@ -199,15 +189,16 @@ def calc_subg(G, rm_memb):
 
 def check_fixed_nodes_cut(G, K):
     """
-    Check if a member is fully removed, check if it is a fixed member
+    STEP B:
+    Check if a member in a subgraph is fully removed, check if it is a fixed member
     If yes to both, then it has to be manually cut from the structure
     Return the nodes that have a fixed connection cut, partial or fully removed
     """
 
-    print("\n2. CHECK WHAT FIXED EDGES NEED TO BE CUT")
+    print("\n2B. CHECK WHAT FIXED EDGES NEED TO BE CUT")
 
-    fixed_nodes_cut = set()
-    fixed_nodes_fully_removed = set()
+    fxd_n_cut = set()
+    fxd_n_cut_rmv = set()
 
     for n in K.nodes():
         print("\nchecking node {}".format(n))
@@ -226,52 +217,54 @@ def check_fixed_nodes_cut(G, K):
                 print("-- fixed member")
 
                 for fixed_edge in fixed_edges:
-                    fixed_nodes_fully_removed.add(fixed_edge[1])  # fully remove the current node
-                    fixed_nodes_cut.add(fixed_edge[0])  # other node is just cut, have to check it
+                    fxd_n_cut_rmv.add(fixed_edge[1])  # fully remove the current node
+                    fxd_n_cut_rmv.add(fixed_edge[0])  # other node is just cut, have to check it
                     edge_draw_settings(K, [fixed_edge], "cut")
 
-    print("\nfixed nodes that are cut but not removed: {}".format(fixed_nodes_cut))
-    print("fixed nodes that are cut and fully removed: {}".format(fixed_nodes_fully_removed))
+    print("\nfixed nodes that are cut but not removed: {}".format(fxd_n_cut))
+    print("fixed nodes that are cut and fully removed: {}".format(fxd_n_cut_rmv))
 
-    fixed_nodes_cut = list(fixed_nodes_cut)
-    fixed_nodes_fully_removed = list(fixed_nodes_fully_removed)
-
-    return K, fixed_nodes_cut, fixed_nodes_fully_removed
+    return list(fxd_n_cut), list(fxd_n_cut_rmv)
 
 
-def check_support(G, K, rm_memb, fixed_nodes_cut, fixed_nodes_fully_removed):
-    two_side_fixed = []
-    one_side_fixed = []
+def check_support(G, K, rm_memb, fxd_n_cut, fxd_n_cut_rmv):
+    """
+    STEP C:
+    """
+    print("\n2C. CHECK SUPPORT")
+
+    n_1side_fxd = []
+    n_2side_fxd = []
 
     for n_check in K.nodes():
         print("\n\nCHECKING NODE {}".format(n_check))
         node_type = _check_node_type(G, n_check, rm_memb)
 
         if node_type in ["end_2sides_fixed"]:
-            two_side_fixed.append(n_check)
+            n_2side_fxd.append(n_check)
         elif node_type in ["danger_1side_fixed"]:
-            one_side_fixed.append(n_check)
+            n_1side_fxd.append(n_check)
 
-    print("-- NODES one side fixed now: {}".format(one_side_fixed))
-    print("-- NODES two side fixed: {}".format(two_side_fixed))
+    print("-- NODES one side fixed now: {}".format(n_1side_fxd))
+    print("-- NODES two side fixed: {}".format(n_2side_fxd))
 
-    fixed_nodes_fully_removed.append(rm_memb)
-    fixed_nodes_fully_removed = list(set(fixed_nodes_fully_removed))  # remove duplicates
+    fxd_n_cut_rmv.append(rm_memb)
+    fxd_n_cut_rmv = list(set(fxd_n_cut_rmv))  # remove duplicates
 
-    nodes_check_support = one_side_fixed + two_side_fixed + fixed_nodes_cut
-    nodes_check_support = list(set(nodes_check_support))  # remove duplicates
+    fxd_n_check = n_1side_fxd + n_2side_fxd + fxd_n_cut
+    fxd_n_check = list(set(fxd_n_check))  # remove duplicates
 
     # dont check the node specified for removal
-    if rm_memb in nodes_check_support:
-        nodes_check_support.remove(rm_memb)
+    if rm_memb in fxd_n_check:
+        fxd_n_check.remove(rm_memb)
 
-    print("-- NODES fully removed: {}".format(fixed_nodes_fully_removed))
-    print("-- NODES to check support on: {}".format(nodes_check_support))
+    print("-- NODES fully removed: {}".format(fxd_n_cut_rmv))
+    print("-- NODES to check support on: {}".format(fxd_n_check))
 
     # 3. check that properly supported
-    K = check_connected(G, K, fixed_nodes_fully_removed, nodes_check_support)
+    K = check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)
 
-    return K, nodes_check_support
+    return fxd_n_check
 
 
 def calc_multimemb_remove(G, K, rms, nodes_check_support):

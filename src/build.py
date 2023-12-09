@@ -50,28 +50,12 @@ def _add_in_extra_edge(G, K_joined):
 
     print("\nmissing edges in joined subgraphs: {}".format(missing_edges))
 
-    # # first subgraph
-    # for K in Ks:
-    #     for n1 in K.nodes():
-    #         # second subgraph
-    #         for M in Ks:
-    #             for n2 in M.nodes():
-    #                 # if in original graph G, but not in K_joined
-    #                 if G.has_edge(n1, n2) and not K_joined.has_edge(n1, n2):
-
-    #                     data = G.get_edge_data(n1, n2)
-
-    #                     K_joined.add_edges_from([(n1, n2, data[0])])
-    #                     K_joined.edges[n1, n2, 0]["color"] = "black"
-
-    #                     print("missing edge: {},{}".format(n1,n2))
-
 
 ######################################################################
 
 
 def bld_g_full(folder_in):
-    print("\n\n######1. BUILD FULL SUPPORT HIERARCHY GRAPH#####")
+    print("\n\n##1. BUILD FULL SUPPORT HIERARCHY GRAPH##")
     G = nx.empty_graph(create_using=nx.MultiDiGraph())
 
     data_in_list = [
@@ -96,7 +80,7 @@ def bld_subg_single_remove(G, rm_membs):
     n2check_save = []
 
     for rm_memb in rm_membs:
-        print("\n\n#######STEP 2A. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}#######".format(rm_memb))
+        print("\n\n##2A. BUILD SUBGRAPH FOR MEMBER REMOVAL: {}##".format(rm_memb))
         K = calc_subg(G.copy(), rm_memb)
         fxd_n_cut_rmv = check_fixed_nodes_cut(G, K)
         n2check = check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv)
@@ -110,20 +94,9 @@ def bld_subg_single_remove(G, rm_membs):
 
 
 def bld_subg_multi(G, Ks, rms, nodes_check_support):
-    print(
-        "\n\n###########STEP 3A. BUILD SUBGRAPH FOR MULTIPLE MEMBERS REMOVAL: {}########".format(
-            rms
-        )
-    )
-
-    # Ks_copy = copy.deepcopy(Ks)
-    # K_joined = Ks_copy.pop(0)  # initialize one sub-graph to join rest too
-
-    # for K in Ks_copy:
-    #     K_joined = nx.compose(K, K_joined)
+    print("\n\n##3A. BUILD SUBGRAPH FOR MULTIPLE MEMBERS REMOVAL##")
 
     K_joined = nx.compose_all(Ks)
-
     _add_in_extra_edge(G, K_joined)
 
     K_joined = calc_multimemb_remove(G, K_joined, rms, nodes_check_support)

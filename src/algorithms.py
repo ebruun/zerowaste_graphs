@@ -269,10 +269,10 @@ def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
     return fxd_n_check
 
 
-def calc_multimemb_remove(G, K, rms, nodes_check_support):
-    print("\n1. SUBGRAPH CALC FOR MEMBERs: {}".format(rms))
+def calc_multimemb_remove(G, K, rm_membs, nodes_check_support):
+    print("\nSUBGRAPH CALC FOR MEMBERs: {}".format(rm_membs))
 
-    node_draw_settings(K, rms, "remove")  # color all removal members
+    node_draw_settings(K, rm_membs, "remove")  # color all removal members
 
     #### MODIFY K ######
     print("-- NODES check support: {}".format(nodes_check_support))
@@ -280,14 +280,14 @@ def calc_multimemb_remove(G, K, rms, nodes_check_support):
     # 2. check what needs to be cut
     nodes_cut, nodes_fully_removed = _check_cut(G, K)
 
-    nodes_fully_removed.extend(rms)
+    nodes_fully_removed.extend(rm_membs)
     nodes_fully_removed = list(set(nodes_fully_removed))  # remove duplicates
 
     nodes_check_support.extend(nodes_cut)
     nodes_check_support = list(set(nodes_check_support))  # remove duplicates
 
     # dont check the node specified for removal
-    for rm in rms:
+    for rm in rm_membs:
         if rm in nodes_check_support:
             nodes_check_support.remove(rm)
 

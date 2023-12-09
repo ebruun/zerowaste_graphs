@@ -38,37 +38,57 @@ def edge_draw_settings(G, edges, type):
             G.edges[e[1], e[0], 0]["color"] = "tab:red"
 
 
-def node_draw_settings(G, nodes, type):
+def node_draw_settings(G, nodes, node_type):
+    attribute_mapping = {
+        "remove": {"color": "tab:red", "size": 600, "node_shape": "8"},
+        "remove_start": {"color": "tab:red", "size": 600, "node_shape": "8"},
+        "end_foundation": {"color": "black", "size": 600, "node_shape": "8"},
+        "end_2sides_fixed": {"color": "black", "size": 600, "node_shape": "h"},
+        "end_1sides_fixed": {"color": "black", "size": 450, "node_shape": "s"},
+        "danger_1side_fixed": {"color": "orange", "size": 450, "node_shape": "s"},
+        "normal": {"color": "tab:grey", "size": 400},
+        "normal_1side_fixed": {"color": "tab:grey", "size": 400},
+        "start": {"color": "tab:green", "size": 400},
+    }
+
     for n in nodes:
-        if type == "remove":
-            G.nodes[n]["color"] = "tab:red"
-            G.nodes[n]["size"] = 600
-            G.nodes[n]["node_shape"] = "8"
-        elif type == "end_foundation":
-            G.nodes[n]["color"] = "black"
-            G.nodes[n]["size"] = 600
-            G.nodes[n]["node_shape"] = "8"
-        elif type == "end_2sides_fixed":
-            G.nodes[n]["color"] = "black"
-            G.nodes[n]["size"] = 600
-            G.nodes[n]["node_shape"] = "h"
-        elif type == "end_1sides_fixed":
-            G.nodes[n]["color"] = "black"
-            G.nodes[n]["size"] = 450
-            G.nodes[n]["node_shape"] = "s"
-        elif type == "danger_1side_fixed":
-            G.nodes[n]["color"] = "orange"
-            G.nodes[n]["size"] = 450
-            G.nodes[n]["node_shape"] = "s"
-        elif type == "normal":
-            G.nodes[n]["color"] = "tab:grey"
-            G.nodes[n]["size"] = 400
-        elif type == "normal_1side_fixed":
-            G.nodes[n]["color"] = "tab:grey"
-            G.nodes[n]["size"] = 400
-        elif type == "start":
-            G.nodes[n]["color"] = "tab:green"
-            G.nodes[n]["size"] = 400
+        attributes = attribute_mapping.get(node_type, {})
+        G.nodes[n].update(attributes)
+
+    # for n in nodes:
+    #     if node_type == "remove":
+    #         G.nodes[n]["color"] = "tab:red"
+    #         G.nodes[n]["size"] = 600
+    #         G.nodes[n]["node_shape"] = "8"
+    #     elif node_type == "remove_start":
+    #         G.nodes[n]["color"] = "tab:red"
+    #         G.nodes[n]["size"] = 600
+    #         G.nodes[n]["node_shape"] = "8"
+    #     elif node_type == "end_foundation":
+    #         G.nodes[n]["color"] = "black"
+    #         G.nodes[n]["size"] = 600
+    #         G.nodes[n]["node_shape"] = "8"
+    #     elif node_type == "end_2sides_fixed":
+    #         G.nodes[n]["color"] = "black"
+    #         G.nodes[n]["size"] = 600
+    #         G.nodes[n]["node_shape"] = "h"
+    #     elif node_type == "end_1sides_fixed":
+    #         G.nodes[n]["color"] = "black"
+    #         G.nodes[n]["size"] = 450
+    #         G.nodes[n]["node_shape"] = "s"
+    #     elif node_type == "danger_1side_fixed":
+    #         G.nodes[n]["color"] = "orange"
+    #         G.nodes[n]["size"] = 450
+    #         G.nodes[n]["node_shape"] = "s"
+    #     elif node_type == "normal":
+    #         G.nodes[n]["color"] = "tab:grey"
+    #         G.nodes[n]["size"] = 400
+    #     elif node_type == "normal_1side_fixed":
+    #         G.nodes[n]["color"] = "tab:grey"
+    #         G.nodes[n]["size"] = 400
+    #     elif node_type == "start":
+    #         G.nodes[n]["color"] = "tab:green"
+    #         G.nodes[n]["size"] = 400
 
 
 def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False):

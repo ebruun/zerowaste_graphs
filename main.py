@@ -57,14 +57,20 @@ if __name__ == "__main__":
     # Task #2: Single Member Removal Sub-graphs
     # rm_membs = ["SP1_2", "SP1_3", "SP1_4", "ES10"]
     # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
-    rm_membs = ["SS1", "WS9", "RG1_6"]
+    # rm_membs = list(G.nodes())
+    rm_membs = ["SS1"]
 
     Ks, n2check = bld_subg_single_remove(G, rm_membs)
 
     for rm_memb, K in zip(rm_membs, Ks):
-        draw_graph(
-            G=K, filepath="{}/{}".format(f_out, rm_memb), scale=1.2, plt_show=True, plt_save=False
-        )
+        if K.number_of_nodes() > 1:
+            draw_graph(
+                G=K,
+                filepath="{}/{}".format(f_out, rm_memb),
+                scale=1.2,
+                plt_show=True,
+                plt_save=False,
+            )
 
     # Task #3: Joined Subgraphs
     # if len(rm_membs) > 1:

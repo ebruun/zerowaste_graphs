@@ -36,6 +36,7 @@ def _find_adjacent_nodes(G, n, n_queue, n_saved):
     e_out_normal = list(G.out_edges(n))
 
     new_n = []
+
     new_n.extend([e[0] for e in e_in_normal])
     new_n.extend([e[1] for e in e_out_normal])
 
@@ -48,7 +49,10 @@ def _find_adjacent_nodes(G, n, n_queue, n_saved):
 def _check_node_type(G, n_check, rm_memb):
     print("\nCHECKING NODE TYPE OF: {}".format(n_check))
 
-    if n_check == rm_memb:
+    if n_check == rm_memb and G.in_degree(n_check) == 0:
+        print("--REMOVE & START NODE")
+        node_type = "remove_start"
+    elif n_check == rm_memb:
         print("--REMOVE NODE")
         node_type = "remove"
     elif G.in_degree(n_check) == 0:
@@ -182,7 +186,7 @@ def calc_subg(G, rm_memb):
         node_draw_settings(G, [n_check], node_type)
 
         print("current n_queue: ", nodes_queue)
-        print("current n_saved: ", nodes_checked)
+        print("current n_checked: ", nodes_checked)
 
     print("\nNODES IN FINAL SUBGRAPH:", nodes_checked)
 

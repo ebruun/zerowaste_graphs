@@ -43,22 +43,19 @@ def node_draw_settings(G, nodes, type):
         if type == "remove":
             G.nodes[n]["color"] = "tab:red"
             G.nodes[n]["size"] = 600
-            G.nodes[n]["node_shape"] = "s"
-        elif type == "start":
-            G.nodes[n]["color"] = "tab:green"
-            G.nodes[n]["size"] = 450
+            G.nodes[n]["node_shape"] = "8"
         elif type == "end_foundation":
             G.nodes[n]["color"] = "black"
             G.nodes[n]["size"] = 600
             G.nodes[n]["node_shape"] = "8"
-        elif type == "end_1sides_fixed":
-            G.nodes[n]["color"] = "black"
-            G.nodes[n]["size"] = 450
-            G.nodes[n]["node_shape"] = "s"
         elif type == "end_2sides_fixed":
             G.nodes[n]["color"] = "black"
             G.nodes[n]["size"] = 600
             G.nodes[n]["node_shape"] = "h"
+        elif type == "end_1sides_fixed":
+            G.nodes[n]["color"] = "black"
+            G.nodes[n]["size"] = 450
+            G.nodes[n]["node_shape"] = "s"
         elif type == "danger_1side_fixed":
             G.nodes[n]["color"] = "orange"
             G.nodes[n]["size"] = 450
@@ -68,6 +65,9 @@ def node_draw_settings(G, nodes, type):
             G.nodes[n]["size"] = 400
         elif type == "normal_1side_fixed":
             G.nodes[n]["color"] = "tab:grey"
+            G.nodes[n]["size"] = 400
+        elif type == "start":
+            G.nodes[n]["color"] = "tab:green"
             G.nodes[n]["size"] = 400
 
 

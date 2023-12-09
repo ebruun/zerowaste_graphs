@@ -56,7 +56,7 @@ def _check_node_type(G, n_check, rm_memb):
         node_type = "start"
     elif G.out_degree(n_check) == 0:
         print("--END NODE, out_degree=0")
-        node_type = "end"
+        node_type = "end_foundation"
     elif _count_fixed_sides(G, n_check)[0] == 2:
         print("--END NODE, fixed on TWO sides")
         node_type = "end_2sides_fixed"
@@ -113,46 +113,53 @@ def _check_cut(G, K):
     return list(n_fixed_cut), list(n_fixed_fully_removed)
 
 
-def check_connected(G, K, fxd_n_cut_rmv, fxd_n_cut):
+def check_connected(G, K, fxd_n_cut_rmv, fxd_n_check):
     """
-    check if a member with a single fixed has at least TWO other support connections after the removal of the member.
-    If it is fixed and not being cut then it just needs 1 additional connection.
-
+    check if fixed members have at least TWO other support connections after the removal of the member.
+    If it is fixed (not being cut) then it just needs 1 additional connection for a total of 2
     If it has enough edges it is considered fixed support in this disassembly step
     """
 
-    print("\n2. CHECKING NODES {} in SUBGRAPH K IF THEY HAVE ENOUGH SUPPORT".format(fxd_n_cut))
+    print("\nCHECKING IF NODES {} HAVE ENOUGH SUPPORT".format(fxd_n_check))
 
-    for n in fxd_n_cut:
+    n_safe_fix1 = []
+    n_safe_fix2 = []
+    n_notsafe = []
+
+    for n in fxd_n_check:
         print("\nCHECK FIXED NODE {}".format(n))
 
-        e_G = list(G.out_edges(n))  # starting members supported by
-        e_K = list(K.out_edges(n))  # supporting members to remove
+        e_G = list(G.out_edges(n))  # member supported by (START)
+        e_K = list(K.out_edges(n))  # supporting members to be removed
 
         num_supports = len(e_G) - len(e_K)
         print("-- {} supports left. These members being removed: {}".format(num_supports, e_K))
 
+        flag = False
         # if fixed edge is not being cut, add back
         for e in e_K:
             if _check_if_fixed_exists(G, e[0], e[1]):
-                if e[0] in fxd_n_cut_rmv or e[1] in fxd_n_cut_rmv:
-                    print("-- fixed is cut, do not add back in")
-                else:
-                    print("-- fixed is not cut, add support back in")
+                if e[0] not in fxd_n_cut_rmv and e[1] not in fxd_n_cut_rmv:
+                    print("-- fixed not cut, ADD support back in")
+                    flag = True
                     num_supports += 1
+                else:
+                    print("-- fixed is cut, DO NOT ADD support back in")
 
         if num_supports < 2:
             print("-- DANGER, only {} SUPPORTS".format(num_supports))
-            node_draw_settings(K, [n], "danger")
+            n_notsafe.append(n)
         else:
             print("-- SAFE, w/ {} SUPPORTS".format(num_supports))
-            node_draw_settings(K, [n], "end")
+            if _count_fixed_sides(G, n)[0] == 2:
+                if flag:
+                    n_safe_fix2.append(n)
+                else:
+                    n_safe_fix1.append(n)
+            if _count_fixed_sides(G, n)[0] == 1:
+                n_safe_fix1.append(n)
 
-        if n in fxd_n_cut_rmv:
-            print("-- SAFE, FULLY REMOVE")
-            node_draw_settings(K, [n], "normal")
-
-    return K
+    return n_safe_fix1, n_safe_fix2, n_notsafe
 
 
 def calc_subg(G, rm_memb):
@@ -230,7 +237,7 @@ def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
     """
     STEP C:
     """
-    print("\n\n2C. CHECK FIXED SUPPORTS")
+    print("\n\n2C. CHECK FIXED NODES SUPPORTS")
 
     n_1side_fxd = []
     n_2side_fxd = []
@@ -245,11 +252,15 @@ def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
 
     fxd_n_check = n_1side_fxd + n_2side_fxd
 
-    print("-- NODES fully removed fixed: {}".format(fxd_n_cut_rmv))
-    print("-- NODES 1-side + 2-side fixed: {}".format(fxd_n_check))
+    print("\n-- NODES fully removed fixed: {}".format(fxd_n_cut_rmv))
+    print("-- NODES to check, 1-side + 2-side fixed: {} {}".format(n_1side_fxd, n_2side_fxd))
 
     # check that properly supported
-    K = check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)
+    n_safe_fix1, n_safe_fix2, n_notsafe = check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)
+
+    node_draw_settings(K, n_safe_fix1, "end_1sides_fixed")
+    node_draw_settings(K, n_safe_fix2, "end_2sides_fixed")
+    node_draw_settings(K, n_notsafe, "danger_1side_fixed")
 
     return fxd_n_check
 
@@ -279,7 +290,13 @@ def calc_multimemb_remove(G, K, rms, nodes_check_support):
     print("-- NODES fully removed: {}".format(nodes_fully_removed))
     print("-- NODES to check support on: {}".format(nodes_check_support))
 
-    K = check_connected(G, K, nodes_fully_removed, nodes_check_support)
+    n_safe_fix1, n_safe_fix2, n_notsafe = check_connected(
+        G, K, nodes_fully_removed, nodes_check_support
+    )
+
+    # node_draw_settings(K, n_safe_fix1, "end_1sides_fixed")
+    # node_draw_settings(K, n_safe_fix2, "end_2sides_fixed")
+    # node_draw_settings(K, n_notsafe, "danger_1side_fixed")
 
     return K
 

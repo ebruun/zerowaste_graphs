@@ -3,7 +3,7 @@
         "EF1": {
             "color": "black",
             "pos": "(27.5,0)",
-            "node_shape": "h",
+            "node_shape": "8",
             "size": 600
         },
         "EP1_1": {

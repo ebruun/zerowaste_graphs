@@ -3,7 +3,7 @@
         "NF1": {
             "color": "black",
             "pos": "(0,22.5)",
-            "node_shape": "h",
+            "node_shape": "8",
             "size": 600
         },
         "NP1_1": {

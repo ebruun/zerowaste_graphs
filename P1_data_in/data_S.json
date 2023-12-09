@@ -3,7 +3,7 @@
         "SF1": {
             "color": "black",
             "pos": "(0.0,-25)",
-            "node_shape": "h",
+            "node_shape": "8",
             "size": 600
         },
         "SP1_1": {

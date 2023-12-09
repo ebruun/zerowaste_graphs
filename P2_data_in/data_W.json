@@ -3,7 +3,7 @@
         "WF1": {
             "color": "black",
             "pos": "(-25,0)",
-            "node_shape": "h",
+            "node_shape": "8",
             "size": 600
         },
         "WP1_1": {

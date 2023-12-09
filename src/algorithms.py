@@ -243,29 +243,10 @@ def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
         elif node_type in ["danger_1side_fixed"]:
             n_1side_fxd.append(n_check)
 
-    # print("\n-- starting fxd_n_cut_rmv: {}".format(fxd_n_cut_rmv))
-    # print("-- starting fxd_n_cut: {}".format(fxd_n_cut))
-
-    print("-- NODES one side fixed: {}".format(n_1side_fxd))
-    print("-- NODES two side fixed: {}".format(n_2side_fxd))
-
-    # I think adding this is redundant, rm_memb always in here
-    # fxd_n_cut_rmv.append(rm_memb)
-    # fxd_n_cut_rmv = list(set(fxd_n_cut_rmv))  # remove duplicates
-
-    # I think adding this is redundant, rm_memb always in here
-    # fxd_n_check = n_1side_fxd + n_2side_fxd + fxd_n_cut
-
     fxd_n_check = n_1side_fxd + n_2side_fxd
-    # fxd_n_check = list(set(fxd_n_check))  # remove duplicates
 
-    # I think adding this is redundant, rm_memb always in here
-    # dont check the node specified for removal
-    # if rm_memb in fxd_n_check:
-    #     fxd_n_check.remove(rm_memb)
-
-    print("-- fxd_n_cut_rmv: {}".format(fxd_n_cut_rmv))
-    print("-- fxd_n_check: {}".format(fxd_n_check))
+    print("-- NODES fully removed fixed: {}".format(fxd_n_cut_rmv))
+    print("-- NODES 1-side + 2-side fixed: {}".format(fxd_n_check))
 
     # check that properly supported
     K = check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)

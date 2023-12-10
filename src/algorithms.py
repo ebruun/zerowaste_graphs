@@ -49,28 +49,35 @@ def _find_adjacent_nodes(G, n, n_queue, n_saved):
 def _check_node_type(G, n_check, rm_memb):
     print("\nCHECKING NODE TYPE OF: {}".format(n_check))
 
-    if n_check == rm_memb and G.in_degree(n_check) == 0:
+    in_degree = G.in_degree(n_check)
+    out_degree = G.out_degree(n_check)
+    fixed_sides_count, _ = _count_fixed_sides(G, n_check)
+
+    if n_check == rm_memb and in_degree == 0:
         print("--REMOVE & START NODE")
         node_type = "remove_start"
     elif n_check == rm_memb:
         print("--REMOVE NODE")
         node_type = "remove"
-    elif G.in_degree(n_check) == 0:
+    elif in_degree == 0:
         print("--START NODE, in_degree=0")
         node_type = "start"
-    elif G.out_degree(n_check) == 0:
+    elif out_degree == 0:
         print("--END NODE, out_degree=0")
         node_type = "end_foundation"
-    elif _count_fixed_sides(G, n_check)[0] == 2:
+    elif fixed_sides_count == 2:
         print("--END NODE, fixed on TWO sides")
         node_type = "end_2sides_fixed"
-    elif _count_fixed_sides(G, n_check)[0] == 1:
-        if G.has_edge(n_check, rm_memb) and not _check_if_fixed_exists(G, n_check, rm_memb):
-            print("-- NORMAL NODE, fixed on ONE side and on member to remove")
-            node_type = "normal_1side_fixed"
-        else:
-            print("-- DANGER NODE, fixed on ONE side but not resting on member to remove")
+    elif fixed_sides_count == 1:
+        if _check_if_fixed_exists(G, n_check, rm_memb):
+            print("-- DANGER NODE, fixed on ONE side, the fixed connection is to removal member")
             node_type = "danger_1side_fixed"
+        elif not G.has_edge(n_check, rm_memb):
+            print("-- DANGER NODE, fixed on ONE side, connected somewhere in structure")
+            node_type = "danger_1side_fixed"
+        else:
+            print("-- NORMAL REMOVE NODE, fixed on ONE side, normal connection to member to remove")
+            node_type = "normal_1side_fixed"
     else:
         print("-- NORMAL NODE")
         node_type = "normal"
@@ -117,7 +124,7 @@ def _check_cut(G, K):
     return list(n_fixed_cut), list(n_fixed_fully_removed)
 
 
-def check_connected(G, K, fxd_n_cut_rmv, fxd_n_check):
+def _check_connected(G, K, fxd_n_cut_rmv, fxd_n_check):
     """
     check if fixed members have at least TWO other support connections after the removal of the member.
     If it is fixed (not being cut) then it just needs 1 additional connection for a total of 2
@@ -260,7 +267,7 @@ def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
     print("-- NODES to check, 1-side + 2-side fixed: {} {}".format(n_1side_fxd, n_2side_fxd))
 
     # check that properly supported
-    n_safe_fix1, n_safe_fix2, n_notsafe = check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)
+    n_safe_fix1, n_safe_fix2, n_notsafe = _check_connected(G, K, fxd_n_cut_rmv, fxd_n_check)
 
     node_draw_settings(K, n_safe_fix1, "end_1sides_fixed")
     node_draw_settings(K, n_safe_fix2, "end_2sides_fixed")
@@ -271,8 +278,6 @@ def check_fixed_nodes_support(G, K, rm_memb, fxd_n_cut_rmv):
 
 def calc_multimemb_remove(G, K, rm_membs, nodes_check_support):
     print("\nSUBGRAPH CALC FOR MEMBERs: {}".format(rm_membs))
-
-    node_draw_settings(K, rm_membs, "remove")  # color all removal members
 
     #### MODIFY K ######
     print("-- NODES check support: {}".format(nodes_check_support))
@@ -294,7 +299,7 @@ def calc_multimemb_remove(G, K, rm_membs, nodes_check_support):
     print("-- NODES fully removed: {}".format(nodes_fully_removed))
     print("-- NODES to check support on: {}".format(nodes_check_support))
 
-    n_safe_fix1, n_safe_fix2, n_notsafe = check_connected(
+    n_safe_fix1, n_safe_fix2, n_notsafe = _check_connected(
         G, K, nodes_fully_removed, nodes_check_support
     )
 

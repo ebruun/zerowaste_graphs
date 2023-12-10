@@ -93,12 +93,15 @@ def bld_subg_single_remove(G, rm_membs):
     return K_save, n2check_save
 
 
-def bld_subg_multi(G, Ks, rms, nodes_check_support):
+def bld_subg_multi(G, Ks, rm_membs, nodes_check_support):
     print("\n\n##3A. BUILD SUBGRAPH FOR MULTIPLE MEMBERS REMOVAL##")
 
     K_joined = nx.compose_all(Ks)
     _add_in_extra_edge(G, K_joined)
 
-    K_joined = calc_multimemb_remove(G, K_joined, rms, nodes_check_support)
+    # K_joined = calc_multimemb_remove(G, K_joined, rms, nodes_check_support)
+
+    # fxd_n_cut_rmv = check_fixed_nodes_cut(G, K_joined)
+    # n2check = check_fixed_nodes_support(G, K_joined, rm_membs, fxd_n_cut_rmv)
 
     return K_joined

@@ -51,6 +51,9 @@ def node_draw_settings(G, nodes, node_type):
         "start": {"color": "tab:green", "size": 400},
     }
 
+    if not isinstance(nodes, list):
+        nodes = [nodes]
+
     for n in nodes:
         attributes = attribute_mapping.get(node_type, {})
         G.nodes[n].update(attributes)

@@ -1,7 +1,7 @@
 from src.build import (
     bld_g_full,
     bld_subg_single_remove,
-    bld_subg_multi,
+    bld_subg_multi_remove,
 )
 
 from src.drawing import draw_graph
@@ -56,12 +56,13 @@ if __name__ == "__main__":
 
     # Task #2: Single Member Removal Sub-graphs
     # rm_membs = list(G.nodes())
-    rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
+    # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
     # rm_membs = ["SS1","WS9"]
     # rm_membs = ["SS1","SS3"]
-    # rm_membs = ["SP1_1","WS9"]
+    rm_membs = ["SP1_1", "WS9"]
+    # rm_membs = ["ER2"]
 
-    Ks, n2check = bld_subg_single_remove(G, rm_membs)
+    Ks = bld_subg_single_remove(G, rm_membs)
 
     for rm_memb, K in zip(rm_membs, Ks):
         if K.number_of_nodes() > 1:
@@ -75,7 +76,7 @@ if __name__ == "__main__":
 
     # Task #3: Joined Subgraphs
     if len(rm_membs) > 1:
-        K_joined = bld_subg_multi(G, Ks, rm_membs, n2check)
+        K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
 
         name = "_".join(rm_membs)
         draw_graph(

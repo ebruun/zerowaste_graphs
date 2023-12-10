@@ -55,11 +55,11 @@ if __name__ == "__main__":
     )
 
     # Task #2: Single Member Removal Sub-graphs
-    # rm_membs = list(G.nodes())
+    rm_membs = list(G.nodes())
     # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
     # rm_membs = ["SS1","WS9"]
     # rm_membs = ["SS1","SS3"]
-    rm_membs = ["SP1_1", "WS9"]
+    # rm_membs = ["SP1_1", "WS9"]
     # rm_membs = ["ER2"]
 
     Ks = bld_subg_single_remove(G, rm_membs)
@@ -70,22 +70,22 @@ if __name__ == "__main__":
                 G=K,
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
-                plt_show=True,
-                plt_save=False,
+                plt_show=False,
+                plt_save=True,
             )
 
     # Task #3: Joined Subgraphs
-    if len(rm_membs) > 1:
-        K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
+    # if len(rm_membs) > 1:
+    #     K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
 
-        name = "_".join(rm_membs)
-        draw_graph(
-            G=K_joined,
-            filepath="{}/_{}".format(f_out, name),
-            scale=1.2,
-            plt_show=True,
-            plt_save=True,
-        )
+    #     name = "_".join(rm_membs)
+    #     draw_graph(
+    #         G=K_joined,
+    #         filepath="{}/_{}".format(f_out, name),
+    #         scale=1.2,
+    #         plt_show=True,
+    #         plt_save=True,
+    #     )
 
     # K_reduced = unroll_sequence(K)
 

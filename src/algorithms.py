@@ -179,6 +179,7 @@ def _check_connected(G, K, fxd_n_cut_rmv, fxd_n_check):
                 else:
                     print("-- fixed is cut, DO NOT ADD support back in")
 
+        # distinguish between 2-support and 1-support
         if num_supports < 2:
             print("-- DANGER, only {} SUPPORTS".format(num_supports))
             n_notsafe.append(n)

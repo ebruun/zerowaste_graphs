@@ -101,7 +101,7 @@ def bld_subg_multi(G, Ks, rm_membs, nodes_check_support):
 
     # K_joined = calc_multimemb_remove(G, K_joined, rms, nodes_check_support)
 
-    # fxd_n_cut_rmv = check_fixed_nodes_cut(G, K_joined)
-    # n2check = check_fixed_nodes_support(G, K_joined, rm_membs, fxd_n_cut_rmv)
+    fxd_n_cut_rmv = check_fixed_nodes_cut(G, K_joined)
+    _ = check_fixed_nodes_support(G, K_joined, rm_membs, fxd_n_cut_rmv)
 
     return K_joined

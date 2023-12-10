@@ -2,40 +2,10 @@ from src.build import (
     bld_g_full,
     bld_subg_single_remove,
     bld_subg_multi_remove,
+    bld_sequence,
 )
 
 from src.drawing import draw_graph
-
-
-def check_list():
-    pass
-
-
-def calculate_sequence(K):
-    print("\nCALCULATING DISASSEMBLY SEQUENCE")
-
-    nodes = list(K.nodes)
-    sequence = []
-
-    print(nodes)
-
-    remove = []
-    # check for any start/end nodes
-    for n in nodes:
-        c = K.nodes[n]["color"]
-
-        if c == "tab:green":
-            print("{} is a START node".format(n))
-            sequence.append(n)
-            remove.append(n)
-        elif c == "black":
-            print("{} is a END node".format(n))
-            remove.append(n)
-
-    nodes_left = list(set(nodes) - set(remove))
-
-    print("remaining is {}".format(nodes_left))
-    print("sequence is {}".format(sequence))
 
 
 if __name__ == "__main__":
@@ -55,12 +25,9 @@ if __name__ == "__main__":
     )
 
     # Task #2: Single Member Removal Sub-graphs
-    rm_membs = list(G.nodes())
+    # rm_membs = list(G.nodes())
     # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
-    # rm_membs = ["SS1","WS9"]
-    # rm_membs = ["SS1","SS3"]
-    # rm_membs = ["SP1_1", "WS9"]
-    # rm_membs = ["ER2"]
+    rm_membs = ["SS1", "WS9"]
 
     Ks = bld_subg_single_remove(G, rm_membs)
 
@@ -71,28 +38,29 @@ if __name__ == "__main__":
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
                 plt_show=False,
-                plt_save=True,
+                plt_save=False,
             )
 
     # Task #3: Joined Subgraphs
-    # if len(rm_membs) > 1:
-    #     K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
+    if len(rm_membs) > 1:
+        K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
 
-    #     name = "_".join(rm_membs)
-    #     draw_graph(
-    #         G=K_joined,
-    #         filepath="{}/_{}".format(f_out, name),
-    #         scale=1.2,
-    #         plt_show=True,
-    #         plt_save=True,
-    #     )
+        name = "_".join(rm_membs)
+        draw_graph(
+            G=K_joined,
+            filepath="{}/_{}".format(f_out, name),
+            scale=1.2,
+            plt_show=True,
+            plt_save=True,
+        )
 
-    # K_reduced = unroll_sequence(K)
+    K_reduced_list = bld_sequence(K_joined)
 
-    # draw_graph(
-    #     G=K_reduced,
-    #     pos_fixed=get_node_pos(K_reduced),
-    #     filename="{}/_{}".format("P{}_graphs_out".format(phase_number), "test"),
-    #     scale=1,
-    #     plt_show=True,
-    # )
+    for K_reduced in K_reduced_list:
+        draw_graph(
+            G=K_reduced,
+            filepath="{}/_{}".format(f_out, "test"),
+            scale=1,
+            plt_show=True,
+            plt_save=False,
+        )

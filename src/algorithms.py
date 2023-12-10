@@ -347,6 +347,7 @@ def check_fixed_nodes_support(G, K, rm_membs, fxd_n_cut_rmv):
     node_draw_settings(K, n_safe_fix1, "end_1sides_fixed")
     node_draw_settings(K, n_safe_fix2, "end_2sides_fixed")
     node_draw_settings(K, n_notsafe, "danger_1side_fixed")
+    node_draw_settings(K, fxd_n_cut_rmv, "normal_1side_fixed")
     node_draw_settings(K, rm_membs, "remove")
 
 

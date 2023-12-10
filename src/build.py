@@ -5,6 +5,7 @@ from src.algorithms import (
     check_fixed_nodes_support,
     check_fixed_nodes_cut,
     calc_subg_single,
+    _check_node_type,
 )
 
 from src.io import read_json
@@ -164,3 +165,34 @@ def bld_subg_multi_remove(G, Ks, rm_membs):
     check_fixed_nodes_support(G, K_joined, rm_membs, fxd_n_cut_rmv)
 
     return K_joined
+
+
+def bld_sequence(K):
+    print("\nCALCULATING DISASSEMBLY SEQUENCE")
+
+    K_reduced = K.copy()
+
+    K_reduced_list = []
+
+    counter = 0
+
+    while counter < 2:
+        sequence = []
+        # check for any start/end nodes
+        for n in K_reduced.nodes():
+            if K_reduced.in_degree(n) == 0:
+                sequence.append(n)
+
+        for n in sequence:
+            K_reduced.remove_node(n)
+
+        nodes_left = K_reduced.nodes()
+
+        print("remaining is {}".format(nodes_left))
+        print("sequence is {}".format(sequence))
+
+        K_reduced_list.append(K_reduced.copy())
+
+        counter += 1
+
+    return K_reduced_list

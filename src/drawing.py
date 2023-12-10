@@ -40,15 +40,45 @@ def edge_draw_settings(G, edges, type):
 
 def node_draw_settings(G, nodes, node_type):
     attribute_mapping = {
-        "remove": {"color": "tab:red", "size": 600, "node_shape": "8"},
-        "remove_start": {"color": "tab:red", "size": 600, "node_shape": "8"},
-        "end_foundation": {"color": "black", "size": 600, "node_shape": "8"},
-        "end_2sides_fixed": {"color": "black", "size": 600, "node_shape": "h"},
-        "end_1sides_fixed": {"color": "black", "size": 450, "node_shape": "s"},
-        "danger_1side_fixed": {"color": "orange", "size": 450, "node_shape": "s"},
-        "normal": {"color": "tab:grey", "size": 400},
-        "normal_1side_fixed": {"color": "tab:grey", "size": 400},
-        "start": {"color": "tab:green", "size": 400},
+        "remove": {"node_type": "remove", "color": "tab:red", "size": 600, "node_shape": "8"},
+        "remove_start": {
+            "node_type": "remove_start",
+            "color": "tab:red",
+            "size": 600,
+            "node_shape": "8",
+        },
+        "end_foundation": {
+            "node_type": "end_foundation",
+            "color": "black",
+            "size": 600,
+            "node_shape": "8",
+        },
+        "end_2sides_fixed": {
+            "node_type": "end_2sides_fixed",
+            "color": "black",
+            "size": 600,
+            "node_shape": "h",
+        },
+        "end_1sides_fixed": {
+            "node_type": "end_1sides_fixed",
+            "color": "black",
+            "size": 450,
+            "node_shape": "s",
+        },
+        "danger_1side_fixed": {
+            "node_type": "danger_1side_fixed",
+            "color": "orange",
+            "size": 450,
+            "node_shape": "s",
+        },
+        "normal": {"node_type": "normal", "color": "tab:grey", "size": 400},
+        "normal_1side_fixed": {
+            "node_type": "normal_1side_fixed",
+            "color": "tab:grey",
+            "size": 400,
+            "node_shape": "o",
+        },
+        "start": {"node_type": "start", "color": "tab:green", "size": 400},
     }
 
     if not isinstance(nodes, list):

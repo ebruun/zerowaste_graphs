@@ -5,7 +5,14 @@ from src.algorithms import (
     check_fixed_nodes_support,
     check_fixed_nodes_cut,
     calc_subg_single,
-    _check_node_type,
+)
+
+from src.algo_sequence import (
+    calc_nodes_to_process,
+    calc_steps,
+    remove_disconnected_graphs,
+    check_if_remove_node,
+    relabel_graph,
 )
 
 from src.io import read_json
@@ -167,32 +174,40 @@ def bld_subg_multi_remove(G, Ks, rm_membs):
     return K_joined
 
 
-def bld_sequence(K):
+def bld_sequence(K, rm_membs):
     print("\nCALCULATING DISASSEMBLY SEQUENCE")
 
     K_reduced = K.copy()
-
     K_reduced_list = []
+    sequence = []
 
-    counter = 0
+    steps = 0
 
-    while counter < 2:
-        sequence = []
-        # check for any start/end nodes
-        for n in K_reduced.nodes():
-            if K_reduced.in_degree(n) == 0:
-                sequence.append(n)
+    while True:
+        print("\nSTART LOOP")
 
-        for n in sequence:
-            K_reduced.remove_node(n)
+        # check for any start nodes
+        nodes_to_process = calc_nodes_to_process(K_reduced, "start")
 
-        nodes_left = K_reduced.nodes()
+        if nodes_to_process:
+            node_remove_steps = calc_steps(nodes_to_process, 2)
+        else:
+            break
 
-        print("remaining is {}".format(nodes_left))
-        print("sequence is {}".format(sequence))
+        for node_remove_step in node_remove_steps:
+            steps += 1
+            print(f"Processing nodes in step {steps}: {node_remove_step}")
+            sequence.append(node_remove_step)
 
-        K_reduced_list.append(K_reduced.copy())
+            K_reduced.remove_nodes_from(list(node_remove_step))
+            rm_membs = check_if_remove_node(node_remove_step, rm_membs)
 
-        counter += 1
+            remove_disconnected_graphs(K_reduced)
+            relabel_graph(K_reduced, rm_membs)
+
+            print("remaining nodes are {}".format(K_reduced.nodes()))
+            print("sequence so far is {}".format(sequence))
+
+            K_reduced_list.append(K_reduced.copy())
 
     return K_reduced_list

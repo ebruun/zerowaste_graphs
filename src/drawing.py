@@ -71,16 +71,17 @@ def node_draw_settings(G, nodes, node_type):
             "size": 450,
             "node_shape": "s",
         },
-        "normal": {"node_type": "normal", "color": "tab:grey", "size": 400},
+        "normal": {"node_type": "normal", "color": "tab:grey", "size": 400, "node_shape": "o"},
         "normal_1side_fixed": {
             "node_type": "normal_1side_fixed",
             "color": "tab:grey",
             "size": 400,
             "node_shape": "o",
         },
-        "start": {"node_type": "start", "color": "tab:green", "size": 400},
+        "start": {"node_type": "start", "color": "tab:green", "size": 400, "node_shape": "o"},
     }
 
+    # make into a list if a single variable
     if not isinstance(nodes, list):
         nodes = [nodes]
 
@@ -89,7 +90,7 @@ def node_draw_settings(G, nodes, node_type):
         G.nodes[n].update(attributes)
 
 
-def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False):
+def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=False):
     pos_fixed = _get_node_pos(G, scale)  # get location to draw
 
     if scale == 1:
@@ -100,46 +101,37 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False):
     pos = nx.spring_layout(G, pos=pos_fixed, fixed=pos_fixed.keys())
 
     n_size = []  # for drawing arrows correct location
-    for n in G.nodes(data=True):
-        if "size" in n[1]:
-            s = n[1]["size"]
-        else:
-            s = 500
-
-        if "node_shape" in n[1]:
-            n_shape = n[1]["node_shape"]
-        else:
-            n_shape = "o"
+    for n, data in G.nodes(data=True):
+        # 2nd value is the default
+        s = data.get("size", 500)
+        n_shape = data.get("node_shape", "o")
+        color = data.get("color", "black")
 
         nx.draw_networkx_nodes(
             G=G,
             pos=pos,
             node_size=s * scale,
-            nodelist=[n[0]],
-            node_color=n[1]["color"],
+            nodelist=[n],
+            node_color=color,
             node_shape=n_shape,
         )
 
         n_size.append(s * scale)  # for correct arrow location
 
-    for e in G.edges(data=True):
-        if "style" in e[2]:  # curved arrows
-            c = e[2]["style"]
-        else:
-            c = "arc3, rad=0.0"
-
-        if "edge_style" in e[2]:  # curved arrows
-            s = e[2]["edge_style"]
-        else:
-            s = "solid"
+    for u, v, data in G.edges(data=True):
+        # 2nd value is the default
+        c = data.get("style", "arc3, rad=0.0")
+        s = data.get("edge_style", "solid")
+        color = data.get("color", "black")
+        weight = data.get("weight", 1.0)
 
         nx.draw_networkx_edges(
             G,
             pos,
             node_size=n_size,
-            edgelist=[(e[0], e[1])],
-            edge_color=e[2]["color"],
-            width=e[2]["weight"],
+            edgelist=[(u, v)],
+            edge_color=color,
+            width=weight,
             connectionstyle=c,
             style=s,
             arrows=True,
@@ -155,7 +147,22 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False):
 
     f = plt.gcf()
     f.tight_layout()
+
     plt.axis("off")  # no border around fig
+
+    middle_x = sum(pos.values()) / len(pos)
+    top_y = max(pos.values(), key=lambda x: x[1])[1]
+
+    if plt_text:
+        plt.text(
+            x=middle_x[0],
+            y=top_y,
+            s=plt_text,
+            fontsize=12,
+            ha="center",
+            va="center",
+            bbox=dict(facecolor="white", edgecolor="black", boxstyle="round,pad=0.5"),
+        )
 
     if plt_save:
         plt.savefig(filepath, dpi=600)

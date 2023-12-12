@@ -41,6 +41,8 @@ def edge_draw_settings(G, edges, type):
 def node_draw_settings(G, nodes, node_type):
     attribute_mapping = {
         "remove": {"node_type": "remove", "color": "tab:red", "size": 600, "node_shape": "8"},
+        "start": {"node_type": "start", "color": "tab:green", "size": 400, "node_shape": "o"},
+        "normal": {"node_type": "normal", "color": "tab:grey", "size": 400, "node_shape": "o"},
         "remove_start": {
             "node_type": "remove_start",
             "color": "tab:red",
@@ -71,14 +73,12 @@ def node_draw_settings(G, nodes, node_type):
             "size": 450,
             "node_shape": "s",
         },
-        "normal": {"node_type": "normal", "color": "tab:grey", "size": 400, "node_shape": "o"},
         "normal_1side_fixed": {
             "node_type": "normal_1side_fixed",
             "color": "tab:grey",
             "size": 400,
             "node_shape": "o",
         },
-        "start": {"node_type": "start", "color": "tab:green", "size": 400, "node_shape": "o"},
     }
 
     # make into a list if a single variable

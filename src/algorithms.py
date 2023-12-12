@@ -105,6 +105,7 @@ def _check_node_type(G, n_check, rm_membs):
     fixed_sides_count, _ = _count_fixed_sides(G, n_check)
 
     if n_check in rm_membs and in_degree == 0:
+        # don't add to queue if remove is also start node
         print("--REMOVE & START NODE")
         node_type = "remove_start"
     elif n_check in rm_membs:

@@ -210,4 +210,4 @@ def bld_sequence(K, rm_membs):
 
             K_reduced_list.append(K_reduced.copy())
 
-    return K_reduced_list
+    return K_reduced_list, sequence

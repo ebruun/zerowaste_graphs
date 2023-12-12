@@ -1,3 +1,4 @@
+from msilib import sequence
 from src.build import (
     bld_g_full,
     bld_subg_single_remove,
@@ -55,14 +56,14 @@ if __name__ == "__main__":
         )
 
     # Task #3: Sequence Generate
-    K_reduced_list = bld_sequence(K_joined, rm_membs)
+    K_reduced_list, members = bld_sequence(K_joined, rm_membs)
 
-    for i, K_reduced in enumerate(K_reduced_list):
+    for i, (K_reduced, member) in enumerate(zip(K_reduced_list, members)):
         draw_graph(
             G=K_reduced,
             filepath="{}/_step{}".format(f_out, i + 1),
             scale=1.2,
             plt_show=True,
             plt_save=True,
-            plt_text="yo test",
+            plt_text=member,
         )

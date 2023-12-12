@@ -171,9 +171,9 @@ def _check_connected(G, K, fxd_n_cut_rmv, fxd_n_check):
 
         flag = False
         # if fixed edge is not being cut, add back
-        for e in e_K:
-            if _check_if_fixed_exists(G, e[0], e[1]):
-                if e[0] not in fxd_n_cut_rmv and e[1] not in fxd_n_cut_rmv:
+        for u, v in e_K:
+            if _check_if_fixed_exists(G, u, v):
+                if u not in fxd_n_cut_rmv and v not in fxd_n_cut_rmv:
                     print("-- fixed not cut, ADD support back in")
                     flag = True
                     num_supports += 1
@@ -301,11 +301,11 @@ def check_fixed_nodes_cut(G, K):
 
             if fixed_edges:
                 print("-- fixed member")
+                fxd_n_cut.update(
+                    u for u, v in fixed_edges
+                )  # other node is just cut, have to check it
+                fxd_n_cut_rmv.update(v for u, v in fixed_edges)  # fully remove the current node
                 edge_draw_settings(K, fixed_edges, "cut")
-
-                for fixed_edge in fixed_edges:
-                    fxd_n_cut_rmv.add(fixed_edge[1])  # fully remove the current node
-                    fxd_n_cut.add(fixed_edge[0])  # other node is just cut, have to check it
 
     print("\nfixed nodes that are cut but not removed: {}".format(fxd_n_cut))
     print("fixed nodes that are cut and fully removed: {}".format(fxd_n_cut_rmv))

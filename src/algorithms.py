@@ -301,10 +301,8 @@ def check_fixed_nodes_cut(G, K):
 
             if fixed_edges:
                 print("-- fixed member")
-                fxd_n_cut.update(
-                    u for u, v in fixed_edges
-                )  # other node is just cut, have to check it
-                fxd_n_cut_rmv.update(v for u, v in fixed_edges)  # fully remove the current node
+                fxd_n_cut.update(u for u, v in fixed_edges)  # other n is just cut, check it
+                fxd_n_cut_rmv.update([n])  # fully remove the current node
                 edge_draw_settings(K, fixed_edges, "cut")
 
     print("\nfixed nodes that are cut but not removed: {}".format(fxd_n_cut))

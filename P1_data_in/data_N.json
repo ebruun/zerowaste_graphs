@@ -170,7 +170,7 @@
             "ES1": {
                 "weight": 1,
                 "color": "tab:orange",
-                "style": "arc3, rad=-0.2"
+                "style": "arc3, rad=0.2"
             }
         }
     }

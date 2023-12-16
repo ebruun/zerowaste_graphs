@@ -26,10 +26,12 @@ if __name__ == "__main__":
     )
 
     # Task #2: Member Removal Sub-graphs
-    # rm_membs = list(G.nodes())
+    rm_membs = list(G.nodes())
+    # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"] #paper figure, single
+    # rm_membs = ["WS3", "WP1_2"] #paper figure, joined
     # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
-    rm_membs = ["WS9", "SS1"]
-    rm_membs = ["SS3", "SS1"]
+    # rm_membs = ["WS9", "SS1"]
+    # rm_membs = ["SS3", "SS1"]
 
     Ks = bld_subg_single_remove(G, rm_membs)
 
@@ -39,22 +41,22 @@ if __name__ == "__main__":
                 G=K,
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
-                plt_show=True,
+                plt_show=False,
                 plt_save=True,
             )
 
     # Joined Subgraphs
-    if len(rm_membs) > 1:
-        K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
+    # if len(rm_membs) > 1:
+    #     K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
 
-        name = "_".join(rm_membs)
-        draw_graph(
-            G=K_joined,
-            filepath="{}/_{}".format(f_out, name),
-            scale=1.2,
-            plt_show=True,
-            plt_save=True,
-        )
+    #     name = "_".join(rm_membs)
+    #     draw_graph(
+    #         G=K_joined,
+    #         filepath="{}/_{}".format(f_out, name),
+    #         scale=1.2,
+    #         plt_show=True,
+    #         plt_save=True,
+    #     )
 
     # Task #3: Sequence Generate
     # K_reduced_list, members = bld_sequence(K_joined, rm_membs)

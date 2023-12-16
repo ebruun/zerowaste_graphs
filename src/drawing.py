@@ -69,7 +69,7 @@ def node_draw_settings(G, nodes, node_type):
         },
         "danger_1side_fixed": {
             "node_type": "danger_1side_fixed",
-            "color": "orange",
+            "color": "tab:orange",
             "size": 450,
             "node_shape": "s",
         },

@@ -9,10 +9,10 @@ from src.algorithms import (
 
 from src.algo_sequence import (
     calc_nodes_to_process,
-    calc_steps,
     remove_disconnected_graphs,
-    check_if_remove_node,
+    update_rm_list,
     relabel_graph,
+    relabel_graph_end,
 )
 
 from src.io import read_json
@@ -185,29 +185,30 @@ def bld_sequence(K, rm_membs):
 
     while True:
         print("\nSTART LOOP")
+        steps += 1
 
         # check for any start nodes
-        nodes_to_process = calc_nodes_to_process(K_reduced, "start")
-
-        if nodes_to_process:
-            node_remove_steps = calc_steps(nodes_to_process, 2)
-        else:
+        try:
+            node_remove_step = calc_nodes_to_process(K_reduced, "start", 2)
+        except IndexError:
+            print("No more removal members, break...")
             break
 
-        for node_remove_step in node_remove_steps:
-            steps += 1
-            print(f"Processing nodes in step {steps}: {node_remove_step}")
-            sequence.append(node_remove_step)
+        # save the current subgraph and sequence
+        print(f"Processing nodes in step {steps}: {node_remove_step}")
+        sequence.append(node_remove_step)
+        K_reduced_list.append(K_reduced.copy())
 
-            K_reduced.remove_nodes_from(list(node_remove_step))
-            rm_membs = check_if_remove_node(node_remove_step, rm_membs)
+        # process the current subgraph for next loop
+        K_reduced.remove_nodes_from(node_remove_step)
+        rm_membs = update_rm_list(node_remove_step, rm_membs)
 
-            remove_disconnected_graphs(K_reduced)
-            relabel_graph(K_reduced, rm_membs)
+        # remove_disconnected_graphs(K_reduced)
+        relabel_graph(K_reduced, rm_membs)
+        relabel_graph_end(K_reduced)
 
-            print("remaining nodes are {}".format(K_reduced.nodes()))
-            print("sequence so far is {}".format(sequence))
-
-            K_reduced_list.append(K_reduced.copy())
+        # print output
+        print("remaining nodes are {}".format(K_reduced.nodes()))
+        print("sequence so far is {}".format(sequence))
 
     return K_reduced_list, sequence

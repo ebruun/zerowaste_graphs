@@ -5,7 +5,16 @@ from src.algorithms import (
 )
 
 
-def calc_nodes_to_process(K, node_type):
+def _calc_steps(nodes_to_process, num_agents):
+    tuple_list = [
+        list(nodes_to_process[i : i + num_agents])
+        for i in range(0, len(nodes_to_process), num_agents)
+    ]
+
+    return tuple_list
+
+
+def calc_nodes_to_process(K, node_type, num_agents):
     nodes_to_process = [
         node
         for node, data in K.nodes(data=True)
@@ -15,16 +24,9 @@ def calc_nodes_to_process(K, node_type):
     # sort based on 2nd letter of each entry
     nodes_to_process = sorted(nodes_to_process, key=lambda x: x[1])
 
-    return nodes_to_process
+    steps = _calc_steps(nodes_to_process, num_agents)
 
-
-def calc_steps(nodes_to_process, num_agents):
-    tuple_list = [
-        tuple(nodes_to_process[i : i + num_agents])
-        for i in range(0, len(nodes_to_process), num_agents)
-    ]
-
-    return tuple_list
+    return steps[0]  # take only first set if more than one
 
 
 def remove_disconnected_graphs(K):
@@ -46,6 +48,17 @@ def remove_disconnected_graphs(K):
     K.remove_nodes_from(nodes_remove_disconnected)
 
 
+def relabel_graph_end(K):
+    if all(
+        K.nodes[n]["node_type"]
+        in ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "normal"]
+        for n in K.nodes()
+    ):
+        for n in K.nodes():
+            if K.nodes[n]["node_type"] == "normal":
+                node_draw_settings(K, n, "start")
+
+
 def relabel_graph(K, rm_membs):
     # Re-label a node if it is now free from supporting others
     for n in K.nodes():
@@ -62,8 +75,8 @@ def relabel_graph(K, rm_membs):
         if in_degree == 1 and node_type == "normal_1side_fixed":
             node_draw_settings(K, n, "start")
 
-    # re-run again, if "normal_1side_fixed" --> "normal" in previous
-    # now "remove" --> "normal" if the "normal_1side_fixed" on top will be removed
+    # re-run again, if "normal_1side_fixed" --> "start" in previous
+    # now "remove" --> "start" if the "normal_1side_fixed" on top will also be removed
     for n in K.nodes():
         node_type = K.nodes[n]["node_type"]
         in_degree = K.in_degree(n)
@@ -75,12 +88,14 @@ def relabel_graph(K, rm_membs):
                 node_draw_settings(K, n, "start")
 
 
-def check_if_remove_node(node_remove_step, rm_membs):
+def update_rm_list(node_remove_step, rm_membs):
+    """is an active member removed in this step, if so remove"""
     node_remove_step = list(node_remove_step)
 
-    for n in node_remove_step:
-        if n == rm_membs[0]:
-            print("a remove member {n} is removed")
-            rm_membs.remove(n)
+    if len(rm_membs):
+        for n in node_remove_step:
+            if n == rm_membs[0]:
+                print(f"an active remove member, {n}, is removed")
+                rm_membs.remove(n)
 
     return rm_membs

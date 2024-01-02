@@ -157,7 +157,7 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=Fa
         plt.text(
             x=middle_x[0],
             y=top_y,
-            s=plt_text,
+            s="{} & {}".format(plt_text[0], plt_text[1]),
             fontsize=12,
             ha="center",
             va="center",

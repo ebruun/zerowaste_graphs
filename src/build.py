@@ -12,7 +12,9 @@ from src.algo_sequence import (
     remove_disconnected_graphs,
     update_rm_list,
     relabel_graph,
-    relabel_graph_end,
+    relabel_graph_ending,
+    relabel_graph_fixed,
+    make_graph_title,
 )
 
 from src.io import read_json
@@ -56,6 +58,31 @@ def _add_in_extra_edge(G, K_joined):
         K_joined.edges[n1, n2, 0]["color"] = "black"
 
     print("\nmissing edges in joined subgraphs: {}".format(missing_edges))
+
+
+def _user_input_parse(node_remove_step, num_agents):
+    num_nodes_to_remove = len(node_remove_step)
+
+    if num_nodes_to_remove > num_agents:
+        user_input = input("which of these: {} ".format(node_remove_step))
+        input_list_str = user_input.split()
+
+        try:
+            # Convert each string element to an integer
+            input_list_int = [int(x) for x in input_list_str]
+
+            print("\nParsed list of integers:", input_list_int)
+        except ValueError:
+            print("Invalid input. Please enter a valid list of integers.")
+
+    elif num_nodes_to_remove == num_agents:
+        input_list_int = list(range(0, num_agents))
+    else:
+        input_list_int = list(range(0, num_nodes_to_remove))
+
+    input_list_int.sort(reverse=True)  # avoid index shift when remove
+
+    return input_list_int
 
 
 ######################################################################
@@ -181,31 +208,40 @@ def bld_sequence(K, rm_membs):
     K_reduced_list = []
     sequence = []
 
+    num_agents = 2
     steps = 0
 
     while True:
         print("\nSTART LOOP")
-        steps += 1
 
         # check for any start nodes
-        try:
-            node_remove_step = calc_nodes_to_process(K_reduced, "start", 2)
-        except IndexError:
-            print("No more removal members, break...")
+        nodes_to_remove = calc_nodes_to_process(K_reduced, "start", num_agents)
+
+        if not nodes_to_remove:
+            print("No more removal members, terminate...")
             break
 
-        # save the current subgraph and sequence
-        print(f"Processing nodes in step {steps}: {node_remove_step}")
-        sequence.append(node_remove_step)
-        K_reduced_list.append(K_reduced.copy())
+        # save the current subgraph and sequence infomation
+        while nodes_to_remove:
+            steps += 1
+            user_input = _user_input_parse(nodes_to_remove, num_agents)
 
-        # process the current subgraph for next loop
-        K_reduced.remove_nodes_from(node_remove_step)
-        rm_membs = update_rm_list(node_remove_step, rm_membs)
+            node_remove_step = [nodes_to_remove.pop(index) for index in user_input]
 
-        # remove_disconnected_graphs(K_reduced)
+            print(f"Processing nodes in step {steps}: {node_remove_step}")
+            sequence.append(node_remove_step)
+            K_reduced.graph["title"] = make_graph_title(steps, node_remove_step)
+            K_reduced_list.append(K_reduced.copy())
+
+            # process the current subgraph and prep for next loop
+            K_reduced.remove_nodes_from(node_remove_step)
+            rm_membs = update_rm_list(node_remove_step, rm_membs)
+            # remove_disconnected_graphs(K_reduced)
+
+        # relabel remaining graph
         relabel_graph(K_reduced, rm_membs)
-        relabel_graph_end(K_reduced)
+        relabel_graph_ending(K_reduced)
+        relabel_graph_fixed(K_reduced)
 
         # print output
         print("remaining nodes are {}".format(K_reduced.nodes()))

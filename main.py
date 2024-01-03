@@ -27,11 +27,10 @@ if __name__ == "__main__":
 
     # Task #2: Member Removal Sub-graphs
     # rm_membs = list(G.nodes())
-    # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"] #paper figure, single
-    # rm_membs = ["WS3", "WP1_2"]  # paper figure, joined
-    # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"]
-    rm_membs = ["WS9", "SS1"]
-    # rm_membs = ["SS3", "SS1"]
+    # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"] #Paper figure, single
+    rm_membs = ["WP1_2", "WS3"]  # Paper figure, joined
+    # rm_membs = ["WS9", "SS1"]  # Phase 1
+    # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"] # Phase 2
 
     Ks = bld_subg_single_remove(G, rm_membs)
 
@@ -42,7 +41,7 @@ if __name__ == "__main__":
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
                 plt_show=False,
-                plt_save=False,
+                plt_save=True,
             )
 
     # Joined Subgraphs
@@ -59,14 +58,14 @@ if __name__ == "__main__":
         )
 
     # Task #3: Sequence Generate
-    K_reduced_list, members = bld_sequence(K_joined, rm_membs)
+    K_reduced_list, members = bld_sequence(Ks[0], rm_membs)
 
-    for i, (K_reduced, member) in enumerate(zip(K_reduced_list, members)):
+    for i, K_reduced in enumerate(K_reduced_list):
         draw_graph(
             G=K_reduced,
             filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
             scale=1.2,
             plt_show=True,
             plt_save=True,
-            plt_text=member,
+            plt_text=True,
         )

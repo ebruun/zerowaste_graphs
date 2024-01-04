@@ -243,6 +243,7 @@ def calc_subg_single(G, rm_memb):
 
     K = G.subgraph(nodes_checked)  # sub-graph built from checked nodes
     nx.set_edge_attributes(K, "black", "color")
+    K.graph["title"] = rm_memb
 
     return K
 
@@ -258,7 +259,12 @@ def calc_subg_multi(Ks):
     - networkx.Graph: The graph resulting from the composition of all subgraphs.
 
     """
-    return nx.compose_all(Ks)
+    K_composed = nx.compose_all(Ks)
+
+    titles = [K.graph["title"] for K in Ks]
+    K_composed.graph["title"] = " & ".join(titles)
+
+    return K_composed
 
 
 def check_fixed_nodes_cut(G, K):

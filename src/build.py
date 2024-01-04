@@ -8,13 +8,11 @@ from src.algorithms import (
 )
 
 from src.algo_sequence import (
-    calc_nodes_to_process,
-    remove_disconnected_graphs,
-    update_rm_list,
-    relabel_graph,
-    relabel_graph_ending,
-    relabel_graph_fixed,
-    make_graph_title,
+    find_n_to_rmv,
+    select_n_subset,
+    crnt_subg_save,
+    crnt_subg_process,
+    new_subg_relabel,
 )
 
 from src.io import read_json
@@ -58,31 +56,6 @@ def _add_in_extra_edge(G, K_joined):
         K_joined.edges[n1, n2, 0]["color"] = "black"
 
     print("\nmissing edges in joined subgraphs: {}".format(missing_edges))
-
-
-def _user_input_parse(node_remove_step, num_agents):
-    num_nodes_to_remove = len(node_remove_step)
-
-    if num_nodes_to_remove > num_agents:
-        user_input = input("which of these: {} ".format(node_remove_step))
-        input_list_str = user_input.split()
-
-        try:
-            # Convert each string element to an integer
-            input_list_int = [int(x) for x in input_list_str]
-
-            print("\nParsed list of integers:", input_list_int)
-        except ValueError:
-            print("Invalid input. Please enter a valid list of integers.")
-
-    elif num_nodes_to_remove == num_agents:
-        input_list_int = list(range(0, num_agents))
-    else:
-        input_list_int = list(range(0, num_nodes_to_remove))
-
-    input_list_int.sort(reverse=True)  # avoid index shift when remove
-
-    return input_list_int
 
 
 ######################################################################
@@ -201,50 +174,43 @@ def bld_subg_multi_remove(G, Ks, rm_membs):
     return K_joined
 
 
-def bld_sequence(K, rm_membs):
+def bld_sequence(K, rm_membs, num_agents):
     print("\nCALCULATING DISASSEMBLY SEQUENCE")
 
     K_reduced = K.copy()
-    K_reduced_list = []
-    sequence = []
-
-    num_agents = 2
-    steps = 0
+    saved_K, saved_seq = [], []
+    step = 0
 
     while True:
-        print("\nSTART LOOP")
+        print("\n\nSTART OVERALL LOOP")
 
-        # check for any start nodes
-        nodes_to_remove = calc_nodes_to_process(K_reduced, "start", num_agents)
+        # check if any start node in current subgraph
+        n_rmv = find_n_to_rmv(K_reduced, n_type="start")
 
-        if not nodes_to_remove:
-            print("No more removal members, terminate...")
+        if not n_rmv:
+            print("-Terminate: No more removal members")
             break
 
         # save the current subgraph and sequence infomation
-        while nodes_to_remove:
-            steps += 1
-            user_input = _user_input_parse(nodes_to_remove, num_agents)
+        while n_rmv:
+            step += 1
+            print(f"Step {step}")
 
-            node_remove_step = [nodes_to_remove.pop(index) for index in user_input]
+            # select a subset of overall node_remove list, user input
+            n_rmv_step = select_n_subset(n_rmv, num_agents)
+            print(f"-Processing nodes: {n_rmv_step}")
 
-            print(f"Processing nodes in step {steps}: {node_remove_step}")
-            sequence.append(node_remove_step)
-            K_reduced.graph["title"] = make_graph_title(steps, node_remove_step)
-            K_reduced_list.append(K_reduced.copy())
+            # save the current state
+            crnt_subg_save(K_reduced, step, n_rmv_step, saved_K, saved_seq)
 
             # process the current subgraph and prep for next loop
-            K_reduced.remove_nodes_from(node_remove_step)
-            rm_membs = update_rm_list(node_remove_step, rm_membs)
-            # remove_disconnected_graphs(K_reduced)
+            crnt_subg_process(K_reduced, n_rmv_step, rm_membs)
 
-        # relabel remaining graph
-        relabel_graph(K_reduced, rm_membs)
-        relabel_graph_ending(K_reduced)
-        relabel_graph_fixed(K_reduced)
+        # relabel for new graph
+        new_subg_relabel(K_reduced, rm_membs)
 
         # print output
-        print("remaining nodes are {}".format(K_reduced.nodes()))
-        print("sequence so far is {}".format(sequence))
+        print("\n-remaining nodes are {}".format(K_reduced.nodes()))
+        print("-sequence so far is {}".format(saved_seq))
 
-    return K_reduced_list, sequence
+    return saved_K, saved_seq

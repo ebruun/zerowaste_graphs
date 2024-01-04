@@ -11,6 +11,7 @@ from src.drawing import draw_graph
 
 if __name__ == "__main__":
     phase_number = 1
+    num_agents = 2
     f_in = "P{}_data_in".format(phase_number)
     f_out = "P{}_graphs_out".format(phase_number)
 
@@ -27,8 +28,8 @@ if __name__ == "__main__":
 
     # Task #2: Member Removal Sub-graphs
     # rm_membs = list(G.nodes())
-    # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"] #Paper figure, single
-    rm_membs = ["WP1_2", "WS3"]  # Paper figure, joined
+    rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"]  # Paper figure, single
+    # rm_membs = ["WP1_2", "WS3"]  # Paper figure, joined
     # rm_membs = ["WS9", "SS1"]  # Phase 1
     # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"] # Phase 2
 
@@ -40,32 +41,34 @@ if __name__ == "__main__":
                 G=K,
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
-                plt_show=False,
+                plt_show=True,
                 plt_save=True,
+                plt_text=True,
             )
 
-    # Joined Subgraphs
-    if len(rm_membs) > 1:
-        K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
+    # # Joined Subgraphs
+    # if len(rm_membs) > 1:
+    #     K_joined = bld_subg_multi_remove(G, Ks, rm_membs)
 
-        name = "_".join(rm_membs)
-        draw_graph(
-            G=K_joined,
-            filepath="{}/_{}".format(f_out, name),
-            scale=1.2,
-            plt_show=False,
-            plt_save=True,
-        )
+    #     name = "_".join(rm_membs)
+    #     draw_graph(
+    #         G=K_joined,
+    #         filepath="{}/_{}".format(f_out, name),
+    #         scale=1.2,
+    #         plt_show=True,
+    #         plt_save=True,
+    #         plt_text=True,
+    #     )
 
-    # Task #3: Sequence Generate
-    K_reduced_list, members = bld_sequence(Ks[0], rm_membs)
+    # # Task #3: Sequence Generate
+    # K_reduced_list, members = bld_sequence(K_joined, rm_membs, num_agents)
 
-    for i, K_reduced in enumerate(K_reduced_list):
-        draw_graph(
-            G=K_reduced,
-            filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
-            scale=1.2,
-            plt_show=True,
-            plt_save=True,
-            plt_text=True,
-        )
+    # for i, K_reduced in enumerate(K_reduced_list):
+    #     draw_graph(
+    #         G=K_reduced,
+    #         filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
+    #         scale=1.2,
+    #         plt_show=True,
+    #         plt_save=True,
+    #         plt_text=True,
+    #     )

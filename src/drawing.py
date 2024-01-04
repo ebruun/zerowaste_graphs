@@ -150,18 +150,17 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=Fa
 
     plt.axis("off")  # no border around fig
 
-    middle_x = sum(pos.values()) / len(pos)
-    top_y = max(pos.values(), key=lambda x: x[1])[1]
-
     if plt_text:
         plt.text(
-            x=middle_x[0],
-            y=top_y,
+            x=0.10,
+            y=0.97,
             s=G.graph["title"],
-            fontsize=12,
-            ha="center",
+            fontsize=17,
+            fontweight="bold",
+            ha="left",
             va="center",
-            bbox=dict(facecolor="white", edgecolor="black", boxstyle="round,pad=0.5"),
+            bbox=dict(facecolor="white", edgecolor="red", boxstyle="round,pad=0.5"),
+            transform=plt.gca().transAxes,
         )
 
     if plt_save:

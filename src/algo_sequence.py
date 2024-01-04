@@ -6,31 +6,7 @@ from src.algorithms import (
 )
 
 
-def _calc_steps(nodes_to_process, num_agents):
-    tuple_list = [
-        list(nodes_to_process[i : i + num_agents])
-        for i in range(0, len(nodes_to_process), num_agents)
-    ]
-
-    return tuple_list
-
-
-def calc_nodes_to_process(K, node_type, num_agents):
-    nodes_to_process = [
-        node
-        for node, data in K.nodes(data=True)
-        if "node_type" in data and data["node_type"] == node_type
-    ]
-
-    # sort based on 2nd letter of each entry
-    nodes_to_process = sorted(nodes_to_process, key=lambda x: x[1])
-
-    # steps = _calc_steps(nodes_to_process, num_agents)
-
-    return nodes_to_process  # take only first set if more than one
-
-
-def make_graph_title(step, nodes):
+def _make_graph_title(step, nodes):
     len_nodes = len(nodes)
 
     if len_nodes == 2:
@@ -43,21 +19,21 @@ def make_graph_title(step, nodes):
     return text
 
 
-def update_rm_list(node_remove_step, rm_membs):
+def _update_rm_list(node_remove_step, rm_membs):
     """is an active member removed in this step, if so remove"""
     node_remove_step = list(node_remove_step)
 
     if rm_membs:
         for n in node_remove_step:
             if n == rm_membs[0]:
-                print(f"an active remove member, {n}, is removed")
+                print(f"--an active remove member, {n}, is removed")
                 rm_membs.remove(n)
                 break
 
     return rm_membs
 
 
-def remove_disconnected_graphs(K):
+def _remove_disconnected_graphs(K):
     nodes_remove_disconnected = []
     components = list(nx.weakly_connected_components(K))
     desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation"]
@@ -73,7 +49,7 @@ def remove_disconnected_graphs(K):
     K.remove_nodes_from(nodes_remove_disconnected)
 
 
-def relabel_graph(K, rm_membs):
+def _relabel_graph(K, rm_membs):
     # Re-label a node if it is now free from supporting others
     for n in K.nodes():
         n_type = K.nodes[n]["node_type"]
@@ -103,7 +79,7 @@ def relabel_graph(K, rm_membs):
             node_draw_settings(K, n, "start")
 
 
-def relabel_graph_ending(K):
+def _relabel_graph_ending(K):
     desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "normal"]
 
     if all(K.nodes[n]["node_type"] in desired_n_types for n in K.nodes()):
@@ -112,7 +88,7 @@ def relabel_graph_ending(K):
                 node_draw_settings(K, n, "start")
 
 
-def relabel_graph_fixed(K):
+def _relabel_graph_fixed(K):
     """make start node if only end node on top and no other start members in graph
     algo will terminate otherwise
     """
@@ -128,3 +104,60 @@ def relabel_graph_fixed(K):
 
             if node_type in ["normal", "normal_1side_fixed"] and in_deg_norm == cnt_fxd_ontop:
                 node_draw_settings(K, n, "start")
+
+
+###############################################
+
+
+def find_n_to_rmv(K, n_type):
+    n_rmv = [
+        n for n, data in K.nodes(data=True) if "node_type" in data and data["node_type"] == n_type
+    ]
+
+    n_rmv = sorted(n_rmv, key=lambda x: x[1])
+
+    return n_rmv
+
+
+def select_n_subset(n_rmv, num_agents):
+    num_nodes_to_remove = len(n_rmv)
+
+    if num_nodes_to_remove > num_agents:
+        user_input = input("choose members {}: int int ".format(n_rmv))
+        input_list_str = user_input.split()
+
+        try:
+            # Convert each string element to an integer
+            input_list_int = [int(x) for x in input_list_str]
+        except ValueError:
+            print("Invalid input. Please enter a valid list of integers.")
+
+    elif num_nodes_to_remove == num_agents:
+        input_list_int = list(range(0, num_agents))
+    else:
+        input_list_int = list(range(0, num_nodes_to_remove))
+
+    input_list_int.sort(reverse=True)  # avoid index shift when remove
+    n_rmv_step = [n_rmv.pop(index) for index in input_list_int]
+
+    return n_rmv_step
+
+
+def crnt_subg_process(K, n_rmv_step, rm_membs, rmv_disconnect=False):
+    K.remove_nodes_from(n_rmv_step)
+    rm_membs = _update_rm_list(n_rmv_step, rm_membs)
+
+    if rmv_disconnect:
+        _remove_disconnected_graphs(K)
+
+
+def crnt_subg_save(K, step, n_rmv_step, saved_K, saved_seq):
+    K.graph["title"] = _make_graph_title(step, n_rmv_step)
+    saved_K.append(K.copy())
+    saved_seq.append(n_rmv_step)
+
+
+def new_subg_relabel(K, rm_membs):
+    _relabel_graph(K, rm_membs)
+    _relabel_graph_ending(K)
+    _relabel_graph_fixed(K)

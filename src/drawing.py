@@ -152,10 +152,10 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=Fa
 
     if plt_text:
         plt.text(
-            x=0.10,
+            x=0.15,
             y=0.97,
             s=G.graph["title"],
-            fontsize=20,
+            fontsize=18,
             fontweight="bold",
             ha="left",
             va="center",

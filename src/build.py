@@ -192,19 +192,19 @@ def bld_sequence(K, rm_membs, num_agents):
             break
 
         # save the current subgraph and sequence infomation
-        while n_rmv:
-            step += 1
-            print(f"Step {step}")
+        # while n_rmv:
+        step += 1
+        print(f"Step {step}")
 
-            # select a subset of overall node_remove list, user input
-            n_rmv_step = select_n_subset(n_rmv, num_agents)
-            print(f"-Processing nodes: {n_rmv_step}")
+        # select a subset of overall node_remove list, user input
+        n_rmv_step = select_n_subset(n_rmv)
+        print(f"-Processing nodes: {n_rmv_step}")
 
-            # save the current state
-            crnt_subg_save(K_reduced, step, n_rmv_step, saved_K, saved_seq)
+        # save the current state
+        crnt_subg_save(K_reduced, step, n_rmv_step, saved_K, saved_seq)
 
-            # process the current subgraph and prep for next loop
-            crnt_subg_process(K_reduced, n_rmv_step, rm_membs)
+        # process the current subgraph and prep for next loop
+        crnt_subg_process(K_reduced, n_rmv_step, rm_membs)
 
         # relabel for new graph
         new_subg_relabel(K_reduced, rm_membs)

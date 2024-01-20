@@ -64,19 +64,27 @@ def _relabel_graph(K, rm_membs):
         ):
             node_draw_settings(K, n, "start")
 
-    # re-run again, if "normal_1side_fixed" --> "start" in previous
-    # now "remove" --> "start" if the "normal_1side_fixed" on top will also be removed
-    for n in K.nodes():
-        n_type = K.nodes[n]["node_type"]
-        in_deg = K.in_degree(n)
-
         if (
             in_deg == 1
             and n_type == "remove"
-            and K.nodes[list(K.predecessors(n))[0]]["node_type"] == "start"
+            and K.nodes[list(K.predecessors(n))[0]]["node_type"] == "normal_1side_fixed"
             and n == rm_membs[0]
         ):
             node_draw_settings(K, n, "start")
+
+    # # re-run again, if "normal_1side_fixed" --> "start" in previous
+    # # now "remove" --> "start" if the "normal_1side_fixed" on top will also be removed
+    # for n in K.nodes():
+    #     n_type = K.nodes[n]["node_type"]
+    #     in_deg = K.in_degree(n)
+
+    #     if (
+    #         in_deg == 1
+    #         and n_type == "remove"
+    #         and K.nodes[list(K.predecessors(n))[0]]["node_type"] == "start"
+    #         and n == rm_membs[0]
+    #     ):
+    #         node_draw_settings(K, n, "start")
 
 
 def _relabel_graph_ending(K):
@@ -119,10 +127,10 @@ def find_n_to_rmv(K, n_type):
     return n_rmv
 
 
-def select_n_subset(n_rmv, num_agents):
+def select_n_subset_OLD(n_rmv, num_agents):
     num_nodes_to_remove = len(n_rmv)
 
-    if num_nodes_to_remove > num_agents:
+    if num_nodes_to_remove > (num_agents - 2):
         user_input = input("choose members {}: int int ".format(n_rmv))
         input_list_str = user_input.split()
 
@@ -136,6 +144,22 @@ def select_n_subset(n_rmv, num_agents):
         input_list_int = list(range(0, num_agents))
     else:
         input_list_int = list(range(0, num_nodes_to_remove))
+
+    input_list_int.sort(reverse=True)  # avoid index shift when remove
+    n_rmv_step = [n_rmv.pop(index) for index in input_list_int]
+
+    return n_rmv_step
+
+
+def select_n_subset(n_rmv):
+    user_input = input("choose members {}: int int ".format(n_rmv))
+    input_list_str = user_input.split()
+
+    try:
+        # Convert each string element to an integer
+        input_list_int = [int(x) for x in input_list_str]
+    except ValueError:
+        print("Invalid input. Please enter a valid list of integers.")
 
     input_list_int.sort(reverse=True)  # avoid index shift when remove
     n_rmv_step = [n_rmv.pop(index) for index in input_list_int]

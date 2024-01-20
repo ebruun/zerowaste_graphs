@@ -44,7 +44,7 @@ if __name__ == "__main__":
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
                 plt_show=False,
-                plt_save=True,
+                plt_save=False,
                 plt_text=True,
             )
 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
             filepath="{}/_{}".format(f_out, name),
             scale=1.2,
             plt_show=True,
-            plt_save=True,
+            plt_save=False,
             plt_text=True,
         )
     else:

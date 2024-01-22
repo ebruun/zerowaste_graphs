@@ -79,6 +79,12 @@ def node_draw_settings(G, nodes, node_type):
             "size": 400,
             "node_shape": "o",
         },
+        "robsupport_fixed": {
+            "node_type": "robsupport_fixed",
+            "color": "tab:pink",
+            "size": 400,
+            "node_shape": "s",
+        },
     }
 
     # make into a list if a single variable

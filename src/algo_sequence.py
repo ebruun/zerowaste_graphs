@@ -6,7 +6,7 @@ from src.algorithms import (
 )
 
 
-def _make_graph_title(step, nodes):
+def _make_graph_title(step, nodes, nodes_robfxd):
     len_nodes = len(nodes)
 
     if len_nodes == 2:
@@ -14,7 +14,7 @@ def _make_graph_title(step, nodes):
     elif len_nodes == 1:
         text = "Step {}: {}".format(step, nodes[0])
     else:
-        print("ERROR, IN MAKE_GRAPH_TITLE")
+        text = "Step {}: {} (rob support)".format(step, nodes_robfxd[0])
 
     return text
 
@@ -64,6 +64,7 @@ def _relabel_graph(K, rm_membs):
         ):
             node_draw_settings(K, n, "start")
 
+        # edge case
         if (
             in_deg == 1
             and n_type == "remove"
@@ -88,11 +89,41 @@ def _relabel_graph(K, rm_membs):
 
 
 def _relabel_graph_ending(K):
+    "if only these left, then make normal nodes = start nodes"
     desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "normal"]
 
     if all(K.nodes[n]["node_type"] in desired_n_types for n in K.nodes()):
         for n in K.nodes():
             if K.nodes[n]["node_type"] == "normal":
+                node_draw_settings(K, n, "start")
+                print("nnnnnnnn")
+
+
+def _relabel_graph_robsupport(K):
+    desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "robsupport_fixed"]
+    ignore_n_types = ["end_2sides_fixed", "end_1sides_fixed", "robsupport_fixed", "end_foundation"]
+
+    for n in K.nodes():
+        n_type = K.nodes[n]["node_type"]
+        in_deg = K.in_degree(n)
+        # num_fixed_sides = _count_fixed_sides(K, n)[0]
+        predecessors = list(K.predecessors(n))
+
+        # edge case, if on top is only rob_support
+        if (
+            in_deg == 1
+            and n_type not in ignore_n_types
+            and K.nodes[predecessors[0]]["node_type"] == "robsupport_fixed"
+        ):
+            print("-- make {} start, one fxd predecessors = {}".format(n, predecessors))
+            node_draw_settings(K, n, "start")
+
+        # edge case, if on top is rob_support and end
+        if in_deg == 2 and n_type not in ignore_n_types:
+            attribute_values = [K.nodes[predecessor]["node_type"] for predecessor in predecessors]
+
+            if set(attribute_values).issubset(desired_n_types):
+                print("-- make {} start, two fxd predecessors = {}".format(n, predecessors))
                 node_draw_settings(K, n, "start")
 
 
@@ -119,7 +150,7 @@ def _relabel_graph_fixed(K):
 
 def find_n_to_rmv(K, n_type):
     n_rmv = [
-        n for n, data in K.nodes(data=True) if "node_type" in data and data["node_type"] == n_type
+        n for n, data in K.nodes(data=True) if "node_type" in data and data["node_type"] in n_type
     ]
 
     n_rmv = sorted(n_rmv, key=lambda x: x[1])
@@ -151,20 +182,56 @@ def select_n_subset_OLD(n_rmv, num_agents):
     return n_rmv_step
 
 
-def select_n_subset(n_rmv):
-    user_input = input("choose members {}: int int ".format(n_rmv))
+def select_n_support(K, nodes):
+    user_input = input("add in support? BOOL")
     input_list_str = user_input.split()
+    input_list_int = [int(x) for x in input_list_str]
+
+    if input_list_int:
+        nodes = ["SP1_2", "SP1_3"]
+        for n in nodes:
+            node_draw_settings(K, n, "robsupport_fixed")
+
+
+def select_n_active(n_rmv):
+    # Select for remove
+    user_string = "choose members {}: int ... int ".format(n_rmv)
+    user_input = input(user_string)
+    rmv_indexes_str = user_input.split()
 
     try:
         # Convert each string element to an integer
-        input_list_int = [int(x) for x in input_list_str]
+        rmv_indexes_int = [int(x) for x in rmv_indexes_str]
     except ValueError:
         print("Invalid input. Please enter a valid list of integers.")
 
-    input_list_int.sort(reverse=True)  # avoid index shift when remove
-    n_rmv_step = [n_rmv.pop(index) for index in input_list_int]
+    rmv_indexes_int.sort(reverse=True)  # avoid index shift when remove
+    n_rmv_select = [n_rmv.pop(index) for index in rmv_indexes_int]
 
-    return n_rmv_step
+    # Select for rob support
+    user_string = "is {} rob_fixed: int ... int "
+    user_input = input(user_string.format(n_rmv_select))
+    robfxd_indexes_str = user_input.split()
+
+    try:
+        # Convert each string element to an integer
+        robfxd_indexes_int = [int(x) for x in robfxd_indexes_str]
+    except ValueError:
+        print("Invalid input. Please enter a valid list of integers.")
+
+    robfxd_indexes_int.sort(reverse=True)  # avoid index shift when remove
+    n_robfxd_select = [n_rmv_select.pop(index) for index in robfxd_indexes_int]
+
+    print(f"-Processing nodes: {n_rmv_select}")
+    print(f"-robfixed nodes: {n_robfxd_select}")
+
+    return n_rmv_select, n_robfxd_select
+
+
+def crnt_subg_setrobfxd(K, n_robfxd_step):
+    if n_robfxd_step:
+        for n in n_robfxd_step:
+            node_draw_settings(K, n, "robsupport_fixed")
 
 
 def crnt_subg_process(K, n_rmv_step, rm_membs, rmv_disconnect=False):
@@ -175,8 +242,9 @@ def crnt_subg_process(K, n_rmv_step, rm_membs, rmv_disconnect=False):
         _remove_disconnected_graphs(K)
 
 
-def crnt_subg_save(K, step, n_rmv_step, saved_K, saved_seq):
-    K.graph["title"] = _make_graph_title(step, n_rmv_step)
+def crnt_subg_save(K, step, n_rmv_step, n_robfxd_step, saved_K, saved_seq):
+    K.graph["title"] = _make_graph_title(step, n_rmv_step, n_robfxd_step)
+
     saved_K.append(K.copy())
     saved_seq.append(n_rmv_step)
 
@@ -185,3 +253,4 @@ def new_subg_relabel(K, rm_membs):
     _relabel_graph(K, rm_membs)
     _relabel_graph_ending(K)
     _relabel_graph_fixed(K)
+    _relabel_graph_robsupport(K)

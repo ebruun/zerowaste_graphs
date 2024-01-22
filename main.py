@@ -10,8 +10,8 @@ from src.drawing import draw_graph
 
 
 if __name__ == "__main__":
-    phase_number = 1
-    num_agents = 2
+    phase_number = 2
+    num_agents = 3
     f_in = "P{}_data_in".format(phase_number)
     f_out = "P{}_graphs_out".format(phase_number)
 
@@ -31,9 +31,11 @@ if __name__ == "__main__":
     # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"]  # Paper figure, single
     # rm_membs = ["WP1_2", "WS3"]  # Paper figure, joined
     # rm_membs = ["SS1"]  # Phase 1
-    rm_membs = ["WS9", "SS1"]  # Phase 1
+    # rm_membs = ["WS9", "SS1"]  # Phase 1
     # rm_membs = ["SS3", "SS1"]  # Phase 1
-    # rm_membs = ["SS1", "WS9", "WP1_3", "SS6"] # Phase 2
+    rm_membs = ["SP1_2", "SP1_3", "SP1_4"]  # Phase 2a
+    rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3"]  # Phase 2b
+    rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3", "RG1_6"]  # Phase 2c
 
     Ks = bld_subg_single_remove(G, rm_membs)
 
@@ -44,8 +46,8 @@ if __name__ == "__main__":
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
                 plt_show=False,
-                plt_save=False,
-                plt_text=True,
+                plt_save=True,
+                plt_text=False,
             )
 
     # Joined Subgraphs
@@ -57,9 +59,9 @@ if __name__ == "__main__":
             G=K_joined,
             filepath="{}/_{}".format(f_out, name),
             scale=1.2,
-            plt_show=True,
-            plt_save=False,
-            plt_text=True,
+            plt_show=False,
+            plt_save=True,
+            plt_text=False,
         )
     else:
         K_joined = Ks[0]

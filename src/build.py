@@ -9,9 +9,11 @@ from src.algorithms import (
 
 from src.algo_sequence import (
     find_n_to_rmv,
-    select_n_subset,
+    select_n_active,
+    select_n_support,
     crnt_subg_save,
     crnt_subg_process,
+    crnt_subg_setrobfxd,
     new_subg_relabel,
 )
 
@@ -182,28 +184,27 @@ def bld_sequence(K, rm_membs, num_agents):
     step = 0
 
     while True:
-        print("\n\nSTART OVERALL LOOP")
+        step += 1
+        print(f"STEP #{step}")
 
         # check if any start node in current subgraph
-        n_rmv = find_n_to_rmv(K_reduced, n_type="start")
+        n_rmv = find_n_to_rmv(K_reduced, n_type=["start", "robsupport_fixed"])
 
         if not n_rmv:
             print("-Terminate: No more removal members")
+            select_n_support(K_reduced, ["SP1_2", "SP1_3"])
             break
 
-        # save the current subgraph and sequence infomation
-        # while n_rmv:
-        step += 1
-        print(f"Step {step}")
+        # user select a subset for remove and rob support
+        n_rmv_step, n_robfxd_step = select_n_active(n_rmv)
 
-        # select a subset of overall node_remove list, user input
-        n_rmv_step = select_n_subset(n_rmv)
-        print(f"-Processing nodes: {n_rmv_step}")
+        crnt_subg_setrobfxd(K_reduced, n_robfxd_step)
 
         # save the current state
-        crnt_subg_save(K_reduced, step, n_rmv_step, saved_K, saved_seq)
+        crnt_subg_save(K_reduced, step, n_rmv_step, n_robfxd_step, saved_K, saved_seq)
 
-        # process the current subgraph and prep for next loop
+        # PREPARE NEXT ITERATION
+        # remove elements and update target member list
         crnt_subg_process(K_reduced, n_rmv_step, rm_membs)
 
         # relabel for new graph

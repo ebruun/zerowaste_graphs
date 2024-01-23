@@ -10,7 +10,7 @@ from src.drawing import draw_graph
 
 
 if __name__ == "__main__":
-    phase_number = "1"
+    phase_number = "2a"
     num_agents = 3
     f_in = "P{}_data_in".format(phase_number)
     f_out = "P{}_graphs_out".format(phase_number)
@@ -31,12 +31,12 @@ if __name__ == "__main__":
     # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"]  # Paper figure, single
     # rm_membs = ["WP1_2", "WS3"]  # Paper figure, joined
     # rm_membs = ["SS1"]  # Phase 1
-    rm_membs = ["WS9", "SS1"]  # Phase 1
+    # rm_membs = ["WS9", "SS1"]  # Phase 1
     # rm_membs = ["SS3", "SS1"]  # Phase 1
-    # rm_membs = ["SP1_2", "SP1_3", "SP1_4"]  # Phase 2a
-    # rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3"]  # Phase 2b
-    # rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3", "RG1_6"]  # Phase 2c
-    # rm_membs = ["SP1_2", "SP1_3", "RG1_6"]  # Phase 2a
+    rm_membs = ["SP1_2", "SP1_3", "SP1_4"]  # Phase 2a_1
+    rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3"]  # Phase 2a_2
+    rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3", "RG1_6"]  # Phase 2a_3
+    # rm_membs = ["SP1_2", "SP1_3", "RG1_6"]  # Phase 2b
 
     Ks = bld_subg_single_remove(G, rm_membs)
 
@@ -46,9 +46,9 @@ if __name__ == "__main__":
                 G=K,
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
-                plt_show=True,
-                plt_save=True,
-                plt_text=True,
+                plt_show=False,
+                plt_save=False,
+                plt_text=False,
             )
 
     # Joined Subgraphs
@@ -61,21 +61,21 @@ if __name__ == "__main__":
             filepath="{}/_{}".format(f_out, name),
             scale=1.2,
             plt_show=False,
-            plt_save=True,
+            plt_save=False,
             plt_text=True,
         )
     else:
         K_joined = Ks[0]
 
-    # # Task #3: Sequence Generate
-    # K_reduced_list, members = bld_sequence(K_joined, rm_membs, num_agents)
+    # Task #3: Sequence Generate
+    K_reduced_list, members = bld_sequence(K_joined, rm_membs, num_agents)
 
-    # for i, K_reduced in enumerate(K_reduced_list):
-    #     draw_graph(
-    #         G=K_reduced,
-    #         filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
-    #         scale=1.2,
-    #         plt_show=True,
-    #         plt_save=True,
-    #         plt_text=True,
-    #     )
+    for i, K_reduced in enumerate(K_reduced_list):
+        draw_graph(
+            G=K_reduced,
+            filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
+            scale=1.2,
+            plt_show=True,
+            plt_save=True,
+            plt_text=True,
+        )

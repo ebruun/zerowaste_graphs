@@ -167,7 +167,7 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=Fa
 
     if plt_text:
         plt.text(
-            x=0.15,
+            x=0.10,
             y=1.07,
             s=G.graph["title"],
             fontsize=18,

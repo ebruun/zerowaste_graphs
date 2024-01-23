@@ -11,15 +11,15 @@ def _make_graph_title(step, nodes, nodes_robfxd):
     n_sup = len(nodes_robfxd)
 
     if n_rmv == 2 and n_sup == 0:
-        text = "Step {}: {} & {} (rm)".format(step, nodes[0], nodes[1])
+        text = "Step {}: {} (rm) & {} (rm)".format(step, nodes[0], nodes[1])
     elif n_rmv == 1 and n_sup == 0:
         text = "Step {}: {} (rm)".format(step, nodes[0])
     elif n_rmv == 0 and n_sup == 1:
         text = "Step {}: {} (rs)".format(step, nodes_robfxd[0])
     elif n_rmv == 0 and n_sup == 2:
-        text = "Step {}: {} & {} (rs)".format(step, nodes_robfxd[0], nodes_robfxd[1])
+        text = "Step {}: {} (rs) & {} (rs)".format(step, nodes_robfxd[0], nodes_robfxd[1])
     elif n_rmv == 1 and n_sup == 1:
-        text = "Step {}: {} (rm) & {} (rs)".format(step, nodes[0], nodes_robfxd[1])
+        text = "Step {}: {} (rm) & {} (rs)".format(step, nodes[0], nodes_robfxd[0])
 
     return text
 
@@ -69,29 +69,6 @@ def _relabel_graph(K, rm_membs):
         ):
             node_draw_settings(K, n, "start")
 
-        # edge case
-        if (
-            in_deg == 1
-            and n_type == "remove"
-            and K.nodes[list(K.predecessors(n))[0]]["node_type"] == "normal_1side_fixed"
-            and n == rm_membs[0]
-        ):
-            node_draw_settings(K, n, "start")
-
-    # # re-run again, if "normal_1side_fixed" --> "start" in previous
-    # # now "remove" --> "start" if the "normal_1side_fixed" on top will also be removed
-    # for n in K.nodes():
-    #     n_type = K.nodes[n]["node_type"]
-    #     in_deg = K.in_degree(n)
-
-    #     if (
-    #         in_deg == 1
-    #         and n_type == "remove"
-    #         and K.nodes[list(K.predecessors(n))[0]]["node_type"] == "start"
-    #         and n == rm_membs[0]
-    #     ):
-    #         node_draw_settings(K, n, "start")
-
 
 def _relabel_graph_ending(K):
     "if only these left, then make normal nodes = start nodes"
@@ -110,7 +87,6 @@ def _relabel_graph_robsupport(K):
     for n in K.nodes():
         n_type = K.nodes[n]["node_type"]
         in_deg = K.in_degree(n)
-        # num_fixed_sides = _count_fixed_sides(K, n)[0]
         predecessors = list(K.predecessors(n))
 
         # edge case, if on top is only rob_support
@@ -160,30 +136,6 @@ def find_n_to_rmv(K, n_type):
     n_rmv = sorted(n_rmv, key=lambda x: x[1])
 
     return n_rmv
-
-
-def select_n_subset_OLD(n_rmv, num_agents):
-    num_nodes_to_remove = len(n_rmv)
-
-    if num_nodes_to_remove > (num_agents - 2):
-        user_input = input("choose members {}: int int ".format(n_rmv))
-        input_list_str = user_input.split()
-
-        try:
-            # Convert each string element to an integer
-            input_list_int = [int(x) for x in input_list_str]
-        except ValueError:
-            print("Invalid input. Please enter a valid list of integers.")
-
-    elif num_nodes_to_remove == num_agents:
-        input_list_int = list(range(0, num_agents))
-    else:
-        input_list_int = list(range(0, num_nodes_to_remove))
-
-    input_list_int.sort(reverse=True)  # avoid index shift when remove
-    n_rmv_step = [n_rmv.pop(index) for index in input_list_int]
-
-    return n_rmv_step
 
 
 def select_n_support():

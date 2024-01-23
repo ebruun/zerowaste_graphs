@@ -152,14 +152,23 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=Fa
     )
 
     f = plt.gcf()
-    f.tight_layout()
 
-    plt.axis("off")  # no border around fig
+    # to give a bit of vertical padding
+    plt.text(
+        x=0.15,
+        y=1.08,
+        s=" ",
+        fontsize=18,
+        fontweight="bold",
+        ha="left",
+        va="center",
+        transform=plt.gca().transAxes,
+    )
 
     if plt_text:
         plt.text(
             x=0.15,
-            y=0.97,
+            y=1.07,
             s=G.graph["title"],
             fontsize=18,
             fontweight="bold",
@@ -168,6 +177,9 @@ def draw_graph(G, filepath, scale=1, plt_show=False, plt_save=False, plt_text=Fa
             bbox=dict(facecolor="white", edgecolor="red", boxstyle="round,pad=0.5"),
             transform=plt.gca().transAxes,
         )
+
+    f.tight_layout()
+    plt.axis("off")  # no border around fig
 
     if plt_save:
         plt.savefig(filepath, dpi=600)

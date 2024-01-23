@@ -46,9 +46,9 @@ if __name__ == "__main__":
                 G=K,
                 filepath="{}/{}".format(f_out, rm_memb),
                 scale=1.2,
-                plt_show=False,
-                plt_save=False,
-                plt_text=False,
+                plt_show=True,
+                plt_save=True,
+                plt_text=True,
             )
 
     # Joined Subgraphs
@@ -62,20 +62,20 @@ if __name__ == "__main__":
             scale=1.2,
             plt_show=False,
             plt_save=True,
-            plt_text=False,
+            plt_text=True,
         )
     else:
         K_joined = Ks[0]
 
-    # Task #3: Sequence Generate
-    K_reduced_list, members = bld_sequence(K_joined, rm_membs, num_agents)
+    # # Task #3: Sequence Generate
+    # K_reduced_list, members = bld_sequence(K_joined, rm_membs, num_agents)
 
-    for i, K_reduced in enumerate(K_reduced_list):
-        draw_graph(
-            G=K_reduced,
-            filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
-            scale=1.2,
-            plt_show=True,
-            plt_save=True,
-            plt_text=True,
-        )
+    # for i, K_reduced in enumerate(K_reduced_list):
+    #     draw_graph(
+    #         G=K_reduced,
+    #         filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
+    #         scale=1.2,
+    #         plt_show=True,
+    #         plt_save=True,
+    #         plt_text=True,
+    #     )

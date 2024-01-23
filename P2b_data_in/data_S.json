@@ -1,0 +1,104 @@
+{
+    "node": {
+        "SF1": {
+            "color": "black",
+            "pos": "(0.0,-25)",
+            "node_shape": "8",
+            "size": 600
+        },
+        "SP1_2": {
+            "color": "tab:purple",
+            "pos": "(-2,-14.5)",
+            "size": 500
+        },
+        "SP1_3": {
+            "color": "tab:purple",
+            "pos": "(2,-14.5)",
+            "size": 500
+        },
+        "SH1": {
+            "color": "tab:olive",
+            "pos": "(0,-17.5)",
+            "size": 400
+        },
+        "SS3": {
+            "color": "tab:cyan",
+            "pos": "(-1,-21.5)",
+            "size": 400
+        },
+        "SS4": {
+            "color": "tab:cyan",
+            "pos": "(1,-21.5)",
+            "size": 400
+        },
+        "SS5": {
+            "color": "tab:cyan",
+            "pos": "(3,-21.5)",
+            "size": 400
+        }
+    },
+    "edge": {
+        "SP1_2": {
+            "SP1_3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "SH1": {
+                "weight": 1,
+                "color": "tab:olive",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "SP1_3": {
+            "SP1_2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "SH1": {
+                "weight": 1,
+                "color": "tab:olive",
+                "style": "arc3, rad=-0.2"
+            },
+            "SS5": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "SH1": {
+            "SS3": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=0.1"
+            },
+            "SS4": {
+                "weight": 1,
+                "color": "tab:cyan",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "SS3": {
+            "SF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "SS4": {
+            "SF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "SS5": {
+            "SF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.1"
+            }
+        }
+    }
+}

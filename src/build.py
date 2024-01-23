@@ -11,6 +11,7 @@ from src.algo_sequence import (
     find_n_to_rmv,
     select_n_active,
     select_n_support,
+    which_n_support,
     crnt_subg_save,
     crnt_subg_process,
     crnt_subg_setrobfxd,
@@ -185,14 +186,16 @@ def bld_sequence(K, rm_membs, num_agents):
 
     while True:
         step += 1
-        print(f"STEP #{step}")
+        print(f"\nSTEP #{step}")
+
+        if select_n_support():
+            n_rmv = which_n_support(K_reduced)
 
         # check if any start node in current subgraph
         n_rmv = find_n_to_rmv(K_reduced, n_type=["start", "robsupport_fixed"])
 
         if not n_rmv:
             print("-Terminate: No more removal members")
-            select_n_support(K_reduced, ["SP1_2", "SP1_3"])
             break
 
         # user select a subset for remove and rob support

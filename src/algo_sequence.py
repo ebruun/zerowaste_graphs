@@ -7,14 +7,19 @@ from src.algorithms import (
 
 
 def _make_graph_title(step, nodes, nodes_robfxd):
-    len_nodes = len(nodes)
+    n_rmv = len(nodes)
+    n_sup = len(nodes_robfxd)
 
-    if len_nodes == 2:
-        text = "Step {}: {} and {}".format(step, nodes[0], nodes[1])
-    elif len_nodes == 1:
-        text = "Step {}: {}".format(step, nodes[0])
-    else:
-        text = "Step {}: {} (rob support)".format(step, nodes_robfxd[0])
+    if n_rmv == 2 and n_sup == 0:
+        text = "Step {}: {} & {} (rm)".format(step, nodes[0], nodes[1])
+    elif n_rmv == 1 and n_sup == 0:
+        text = "Step {}: {} (rm)".format(step, nodes[0])
+    elif n_rmv == 0 and n_sup == 1:
+        text = "Step {}: {} (rs)".format(step, nodes_robfxd[0])
+    elif n_rmv == 0 and n_sup == 2:
+        text = "Step {}: {} & {} (rs)".format(step, nodes_robfxd[0], nodes_robfxd[1])
+    elif n_rmv == 1 and n_sup == 1:
+        text = "Step {}: {} (rm) & {} (rs)".format(step, nodes[0], nodes_robfxd[1])
 
     return text
 
@@ -96,7 +101,6 @@ def _relabel_graph_ending(K):
         for n in K.nodes():
             if K.nodes[n]["node_type"] == "normal":
                 node_draw_settings(K, n, "start")
-                print("nnnnnnnn")
 
 
 def _relabel_graph_robsupport(K):
@@ -182,15 +186,23 @@ def select_n_subset_OLD(n_rmv, num_agents):
     return n_rmv_step
 
 
-def select_n_support(K, nodes):
-    user_input = input("add in support? BOOL")
-    input_list_str = user_input.split()
-    input_list_int = [int(x) for x in input_list_str]
+def select_n_support():
+    user_input = input("Do you want to add support? (Y/N): ").strip().lower()
 
-    if input_list_int:
-        nodes = ["SP1_2", "SP1_3"]
-        for n in nodes:
-            node_draw_settings(K, n, "robsupport_fixed")
+    if user_input == "y":
+        return True
+    else:
+        return False
+
+
+def which_n_support(K):
+    user_input = input("what nodes are robot supported? ")
+    input_list_str = user_input.split()
+
+    for n in input_list_str:
+        node_draw_settings(K, n, "robsupport_fixed")
+
+    return input_list_str
 
 
 def select_n_active(n_rmv):

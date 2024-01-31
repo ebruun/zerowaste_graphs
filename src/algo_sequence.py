@@ -20,6 +20,16 @@ def _make_graph_title(step, nodes, nodes_robfxd):
         text = "Step {}: {} (rs) & {} (rs)".format(step, nodes_robfxd[0], nodes_robfxd[1])
     elif n_rmv == 1 and n_sup == 1:
         text = "Step {}: {} (rm) & {} (rs)".format(step, nodes[0], nodes_robfxd[0])
+    elif n_rmv == 2 and n_sup == 1:
+        text = "Step {}: {} (rm) & {} (rm) {} (rs)".format(
+            step, nodes[0], nodes[1], nodes_robfxd[0]
+        )
+    elif n_rmv == 1 and n_sup == 2:
+        text = "Step {}: {} (rm) & {} (rs) {} (rs)".format(
+            step, nodes[0], nodes_robfxd[0], nodes_robfxd[1]
+        )
+    else:
+        text = "none"
 
     return text
 

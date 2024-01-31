@@ -10,7 +10,7 @@ from src.drawing import draw_graph
 
 
 if __name__ == "__main__":
-    phase_number = "2a"
+    phase_number = "2b"
     num_agents = 3
     f_in = "P{}_data_in".format(phase_number)
     f_out = "P{}_graphs_out".format(phase_number)
@@ -33,10 +33,10 @@ if __name__ == "__main__":
     # rm_membs = ["SS1"]  # Phase 1
     # rm_membs = ["WS9", "SS1"]  # Phase 1
     # rm_membs = ["SS3", "SS1"]  # Phase 1
-    rm_membs = ["SP1_2", "SP1_3", "SP1_4"]  # Phase 2a_1
-    rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3"]  # Phase 2a_2
-    rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3", "RG1_6"]  # Phase 2a_3
-    # rm_membs = ["SP1_2", "SP1_3", "RG1_6"]  # Phase 2b
+    # rm_membs = ["SP1_2", "SP1_3", "SP1_4"]  # Phase 2a_1
+    # rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3"]  # Phase 2a_2
+    # rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3", "RG1_6"]  # Phase 2a_3
+    rm_membs = ["SP1_2", "SP1_3", "RG1_6"]  # Phase 2b
 
     Ks = bld_subg_single_remove(G, rm_membs)
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     for i, K_reduced in enumerate(K_reduced_list):
         draw_graph(
             G=K_reduced,
-            filepath="{}/_{}_STEP{}".format(f_out, name, i + 1),
+            filepath="{}/_{}_STEP{}".format(f_out, name, i + 9),
             scale=1.2,
             plt_show=True,
             plt_save=True,

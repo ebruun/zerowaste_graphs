@@ -182,7 +182,7 @@ def bld_sequence(K, rm_membs, num_agents):
 
     K_reduced = K.copy()
     saved_K, saved_seq = [], []
-    step = 0
+    step = 8
 
     while True:
         step += 1

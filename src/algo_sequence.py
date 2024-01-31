@@ -158,23 +158,64 @@ def set_rob_support(K):
         for n in input_list_str:
             node_draw_settings(K, n, "robsupport_fixed")
 
+    else:
+        input_list_str = []
 
-def select_n_active(n_active):
-    user_string = "choose idx of RMV members {}: int ... int ".format(n_active)
+    return input_list_str
+
+
+def select_n_active(K, n_active, n2):
+    # if it's empty
+    if not n_active:
+        n_active = n2
+
+    # if a member was user-specified at start
+    if n2:
+        str1 = "{} just supported, ".format(n2)
+    else:
+        str1 = "nothing just supported, "
+
+    ### REMOVE
+    user_string = "{}choose idx of RMV members {}: int ... int ".format(str1, n_active)
     user_input = input(user_string)
-    indexes_str = user_input.split()
 
+    indexes_str = user_input.split()
     indexes_int = [int(x) for x in indexes_str]
 
     n_rmv_select = [n_active[i] for i in indexes_int]
 
-    user_string = "choose idx of SUPPORT members {}: int ... int ".format(n_active)
-    user_input = input(user_string)
-    indexes_str = user_input.split()
+    ### SUPPORT
+    # choose items not in already supported in user specified
+    n_active2 = [item for item in n_active if item not in n2]
 
+    # choose from items not already removed
+    if n_rmv_select:
+        str2 = "{} just removed, ".format(n_rmv_select)
+        n_active2 = [item for item in n_active2 if item not in n_rmv_select]
+    else:
+        str2 = "nothing just removed, "
+
+    user_string = "{}{}choose idx of SUPPORT members {}: int ... int ".format(str1, str2, n_active2)
+    user_input = input(user_string)
+
+    indexes_str = user_input.split()
     indexes_int = [int(x) for x in indexes_str]
 
-    n_support_select = [n_active[i] for i in indexes_int]
+    n_support_select = [n_active2[i] for i in indexes_int]
+    n_support_select.extend(n2)
+
+    n_support_select = [item for item in n_support_select if item not in n_rmv_select]
+
+    # update graph output
+    if n_support_select:
+        for n in n_support_select:
+            node_draw_settings(K, n, "robsupport_fixed")
+
+    if n_rmv_select:
+        for n in n_rmv_select:
+            node_draw_settings(K, n, "start")
+
+    print("In this step: {} removed, {} supported".format(n_rmv_select, n_support_select))
 
     return n_rmv_select, n_support_select
 

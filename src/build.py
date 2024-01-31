@@ -181,26 +181,24 @@ def bld_sequence(K, rm_membs, num_agents):
 
     K_reduced = K.copy()
     saved_K, saved_seq = [], []
-    step = 8
+    step = 0
 
     while True:
         step += 1
         print(f"\nSTEP #{step}")
 
-        # user set any rob supports at start
-        set_rob_support(K_reduced)
-
         # check if any start node in current subgraph
         n_active = find_n_active(K_reduced, n_type=["start", "robsupport_fixed"])
 
-        if not n_active:
+        # user set any new rob supports at start
+        n_new_robsupport = set_rob_support(K_reduced)
+
+        if not set(n_active).union(set(n_new_robsupport)):
             print("-Terminate: No more removal members")
             break
 
         # user select a subset for remove and rob support
-        n_rmv_step, n_robfxd_step = select_n_active(n_active)
-
-        crnt_subg_setrobfxd(K_reduced, n_robfxd_step)
+        n_rmv_step, n_robfxd_step = select_n_active(K_reduced, n_active, n_new_robsupport)
 
         # save the current state
         crnt_subg_save(K_reduced, step, n_rmv_step, n_robfxd_step, saved_K, saved_seq)

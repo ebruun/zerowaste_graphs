@@ -10,7 +10,7 @@ from src.drawing import draw_graph
 
 
 if __name__ == "__main__":
-    phase_number = "2b"
+    phase_number = "1"
     num_agents = 3
     f_in = "P{}_data_in".format(phase_number)
     f_out = "P{}_graphs_out".format(phase_number)
@@ -31,12 +31,12 @@ if __name__ == "__main__":
     # rm_membs = ["ES10", "EP1_2", "NP1_1", "ER2"]  # Paper figure, single
     # rm_membs = ["WP1_2", "WS3"]  # Paper figure, joined
     # rm_membs = ["SS1"]  # Phase 1
-    # rm_membs = ["WS9", "SS1"]  # Phase 1
+    rm_membs = ["WS9", "SS1"]  # Phase 1
     # rm_membs = ["SS3", "SS1"]  # Phase 1
     # rm_membs = ["SP1_2", "SP1_3", "SP1_4"]  # Phase 2a_1
     # rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3"]  # Phase 2a_2
     # rm_membs = ["SP1_4", "ES10", "SP1_2", "SP1_3", "RG1_6"]  # Phase 2a_3
-    rm_membs = ["SP1_2", "SP1_3", "RG1_6"]  # Phase 2b
+    # rm_membs = ["SP1_2", "SP1_3", "RG1_6"]  # Phase 2b
 
     Ks = bld_subg_single_remove(G, rm_membs)
 

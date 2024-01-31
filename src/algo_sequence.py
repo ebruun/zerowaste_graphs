@@ -179,41 +179,6 @@ def select_n_active(n_active):
     return n_rmv_select, n_support_select
 
 
-# def select_n_active(n_rmv):
-#     # Select for remove
-#     user_string = "choose active members {}: int ... int ".format(n_rmv)
-#     user_input = input(user_string)
-#     rmv_indexes_str = user_input.split()
-
-#     try:
-#         # Convert each string element to an integer
-#         rmv_indexes_int = [int(x) for x in rmv_indexes_str]
-#     except ValueError:
-#         print("Invalid input. Please enter a valid list of integers.")
-
-#     rmv_indexes_int.sort(reverse=True)  # avoid index shift when remove
-#     n_rmv_select = [n_rmv.pop(index) for index in rmv_indexes_int]
-
-#     # Select for rob support
-#     user_string = "is {} rob_fixed: int ... int "
-#     user_input = input(user_string.format(n_rmv_select))
-#     robfxd_indexes_str = user_input.split()
-
-#     try:
-#         # Convert each string element to an integer
-#         robfxd_indexes_int = [int(x) for x in robfxd_indexes_str]
-#     except ValueError:
-#         print("Invalid input. Please enter a valid list of integers.")
-
-#     robfxd_indexes_int.sort(reverse=True)  # avoid index shift when remove
-#     n_robfxd_select = [n_rmv_select.pop(index) for index in robfxd_indexes_int]
-
-#     print(f"-Processing nodes: {n_rmv_select}")
-#     print(f"-robfixed nodes: {n_robfxd_select}")
-
-#     return n_rmv_select, n_robfxd_select
-
-
 def crnt_subg_setrobfxd(K, n_robfxd_step):
     if n_robfxd_step:
         for n in n_robfxd_step:

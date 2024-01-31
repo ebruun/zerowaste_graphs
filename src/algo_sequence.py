@@ -138,7 +138,7 @@ def _relabel_graph_fixed(K):
 ###############################################
 
 
-def find_n_to_rmv(K, n_type):
+def find_n_active(K, n_type):
     n_rmv = [
         n for n, data in K.nodes(data=True) if "node_type" in data and data["node_type"] in n_type
     ]
@@ -148,58 +148,70 @@ def find_n_to_rmv(K, n_type):
     return n_rmv
 
 
-def select_n_support():
-    user_input = input("Do you want to add support? (Y/N): ").strip().lower()
+def set_rob_support(K):
+    user_input = input("Do you want to add rob support? (Y/N): ").strip().lower()
 
     if user_input == "y":
-        return True
-    else:
-        return False
+        user_input = input("what nodes are robot supported? ")
+        input_list_str = user_input.split()
+
+        for n in input_list_str:
+            node_draw_settings(K, n, "robsupport_fixed")
 
 
-def which_n_support(K):
-    user_input = input("what nodes are robot supported? ")
-    input_list_str = user_input.split()
-
-    for n in input_list_str:
-        node_draw_settings(K, n, "robsupport_fixed")
-
-    return input_list_str
-
-
-def select_n_active(n_rmv):
-    # Select for remove
-    user_string = "choose members {}: int ... int ".format(n_rmv)
+def select_n_active(n_active):
+    user_string = "choose idx of RMV members {}: int ... int ".format(n_active)
     user_input = input(user_string)
-    rmv_indexes_str = user_input.split()
+    indexes_str = user_input.split()
 
-    try:
-        # Convert each string element to an integer
-        rmv_indexes_int = [int(x) for x in rmv_indexes_str]
-    except ValueError:
-        print("Invalid input. Please enter a valid list of integers.")
+    indexes_int = [int(x) for x in indexes_str]
 
-    rmv_indexes_int.sort(reverse=True)  # avoid index shift when remove
-    n_rmv_select = [n_rmv.pop(index) for index in rmv_indexes_int]
+    n_rmv_select = [n_active[i] for i in indexes_int]
 
-    # Select for rob support
-    user_string = "is {} rob_fixed: int ... int "
-    user_input = input(user_string.format(n_rmv_select))
-    robfxd_indexes_str = user_input.split()
+    user_string = "choose idx of SUPPORT members {}: int ... int ".format(n_active)
+    user_input = input(user_string)
+    indexes_str = user_input.split()
 
-    try:
-        # Convert each string element to an integer
-        robfxd_indexes_int = [int(x) for x in robfxd_indexes_str]
-    except ValueError:
-        print("Invalid input. Please enter a valid list of integers.")
+    indexes_int = [int(x) for x in indexes_str]
 
-    robfxd_indexes_int.sort(reverse=True)  # avoid index shift when remove
-    n_robfxd_select = [n_rmv_select.pop(index) for index in robfxd_indexes_int]
+    n_support_select = [n_active[i] for i in indexes_int]
 
-    print(f"-Processing nodes: {n_rmv_select}")
-    print(f"-robfixed nodes: {n_robfxd_select}")
+    return n_rmv_select, n_support_select
 
-    return n_rmv_select, n_robfxd_select
+
+# def select_n_active(n_rmv):
+#     # Select for remove
+#     user_string = "choose active members {}: int ... int ".format(n_rmv)
+#     user_input = input(user_string)
+#     rmv_indexes_str = user_input.split()
+
+#     try:
+#         # Convert each string element to an integer
+#         rmv_indexes_int = [int(x) for x in rmv_indexes_str]
+#     except ValueError:
+#         print("Invalid input. Please enter a valid list of integers.")
+
+#     rmv_indexes_int.sort(reverse=True)  # avoid index shift when remove
+#     n_rmv_select = [n_rmv.pop(index) for index in rmv_indexes_int]
+
+#     # Select for rob support
+#     user_string = "is {} rob_fixed: int ... int "
+#     user_input = input(user_string.format(n_rmv_select))
+#     robfxd_indexes_str = user_input.split()
+
+#     try:
+#         # Convert each string element to an integer
+#         robfxd_indexes_int = [int(x) for x in robfxd_indexes_str]
+#     except ValueError:
+#         print("Invalid input. Please enter a valid list of integers.")
+
+#     robfxd_indexes_int.sort(reverse=True)  # avoid index shift when remove
+#     n_robfxd_select = [n_rmv_select.pop(index) for index in robfxd_indexes_int]
+
+#     print(f"-Processing nodes: {n_rmv_select}")
+#     print(f"-robfixed nodes: {n_robfxd_select}")
+
+#     return n_rmv_select, n_robfxd_select
 
 
 def crnt_subg_setrobfxd(K, n_robfxd_step):
@@ -218,6 +230,7 @@ def crnt_subg_process(K, n_rmv_step, rm_membs, rmv_disconnect=False):
 
 def crnt_subg_save(K, step, n_rmv_step, n_robfxd_step, saved_K, saved_seq):
     K.graph["title"] = _make_graph_title(step, n_rmv_step, n_robfxd_step)
+    K.graph["step"] = step
 
     saved_K.append(K.copy())
     saved_seq.append(n_rmv_step)

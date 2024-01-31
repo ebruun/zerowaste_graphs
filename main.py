@@ -70,10 +70,11 @@ if __name__ == "__main__":
     # Task #3: Sequence Generate
     K_reduced_list, members = bld_sequence(K_joined, rm_membs, num_agents)
 
-    for i, K_reduced in enumerate(K_reduced_list):
+    for K_reduced in K_reduced_list:
+        i = K_reduced.graph["step"]
         draw_graph(
             G=K_reduced,
-            filepath="{}/_{}_STEP{}".format(f_out, name, i + 9),
+            filepath="{}/_{}_STEP{}".format(f_out, name, i),
             scale=1.2,
             plt_show=True,
             plt_save=True,

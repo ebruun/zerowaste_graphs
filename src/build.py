@@ -176,7 +176,7 @@ def bld_subg_multi_remove(G, Ks, rm_membs):
     return K_joined
 
 
-def bld_sequence(K, rm_membs, num_agents):
+def bld_sequence(K, rm_membs):
     print("\nCALCULATING DISASSEMBLY SEQUENCE")
 
     K_reduced = K.copy()

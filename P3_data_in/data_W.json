@@ -1,0 +1,235 @@
+{
+    "node": {
+        "WF1": {
+            "color": "black",
+            "pos": "(-25,0)",
+            "node_shape": "8",
+            "size": 600
+        },
+        "WP1_1": {
+            "color": "tab:pink",
+            "pos": "(-10,10)",
+            "size": 500
+        },
+        "WP1_2": {
+            "color": "tab:pink",
+            "pos": "(-10,6)",
+            "size": 500
+        },
+        "WP1_3": {
+            "color": "tab:pink",
+            "pos": "(-10,2)",
+            "size": 500
+        },
+        "WP1_4": {
+            "color": "tab:pink",
+            "pos": "(-10,-2)",
+            "size": 500
+        },
+        "WP1_5": {
+            "color": "tab:pink",
+            "pos": "(-10,-6)",
+            "size": 500
+        },
+        "WS1": {
+            "color": "tab:orange",
+            "pos": "(-17.5,8)",
+            "size": 400
+        },
+        "WS2": {
+            "color": "tab:orange",
+            "pos": "(-17.5,6)",
+            "size": 400
+        },
+        "WS3": {
+            "color": "tab:orange",
+            "pos": "(-17.5,4)",
+            "size": 400
+        },
+        "WS4": {
+            "color": "tab:orange",
+            "pos": "(-17.5,2)",
+            "size": 400
+        },
+        "WS5": {
+            "color": "tab:orange",
+            "pos": "(-17.5,0)",
+            "size": 400
+        },
+        "WS6": {
+            "color": "tab:orange",
+            "pos": "(-17.5,-2)",
+            "size": 400
+        },
+        "WD1": {
+            "color": "tab:gray",
+            "pos": "(-12.5,11.5)",
+            "size": 400
+        }
+    },
+    "edge": {
+        "WP1_1": {
+            "WP1_2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WS1": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.3"
+            },
+            "WS2": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "WS3": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "WP1_2": {
+            "WP1_1": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WP1_3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WS3": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "WS4": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "WP1_3": {
+            "WP1_2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WP1_4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WS4": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            },
+            "WS5": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "WP1_4": {
+            "WP1_3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WP1_5": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WS5": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            },
+            "WS6": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "WP1_5": {
+            "WP1_4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "WS6": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "WS1": {
+            "WF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.5"
+            }
+        },
+        "WS2": {
+            "WF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.4"
+            }
+        },
+        "WS3": {
+            "WF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.3"
+            }
+        },
+        "WS4": {
+            "WF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "WS5": {
+            "WF1": {
+                "weight": 0.5,
+                "color": "black"
+            }
+        },
+        "WS6": {
+            "WF1": {
+                "weight": 0.5,
+                "color": "black",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "WD1": {
+            "WS1": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "WS3": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "WS4": {
+                "weight": 1,
+                "color": "tab:orange",
+                "style": "arc3, rad=-0.2"
+            },
+            "WP1_3": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.2"
+            }
+        }
+    }
+}

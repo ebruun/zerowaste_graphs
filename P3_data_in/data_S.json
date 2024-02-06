@@ -1,0 +1,87 @@
+{
+    "node": {
+        "SF1": {
+            "color": "black",
+            "pos": "(0.0,-25)",
+            "node_shape": "8",
+            "size": 600
+        },
+        "new1": {
+            "color": "tab:purple",
+            "pos": "(-2,-16.5)",
+            "size": 500
+        },
+        "new2": {
+            "color": "tab:cyan",
+            "pos": "(-2,-10.5)",
+            "size": 400
+        },
+        "new3": {
+            "color": "tab:purple",
+            "pos": "(2,-16.5)",
+            "size": 500
+        },
+        "new4": {
+            "color": "tab:cyan",
+            "pos": "(2,-10.5)",
+            "size": 400
+        },
+        "new5": {
+            "color": "tab:olive",
+            "pos": "(8,-12.5)",
+            "size": 400
+        }
+    },
+    "edge": {
+        "new1": {
+            "new3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "SF1": {
+                "weight": 1,
+                "color": "tab:olive",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "new3": {
+            "new1": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "SF1": {
+                "weight": 1,
+                "color": "tab:olive",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "new2": {
+            "new1": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "new4": {
+            "new3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "new5": {
+            "new4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "EP1_5": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        }
+    }
+}

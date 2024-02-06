@@ -1,0 +1,428 @@
+{
+    "node": {
+        "RG1_1": {
+            "color": "tab:red",
+            "pos": "(0,7.5)",
+            "size": 450
+        },
+        "RG1_2": {
+            "color": "tab:red",
+            "pos": "(0,4.5)",
+            "size": 450
+        },
+        "RG1_3": {
+            "color": "tab:red",
+            "pos": "(0,1.5)",
+            "size": 450
+        },
+        "RG1_4": {
+            "color": "tab:red",
+            "pos": "(0,-1.5)",
+            "size": 450
+        },
+        "RG1_5": {
+            "color": "tab:red",
+            "pos": "(0,-4.5)",
+            "size": 450
+        },
+        "RP1": {
+            "color": "tab:brown",
+            "pos": "(0.0,11)",
+            "size": 400
+        },
+        "WR1": {
+            "color": "tab:blue",
+            "pos": "(-6.0,9.0)",
+            "size": 400
+        },
+        "WR2": {
+            "color": "tab:blue",
+            "pos": "(-6.0,6.0)",
+            "size": 400
+        },
+        "WR3": {
+            "color": "tab:blue",
+            "pos": "(-6.0,3.0)",
+            "size": 400
+        },
+        "WR4": {
+            "color": "tab:blue",
+            "pos": "(-6.0,0.0)",
+            "size": 400
+        },
+        "WR5": {
+            "color": "tab:blue",
+            "pos": "(-6.0,-3.0)",
+            "size": 400
+        },
+        "ER1": {
+            "color": "tab:blue",
+            "pos": "(6.0,9.0)",
+            "size": 400
+        },
+        "ER2": {
+            "color": "tab:blue",
+            "pos": "(6.0,6.0)",
+            "size": 400
+        },
+        "ER3": {
+            "color": "tab:blue",
+            "pos": "(6.0,3.0)",
+            "size": 400
+        },
+        "ER4": {
+            "color": "tab:blue",
+            "pos": "(6.0,0)",
+            "size": 400
+        },
+        "ER5": {
+            "color": "tab:blue",
+            "pos": "(6.0,-3.0)",
+            "size": 400
+        },
+        "RJ2": {
+            "color": "tab:green",
+            "pos": "(-1.5,6)",
+            "size": 250
+        },
+        "RJ3": {
+            "color": "tab:green",
+            "pos": "(-1.5,3)",
+            "size": 250
+        },
+        "RJ4": {
+            "color": "tab:green",
+            "pos": "(-1.5,0)",
+            "size": 250
+        },
+        "RJ5": {
+            "color": "tab:green",
+            "pos": "(-1.5,-3)",
+            "size": 250
+        }
+    },
+    "edge": {
+        "RG1_1": {
+            "RP1": {
+                "weight": 1,
+                "color": "tab:brown"
+            },
+            "RG1_2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "RG1_2": {
+            "RG1_1": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "RG1_3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "RG1_3": {
+            "RG1_4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "RG1_2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "RG1_4": {
+            "RG1_3": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "RG1_5": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "RG1_5": {
+            "RG1_4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "new2": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=0.2"
+            },
+            "new4": {
+                "weight": 1,
+                "color": "black",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "RP1": {
+            "NP1_1": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.2"
+            },
+            "NP1_2": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "WR1": {
+            "RG1_1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "NP1_1": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=0.2"
+            }
+        },
+        "WR2": {
+            "RG1_1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "RG1_2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "WP1_1": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "WP1_2": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.0"
+            }
+        },
+        "WR3": {
+            "RG1_2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "RG1_3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "WP1_2": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "WP1_3": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "WR4": {
+            "RG1_3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "RG1_4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "WP1_3": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "WP1_4": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "WR5": {
+            "RG1_4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "RG1_5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "WP1_4": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            },
+            "WP1_5": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            }
+        },
+        "ER1": {
+            "RG1_1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "NP1_2": {
+                "weight": 1,
+                "color": "tab:purple",
+                "style": "arc3, rad=-0.2"
+            }
+        },
+        "ER2": {
+            "RG1_1": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "RG1_2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "EP1_1": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "EP1_2": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "ER3": {
+            "RG1_2": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "RG1_3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "EP1_2": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "EP1_3": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "ER4": {
+            "RG1_3": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "RG1_4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "EP1_3": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "EP1_4": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "ER5": {
+            "RG1_4": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=0.1"
+            },
+            "RG1_5": {
+                "weight": 1,
+                "color": "tab:red",
+                "style": "arc3, rad=-0.1"
+            },
+            "EP1_4": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=0.1"
+            },
+            "EP1_5": {
+                "weight": 1,
+                "color": "tab:pink",
+                "style": "arc3, rad=-0.1"
+            }
+        },
+        "RJ2": {
+            "WR2": {
+                "weight": 1,
+                "color": "tab:green"
+            },
+            "ER2": {
+                "weight": 1,
+                "color": "tab:green"
+            }
+        },
+        "RJ3": {
+            "WR3": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=0.0"
+            },
+            "ER3": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "RJ4": {
+            "WR4": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=0.0"
+            },
+            "ER4": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=-0.0"
+            }
+        },
+        "RJ5": {
+            "WR5": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=-0.0"
+            },
+            "ER5": {
+                "weight": 1,
+                "color": "tab:green",
+                "style": "arc3, rad=0.0"
+            }
+        }
+    }
+}

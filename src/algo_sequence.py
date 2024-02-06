@@ -80,16 +80,6 @@ def _relabel_graph(K, rm_membs):
             node_draw_settings(K, n, "start")
 
 
-def _relabel_graph_ending(K):
-    "if only these left, then make normal nodes = start nodes"
-    desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "normal"]
-
-    if all(K.nodes[n]["node_type"] in desired_n_types for n in K.nodes()):
-        for n in K.nodes():
-            if K.nodes[n]["node_type"] == "normal":
-                node_draw_settings(K, n, "start")
-
-
 def _relabel_graph_robsupport(K):
     desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "robsupport_fixed"]
     ignore_n_types = ["end_2sides_fixed", "end_1sides_fixed", "robsupport_fixed", "end_foundation"]
@@ -114,6 +104,16 @@ def _relabel_graph_robsupport(K):
 
             if set(attribute_values).issubset(desired_n_types):
                 print("-- make {} start, two fxd predecessors = {}".format(n, predecessors))
+                node_draw_settings(K, n, "start")
+
+
+def _relabel_graph_ending(K):
+    "if only these left, then make normal nodes = start nodes"
+    desired_n_types = ["end_2sides_fixed", "end_1sides_fixed", "end_foundation", "normal"]
+
+    if all(K.nodes[n]["node_type"] in desired_n_types for n in K.nodes()):
+        for n in K.nodes():
+            if K.nodes[n]["node_type"] == "normal":
                 node_draw_settings(K, n, "start")
 
 

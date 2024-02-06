@@ -220,12 +220,6 @@ def select_n_active(K, n_active, n2):
     return n_rmv_select, n_support_select
 
 
-def crnt_subg_setrobfxd(K, n_robfxd_step):
-    if n_robfxd_step:
-        for n in n_robfxd_step:
-            node_draw_settings(K, n, "robsupport_fixed")
-
-
 def crnt_subg_process(K, n_rmv_step, rm_membs, rmv_disconnect=False):
     K.remove_nodes_from(n_rmv_step)
     rm_membs = _update_rm_list(n_rmv_step, rm_membs)

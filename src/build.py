@@ -13,7 +13,7 @@ from src.algo_sequence import (
     set_rob_support,
     crnt_subg_save,
     crnt_subg_process,
-    crnt_subg_setrobfxd,
+    # crnt_subg_setrobfxd,
     new_subg_relabel,
 )
 
@@ -177,6 +177,32 @@ def bld_subg_multi_remove(G, Ks, rm_membs):
 
 
 def bld_sequence(K, rm_membs):
+    """
+    Phase 1 and 2. Builds a disassembly sequence based on the provided graph and removal members.
+
+    Parameters:
+    - K (networkx.Graph): The input graph representing the assembly structure.
+    - rm_membs (list): A list of nodes to be as active member targets.
+
+    Returns:
+    - tuple: A tuple containing two lists: `saved_K` - a list of saved graph states during the disassembly process,
+      and `saved_seq` - a list representing the disassembly sequence.
+
+    The function iteratively selects nodes to remove from the graph `K` based on the provided `rm_membs`
+    and updates the disassembly sequence accordingly. It terminates when no more removal members can be
+    selected from the current subgraph.
+
+    During each step of the disassembly sequence, the following actions are performed:
+    1. Identifies active nodes in the current subgraph.
+    2. Allows the user to set new robotic supports if necessary.
+    3. Selects a subset of active nodes for removal and robotic support addition.
+    4. Saves the current state of the graph.
+    5. Processes the current subgraph by removing selected elements.
+    6. Relabels the graph for the next iteration.
+    7. Prints the remaining nodes and the sequence so far.
+
+    Note: The input graph `K` is modified during the execution of this function.
+    """
     print("\nCALCULATING DISASSEMBLY SEQUENCE")
 
     K_reduced = K.copy()
@@ -215,3 +241,9 @@ def bld_sequence(K, rm_membs):
         print("-sequence so far is {}".format(saved_seq))
 
     return saved_K, saved_seq
+
+
+def bld_p3_subgraph(G):
+    # edge_data, node_data = read_json(folder_in, f)
+    node_subset = ["WF1", "WS1", "WS2", "WS3", "WS4", "WS5"]
+    return G.subgraph(node_subset)

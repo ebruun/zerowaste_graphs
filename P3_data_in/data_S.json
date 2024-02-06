@@ -7,29 +7,29 @@
             "size": 600
         },
         "new1": {
-            "color": "tab:purple",
+            "color": "tab:gray",
             "pos": "(-2,-16.5)",
             "size": 500
         },
         "new2": {
-            "color": "tab:cyan",
+            "color": "tab:gray",
             "pos": "(-2,-10.5)",
-            "size": 400
+            "size": 500
         },
         "new3": {
-            "color": "tab:purple",
+            "color": "tab:gray",
             "pos": "(2,-16.5)",
             "size": 500
         },
         "new4": {
-            "color": "tab:cyan",
+            "color": "tab:gray",
             "pos": "(2,-10.5)",
-            "size": 400
+            "size": 500
         },
         "new5": {
-            "color": "tab:olive",
+            "color": "tab:gray",
             "pos": "(8,-12.5)",
-            "size": 400
+            "size": 500
         }
     },
     "edge": {
@@ -41,7 +41,7 @@
             },
             "SF1": {
                 "weight": 1,
-                "color": "tab:olive",
+                "color": "tab:gray",
                 "style": "arc3, rad=0.2"
             }
         },
@@ -53,33 +53,33 @@
             },
             "SF1": {
                 "weight": 1,
-                "color": "tab:olive",
+                "color": "tab:gray",
                 "style": "arc3, rad=-0.2"
             }
         },
         "new2": {
             "new1": {
                 "weight": 1,
-                "color": "black",
+                "color": "tab:gray",
                 "style": "arc3, rad=0.2"
             }
         },
         "new4": {
             "new3": {
                 "weight": 1,
-                "color": "black",
+                "color": "tab:gray",
                 "style": "arc3, rad=-0.2"
             }
         },
         "new5": {
             "new4": {
                 "weight": 1,
-                "color": "black",
+                "color": "tab:gray",
                 "style": "arc3, rad=0.2"
             },
             "EP1_5": {
                 "weight": 1,
-                "color": "black",
+                "color": "tab:gray",
                 "style": "arc3, rad=0.2"
             }
         }

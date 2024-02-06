@@ -157,12 +157,12 @@
             },
             "new2": {
                 "weight": 1,
-                "color": "black",
+                "color": "tab:gray",
                 "style": "arc3, rad=0.2"
             },
             "new4": {
                 "weight": 1,
-                "color": "black",
+                "color": "tab:gray",
                 "style": "arc3, rad=-0.2"
             }
         },

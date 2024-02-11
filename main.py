@@ -1,17 +1,17 @@
 # from msilib import sequence
 from src.build import (
     bld_g_full,
+    bld_g_sub,
     bld_subg_single_remove,
     bld_subg_multi_remove,
     bld_sequence,
-    bld_p3_subgraph,
 )
 
 from src.drawing import draw_graph
 
 
 if __name__ == "__main__":
-    phase_number = "2b"
+    phase_number = "3"
     f_in = "P{}_data_in".format(phase_number)
     f_out = "P{}_graphs_out".format(phase_number)
 
@@ -27,14 +27,22 @@ if __name__ == "__main__":
     )
 
     if phase_number == "3":
-        K = bld_p3_subgraph(G)
-        draw_graph(
-            G=K,
-            filepath="{}/{}".format(f_out, "_phase3_subset.png"),
-            scale=1,
-            plt_show=True,
-            plt_save=True,
-        )
+        # For Phase 3 figures
+        steps = 25
+
+        Ks = bld_g_sub(G, f_in, steps)
+
+        for K in Ks:
+            i = K.graph["step"]
+            name = f"phase3_subset_{i}.png"
+            draw_graph(
+                G=K,
+                filepath="{}/{}".format(f_out, name),
+                scale=1.2,
+                plt_show=False,
+                plt_save=True,
+                plt_text=True,
+            )
     else:
         # Task #2: Member Removal Sub-graphs
         # rm_membs = list(G.nodes())

@@ -20,7 +20,6 @@ def _create_file_path(folder, filename):
 
 
 def read_json(folder, name):
-
     p = _create_file_path(folder, name)
 
     with open(p, "r") as infile:
@@ -30,3 +29,14 @@ def read_json(folder, name):
     nodes = a["node"]
 
     return edges, nodes
+
+
+def read_json_subgraph(folder, name):
+    p = _create_file_path(folder, name)
+
+    with open(p, "r") as infile:
+        data = json.load(infile)
+
+    # step_data = a[step]
+
+    return data

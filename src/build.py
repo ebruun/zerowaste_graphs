@@ -1,5 +1,7 @@
 import networkx as nx
 
+from src.drawing import node_draw_settings
+
 from src.algorithms import (
     calc_subg_multi,
     check_fixed_nodes_support,
@@ -13,11 +15,13 @@ from src.algo_sequence import (
     set_rob_support,
     crnt_subg_save,
     crnt_subg_process,
-    # crnt_subg_setrobfxd,
     new_subg_relabel,
 )
 
-from src.io import read_json
+from src.io import (
+    read_json,
+    read_json_subgraph,
+)
 
 
 def _add_nodes(G, node_data):
@@ -60,6 +64,24 @@ def _add_in_extra_edge(G, K_joined):
     print("\nmissing edges in joined subgraphs: {}".format(missing_edges))
 
 
+def _create_subg(G, data, i):
+    data_nodes = data[str(i)]["nodes"]
+    data_title = data[str(i)]["title"]
+
+    subset_nodes = list(data_nodes)
+
+    K = G.subgraph(subset_nodes)
+    K.graph["step"] = i
+    K.graph["title"] = "Step {}: {}".format(i, data_title)
+
+    for key, value in data_nodes.items():
+        node_draw_settings(K, [key], value)
+
+    nx.set_edge_attributes(K, "black", "color")
+
+    return K
+
+
 ######################################################################
 
 
@@ -97,6 +119,23 @@ def bld_g_full(folder_in):
         _add_edges(G, edge_data)
 
     return G
+
+
+def bld_g_sub(G, folder_in, steps):
+    """
+    From the full graph, generate a subgraph based on given subset (for phase 3 figures)
+    """
+    f = "_subgraphs.json"
+    data = read_json_subgraph(folder_in, f)
+
+    Ks = []
+
+    for i in range(steps + 1):
+        K = _create_subg(G.copy(), data, i)
+
+        Ks.append(K)
+
+    return Ks
 
 
 def bld_subg_single_remove(G, rm_membs):
@@ -241,9 +280,3 @@ def bld_sequence(K, rm_membs):
         print("-sequence so far is {}".format(saved_seq))
 
     return saved_K, saved_seq
-
-
-def bld_p3_subgraph(G):
-    # edge_data, node_data = read_json(folder_in, f)
-    node_subset = ["WF1", "WS1", "WS2", "WS3", "WS4", "WS5"]
-    return G.subgraph(node_subset)

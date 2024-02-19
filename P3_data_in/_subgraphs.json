@@ -266,7 +266,7 @@
             "RG1_5": "end_1sides_fixed",
             "WR5n": "danger_1side_fixed",
             "WS6n": "robsupport_fixed",
-            "RJ4n": "start"
+            "RJ4n": "normal"
         }
     },
     "9": {
@@ -295,7 +295,7 @@
             "RG1_5": "end_1sides_fixed",
             "WR5n": "danger_1side_fixed",
             "WS6n": "robsupport_fixed",
-            "RJ4n": "start"
+            "RJ4n": "normal"
         }
     },
     "10": {
